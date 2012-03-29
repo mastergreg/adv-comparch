@@ -1,0 +1,5 @@
+#!/bin/sh
+# this file will be overwritten by the workspace setup script
+SIMICS_BASE_PACKAGE="/home/master/simics/simics-4.0.63"
+export SIMICS_BASE_PACKAGE
+exec "/home/master/simics/simics-4.0.63/bin/craff"  ${1+"$@"}
