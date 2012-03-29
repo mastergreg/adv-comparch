@@ -1,0 +1,2 @@
+add-directory "%script%"
+run-command-file "%simics%/targets/ts7200/ts7200-linux-common.simics"

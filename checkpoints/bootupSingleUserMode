@@ -1,0 +1,2743 @@
+OBJECT kbd0 TYPE i8042 {
+	queue: cpu0
+	build_id: 0xa26
+	reset_target: reset0
+	irq_dev: isa0
+	recorder: recorder0
+	console: con0
+	kbd_irq_level: 1
+	mouse_irq_level: 12
+	next_write: 0
+	obuffer: 156
+	mfull: 0
+	ofull: 0
+	ifull: 0
+	command_last: 0
+	selftest_ok: 0
+	scan_convert: 1
+	mouse_irq_en: 1
+	mouse_disabled: 0
+	mouse_connected: 1
+	kbd_irq_en: 1
+	kbd_disabled: 0
+	sent_time: 0x1.70a999999999ap+10 /* 1474.65 */
+	check_pending: 0
+	cmd_buttons: 0
+	irq_sent: 0
+	key_present: 1
+	key_enabled: 1
+	key_caps_lock: 0
+	key_num_lock: 0
+	key_scroll_lock: 0
+	key_scan_codes: 2
+	key_buffer: (147, 24, 152, 24, 152, 20, 148, 28, 156, 31, 23, 159, 151,
+                     50, 178, 23, 151, 46, 31, 174, 159, 28, 156, 23, 151, 49,
+                     23, 177, 151, 20, 148, 57, 185, 2, 130, 28, 156, 38, 166,
+                     31, 159, 28, 156, 46, 38, 174, 18, 166, 30, 146, 19, 158,
+                     147, 28, 156, 28, 156, 54, 49, 182, 177, 28, 156, 54, 49,
+                     177, 182, 28, 156, 41, 169, 14, 142, 14, 142, 20, 148, 14,
+                     142, 19)
+	key_first: 55
+	key_buf_num: 0
+	key_next_write: 0
+	mou_enabled: 1
+	mou_two_to_one: 0
+	mou_resolution: 3
+	mou_sample_rate: 100
+	mou_buffer: (250, 3, 250, 250, 250, 250, 250, 250, 250, 3, 250, 250,
+                     250, 250, 250, 250, 250, 250, 0, 3, 100, 250, 250, 250,
+                     250, 250, 250, 0, 0, 100, 250, 250, 170, 0, 250, 250, 250,
+                     250, 250, 250, 250, 3, 250, 250, 250, 250, 250, 250)
+	mou_first: 17
+	mou_buf_num: 0
+	mou_next_write: 0
+	mouse_type: 1
+	mouse_mode: 1
+	mode_select_state: 0
+	mouse_movement_x: 0
+	mouse_movement_y: 0
+	mouse_movement_z: 0
+	mouse_report_button_state: 0
+	mouse_current_button_state: 0
+	shift_l_down: 0
+	shift_r_down: 0
+	ctrl_l_down: 0
+	ctrl_r_down: 0
+	alt_l_down: 0
+	alt_r_down: 0
+	fast_a20: 0
+	fast_init: 0
+	output_port: 12
+	output_port_mask: 0
+	allow_keyboard_buffer_overflow: FALSE
+	irq_freq: 0x7d0
+}
+OBJECT north_bridge_cmp0 TYPE north-bridge-443bx {
+	queue: cpu0
+	build_id: 0xa26
+	object_list: {"bridge" :  north_bridge0, "pci_bus" :  pci_bus0, "pci_conf" : 
+                      pci_conf0, "pci_io" :  pci_io0}
+	object_prefix: ""
+	connections: (("pci-slot5", gfx_adapter_cmp0, "pci-bus"),
+                      ("system", system_cmp0, "chipset"),
+                      ("pci-slot7", south_bridge_cmp0, "pci-bus"),
+                      ("pci-slot4", eth_adapter_cmp0, "pci-bus"))
+	top_component: system_cmp0
+	instantiated: TRUE
+}
+OBJECT recorder0 TYPE recorder {
+	queue: cpu0
+	build_id: 0xa26
+}
+OBJECT north_bridge0 TYPE i82443bx {
+	queue: cpu0
+	build_id: 0xa26
+	memory: phys_mem0
+	confadd: 0x80002040
+	pci_bus: pci_bus0
+	config_registers: (0x71928086, 0x22000006, 0x6000002, 0, 8, 0, 0, 0, 0,
+                           0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0xc000000, 3, 0,
+                           0, 0, 0, 0, 0, 0, 0x38020000, 0, 0, 0, 0, 0, 128, 0,
+                           0, 0, 0, 0x1f000203, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                           0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+	agp_bridge: NIL
+}
+OBJECT ide_disk_cmp0 TYPE std-ide-disk {
+	queue: cpu0
+	build_id: 0xa26
+	object_list: {"hd_image" :  disk0_image, "hd" :  disk0}
+	object_prefix: ""
+	connections: (("ide-slot", south_bridge_cmp0, "ide0-master"))
+	top_component: system_cmp0
+	instantiated: TRUE
+	size: 0x4c5abc000
+	file: NIL
+}
+OBJECT pic0 TYPE i8259x2 {
+	queue: cpu0
+	build_id: 0xa26
+	irq_dev: apic_bus0
+	init_seq: (0, 0)
+	ic4_set: (1, 1)
+	read_reg: (0, 0)
+	aeoi: (1, 0)
+	sfnm: (0, 0)
+	poll: (0, 0)
+	low_irq_pri: (7, 7)
+	irq_mask: (254, 255)
+	vba: (32, 40)
+	level: (0, 12)
+	queued: (1, 0)
+	request: (94, 209)
+	issued: (0, 0)
+	special_mask: (0, 0)
+	irq_requested: 0
+	reissue_pending: 0
+	line_status: (0, 0)
+}
+OBJECT cell0_link0 TYPE ethernet-link {
+	queue: cpu0
+	build_id: 0xa26
+	promisc_default: TRUE
+	linkname: "link0"
+	pending_frames: ()
+	frequency: 0xe8d4a51000
+	frame_echo: FALSE
+	central: cell0
+	filter_enable: TRUE
+	nframes: 12
+	devices: ((0, 0, "dec0", dec0,
+                   ((("01:00:00:00:00:00", "01:00:00:00:00:00"),
+                     ("10:10:10:10:10:30", "ff:ff:ff:ff:ff:ff")), TRUE)),
+                  (1, 1, "snd0", snd0,
+                   ((("20:20:20:20:20:00", "ff:ff:ff:ff:ff:ff"),
+                     ("ff:ff:ff:ff:ff:ff", "ff:ff:ff:ff:ff:ff")), FALSE)))
+	latency: 0x3b9aca00
+	vlan: NIL
+	next_seq: 12
+	nbytes: 0x7d4
+}
+OBJECT vga0_dmap_ram TYPE ram {
+	queue: cpu0
+	build_id: 0xa26
+	image: vga0_vram_image
+	tags: NIL
+}
+OBJECT vga0 TYPE accel-vga {
+	queue: cpu0
+	build_id: 0xa26
+	pci_bus: pci_bus0
+	interrupt_pin: (0, 0, 0, 0)
+	config_registers: (0x11111234, 0x2900083, 0x3000012, 0, 0, 0, 0, 0, 0,
+                           0, 0, 0, 0, 0, 0, 0x8010a, 0, 0, 0, 0, 0, 0, 0, 0,
+                           0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                           0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                           0, 0, 0, 0, 0, 0)
+	write_masks: ((0, 0), (2, 0), (4, 39), (6, 0x3600), (8, 0), (9, 0),
+                      (12, 255), (13, 255), (14, 0), (15, 0), (16, 0), (20, 0),
+                      (24, 0), (28, 0), (32, 0), (36, 0), (40, 0), (44, 0),
+                      (46, 0), (48, 0xfffff801), (52, 0), (53, 0), (56, 0),
+                      (60, 255), (61, 0), (62, 0), (63, 0))
+	mappings: ((48, 0, 0x10000, 0, 0, 5, 0, 0, vga0_prom, 0, 0))
+	expansion_rom: (vga0_prom, 0x10000, 0)
+	memory_space: pci_mem0
+	console: con0
+	crtc_regs: (95, 79, 80, 130, 85, 129, 191, 31, 0, 79, 31, 30, 9, 0x9b0,
+                    9, 184, 156, 142, 143, 40, 31, 150, 185, 163, 255)
+	crtc_next: 11
+	attrib_regs: (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 12,
+                      0, 7, 8, 0)
+	attrib_next_index: 1
+	attrib_next_reg: 0
+	attrib_video_enable: 1
+	seq_regs: (0, 0, 3, 4, 2)
+	seq_next: 0
+	gfx_regs: (0, 0, 0, 0, 0, 16, 14, 15, 255)
+	gfx_next: 6
+	gfx_latch: (32, 7, 0, 255)
+	pel_mask: 255
+	ramdac_rw_state: 0
+	pel_addr: 16
+	pel_next_color: 0
+	pel_pal: ((0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                  (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                  (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                  (0, 0, 0), (0, 21, 0), (0, 21, 42), (0, 63, 0), (0, 63, 42),
+                  (42, 21, 0), (42, 21, 42), (42, 63, 0), (42, 63, 42),
+                  (0, 21, 21), (0, 21, 63), (0, 63, 21), (0, 63, 63),
+                  (42, 21, 21), (42, 21, 63), (42, 63, 21), (42, 63, 63),
+                  (21, 0, 0), (21, 0, 42), (21, 42, 0), (21, 42, 42),
+                  (63, 0, 0), (63, 0, 42), (63, 42, 0), (63, 42, 42),
+                  (21, 0, 21), (21, 0, 63), (21, 42, 21), (21, 42, 63),
+                  (63, 0, 21), (63, 0, 63), (63, 42, 21), (63, 42, 63),
+                  (21, 21, 0), (21, 21, 42), (21, 63, 0), (21, 63, 42),
+                  (63, 21, 0), (63, 21, 42), (63, 63, 0), (63, 63, 42),
+                  (21, 21, 21), (21, 21, 63), (21, 63, 21), (21, 63, 63),
+                  (63, 21, 21), (63, 21, 63), (63, 63, 21), (63, 63, 63),
+                  (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                  (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                  (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                  (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                  (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                  (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                  (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                  (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                  (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                  (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                  (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                  (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                  (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                  (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                  (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                  (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                  (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                  (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                  (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                  (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                  (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                  (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                  (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                  (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                  (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                  (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                  (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                  (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                  (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                  (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                  (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                  (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                  (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                  (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                  (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                  (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                  (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                  (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                  (0, 0, 0), (0, 0, 0))
+	misc_reg: 103
+	h_cnt: 75
+	v_cnt: 75
+	refresh_rate: 50
+	image: vga0_vram_image
+	direct_map_space: vga0_dmap_space
+	direct_map_ram: vga0_dmap_ram
+	system: bcast0
+	vbe_regs: (4, 0, 0, 0, 0, 0, 0xb0c4)
+	display_max_xres: 0x500
+	display_max_yres: 0x400
+}
+OBJECT con0 TYPE gfx-console {
+	queue: cpu0
+	build_id: 0xa26
+	x_size: 720
+	y_size: 400
+	depth: 8
+	keyboard: kbd0
+	mouse: kbd0
+	double_x_limit: 400
+	double_y_limit: 300
+	try_open: 1
+	rgb_colors: ((0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                     (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                     (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                     (0, 0, 0), (0, 84, 0), (0, 84, 168), (0, 252, 0),
+                     (0, 252, 168), (168, 84, 0), (168, 84, 168),
+                     (168, 252, 0), (168, 252, 168), (0, 84, 84), (0, 84, 252),
+                     (0, 252, 84), (0, 252, 252), (168, 84, 84),
+                     (168, 84, 252), (168, 252, 84), (168, 252, 252),
+                     (84, 0, 0), (84, 0, 168), (84, 168, 0), (84, 168, 168),
+                     (252, 0, 0), (252, 0, 168), (252, 168, 0),
+                     (252, 168, 168), (84, 0, 84), (84, 0, 252), (84, 168, 84),
+                     (84, 168, 252), (252, 0, 84), (252, 0, 252),
+                     (252, 168, 84), (252, 168, 252), (84, 84, 0),
+                     (84, 84, 168), (84, 252, 0), (84, 252, 168), (252, 84, 0),
+                     (252, 84, 168), (252, 252, 0), (252, 252, 168),
+                     (84, 84, 84), (84, 84, 252), (84, 252, 84),
+                     (84, 252, 252), (252, 84, 84), (252, 84, 252),
+                     (252, 252, 84), (252, 252, 252), (0, 0, 0), (0, 0, 0),
+                     (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                     (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                     (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                     (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                     (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                     (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                     (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                     (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                     (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                     (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                     (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                     (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                     (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                     (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                     (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                     (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                     (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                     (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                     (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                     (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                     (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                     (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                     (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                     (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                     (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                     (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                     (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                     (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                     (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                     (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                     (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                     (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                     (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                     (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                     (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                     (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                     (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                     (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0))
+	input_enable: 1
+	auto_release: 1
+	video: vga0
+	grab_modifier: "shift"
+	grab_button: "right"
+	title: "Simics Console: con0"
+	kbd_event_queue: ()
+	abs_pointer: NIL
+	abs_pointer_enabled: FALSE
+	visual_feedback: TRUE
+	clipboard_peer: NIL
+}
+OBJECT eth_adapter_cmp0 TYPE pci-dec21143 {
+	queue: cpu0
+	build_id: 0xa26
+	object_list: {"dec" :  dec0}
+	object_prefix: ""
+	connections: (("pci-bus", north_bridge_cmp0, "pci-slot4"),
+                      ("ethernet", ethernet_link_cmp0, "device"))
+	top_component: system_cmp0
+	instantiated: TRUE
+	mac_address: "10:10:10:10:10:30"
+	bios: NIL
+}
+OBJECT ram0 TYPE ram {
+	queue: cpu0
+	build_id: 0xa26
+	image: ram0_image
+	tags: NIL
+}
+OBJECT sn0 TYPE service-node {
+	queue: cpu0
+	build_id: 0xa26
+	routing_table: ()
+	services: {"RPC" :  TRUE, "DHCP" :  TRUE, "DNS" :  TRUE, "RARP" :  FALSE, "TFTP" : 
+                   TRUE, "DHCP6" :  TRUE}
+	udp_pcbs: ()
+	udp_checksumming: TRUE
+	tcp_ticks: 0
+	tcp_timer: 0
+	tcp_iss: 0x196e
+	tcp_timer_active: 0
+	tcp_pcbs: ()
+	napt_enable: 0
+	hosts: (("20:20:20:20:20:00", "10.10.0.1", "simics0", "network.sim"),
+                ("10:10:10:10:10:30", "10.10.0.12", "tango", "network.sim"))
+	host_pools: ()
+	host_root_install_server: ()
+	default_install_server_path: NIL
+	dhcp_leases: (("10.10.0.12", "10:10:10:10:10:30", [], 0xe10, 0x90a))
+	dhcp_max_lease_time: 0xffffffff
+	dhcp6_serverid: []
+	dhcp6_valid_prefixes: ()
+	dhcp6_lifetimes: (0, 0)
+	dhcp6_dns_servers: ()
+	dhcp6_domain_search_list: ()
+	dhcp6_nis_servers: ()
+	dhcp6_nis_domain_name: ""
+	dhcp6_nisp_servers: ()
+	dhcp6_nisp_domain_name: ""
+	dhcp6_allocated_addresses: ()
+	dhcp6_clients: ()
+	allow_real_dns: FALSE
+	tftp_sessions: ()
+	tftp_root_directory: NIL
+	bootparam_udp_port: 0x1000
+	rpc_bindings: ()
+}
+OBJECT pci_conf0 TYPE memory-space {
+	queue: cpu0
+	build_id: 0xa26
+	map: ((0, north_bridge0, 255, 0, 256, NIL, 0, 8, 0),
+              (0x2000, dec0, 255, 0, 256, NIL, 0, 8, 0),
+              (0x2800, vga0, 255, 0, 256, NIL, 0, 8, 0),
+              (0x3800, pci_to_isa0, 255, 0, 256, NIL, 0, 8, 0),
+              (0x3900, pci_to_ide0, 255, 0, 256, NIL, 0, 8, 0),
+              (0x3a00, pci_to_usb0, 255, 0, 256, NIL, 0, 8, 0),
+              (0x3b00, power0, 255, 0, 256, NIL, 0, 8, 0))
+	timing_model: NIL
+	snoop_device: NIL
+	default_target: NIL
+}
+OBJECT system_cmp0 TYPE x86-apic-system {
+	queue: cpu0
+	build_id: 0xa26
+	object_list: {"dram_space" :  dram0, "shadow_mem" :  shadow0, "rom" :  rom0,
+                      "ram_image" :  ram0_image, "cell0" :  cell0, "hfs" :  hfs0, "ram" : 
+                      ram0, "port_space" :  port_mem0, "recorder0" :  recorder0,
+                      "ioapic" :  ioapic0, "rom_image" :  rom0_image, "reset_bus" : 
+                      reset0, "apic_bus" :  apic_bus0, "rom1" :  rom1, "conf" :  conf0,
+                      "rom1_image" :  rom1_image, "shadow" :  core0, "phys_mem" : 
+                      phys_mem0, "bcast" :  bcast0, "pci_mem" :  pci_mem0}
+	object_prefix: ""
+	connections: (("cpu0", cpu_cmp0, "system"),
+                      ("chipset", north_bridge_cmp0, "system"),
+                      ("interrupt", south_bridge_cmp0, "interrupt"),
+                      ("reset", sio_cmp0, "reset"))
+	system_info: "Tango - Fedora Core 5 Linux"
+	machine_icon: NIL
+	components: (system_cmp0, cpu_cmp0, north_bridge_cmp0,
+                     south_bridge_cmp0, sio_cmp0, ide_cdrom_cmp0,
+                     ide_disk_cmp0, eth_adapter_cmp0, gfx_adapter_cmp0,
+                     gfx_console_cmp0, ethernet_link_cmp0)
+	cpu_list: (cpu0)
+	default_pf_dest: NIL
+	top_component: system_cmp0
+	instantiated: TRUE
+	memory_megs: 256
+	rtc_time: "2002-09-18 10:00:00 UTC"
+	break_on_reboot: TRUE
+	bios: "rombios-2.65.2.11"
+	acpi: TRUE
+}
+OBJECT snd0 TYPE service-node-device {
+	queue: cpu0
+	build_id: 0xa26
+	link_state: cell0_link0
+	mac_address: "20:20:20:20:20:00"
+	neighbors: {"nc" : 
+                    ({"ip" :  "10.10.0.12", "mac" :  "10:10:10:10:10:30", "state" : 
+                      "REACHABLE"}), "dc" :  NIL, "pl" : 
+                    ("10.10.0.0/24", "fe80::/64"), "rl" :  (), "al" : 
+                    ((0, "10.10.0.1/24"), (0, "fe80::2220:20ff:fe20:2000/64"))}
+	service_node: sn0
+	ip_addresses: ("10.10.0.1/24", "fe80::2220:20ff:fe20:2000/64")
+	mtu: 0x5dc
+	tx_bandwidth: 0x3b9aca00
+}
+OBJECT ide_cdrom_cmp0 TYPE std-ide-cdrom {
+	queue: cpu0
+	build_id: 0xa26
+	object_list: {"cd" :  cd0}
+	object_prefix: ""
+	connections: (("ide-slot", south_bridge_cmp0, "ide1-master"))
+	top_component: system_cmp0
+	instantiated: TRUE
+}
+OBJECT shadow0 TYPE memory-space {
+	queue: cpu0
+	build_id: 0xa26
+	map: ((0xc0000, vga0_prom, 0, 0, 0x10000, NIL, 0, 0x2000, 0),
+              (0xe0000, rom1, 0, 0, 0x10000, NIL, 0, 0x2000, 0),
+              (0x100000, dram0, 0, 0, 0x100000, dram0, 0, 0, 0))
+	timing_model: NIL
+	snoop_device: NIL
+	default_target: NIL
+}
+OBJECT rexec TYPE rev-execution {
+	queue: NIL
+	build_id: 0xa26
+}
+OBJECT pci_to_usb0 TYPE piix4_usb {
+	queue: cpu0
+	build_id: 0xa26
+	frame_list_polling_interval: 0x1.0624dd2f1a9fcp-10 /* 0.001 */
+	usb_devices: (NIL, NIL)
+	pci_config_subsystem_vendor_id: 0
+	pci_config_vendor_id: 0x8086
+	pci_config_max_lat: 0
+	pci_config_revision_id: 8
+	pci_config_base_address_5: 0
+	pci_config_subsystem_id: 0
+	pci_config_interrupt_line: 11
+	pci_config_interrupt_pin: 4
+	pci_config_capabilities_ptr: 0
+	pci_config_min_gnt: 0
+	pci_config_usbbase: 0x2141
+	pci_config_cache_line_size: 0
+	pci_config_interrupts: 0
+	pci_config_class_code: 0xc0300
+	pci_config_bist: 0
+	pci_config_usb_relnum: 16
+	pci_config_latency_timer: 64
+	pci_config_usb_legkey: 0x2000
+	pci_config_reserved1: 0
+	pci_config_reserved2: 0
+	pci_config_status: 640
+	pci_config_base_address_1: 0
+	pci_config_base_address_0: 0
+	pci_config_base_address_3: 0
+	pci_config_base_address_2: 0
+	pci_config_cardbus_cis_ptr: 0
+	pci_config_device_id: 0x7112
+	pci_config_expansion_rom_base: 0
+	pci_config_header_type: 0
+	pci_config_command: 7
+	usb_ctrl_speed: (0, 0)
+	usb_ctrl_addr: (0, 0)
+	usb_ctrl_pipe_state: (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+	last_frame_update: 0x1.162f8f7985272p+7 /* 139.093 */
+	expansion_rom_size: 0
+	usb_regs_unused_port: (0, 0, 0, 0, 0, 0)
+	usb_regs_start_of_frame_modify: 64
+	usb_regs_port_status_control: (128, 128)
+	usb_regs_usb_status: 32
+	usb_regs_frame_list_base_address: 0xfaf2000
+	usb_regs_usb_interrupt_enable: 2
+	usb_regs_usb_command: 72
+	usb_regs_frame_number: 0x754
+	expansion_rom: NIL
+	pci_bus: pci_bus0
+	frame_list_polling_enabled: 0
+}
+OBJECT rtc0 TYPE DS12887 {
+	queue: cpu0
+	build_id: 0xa26
+	base_time: 0.0
+	port_registers_address: 16
+	registers_month: 9
+	registers_d: 0
+	registers_a: 38
+	registers_year: 2
+	registers_nvram: (0, 0, 68, 0, 240, 0, 135, 128, 2, 255, 255, 47, 0,
+                          187, 9, 255, 0, 0, 8, 187, 9, 63, 0, 0, 0, 0, 0, 0,
+                          0, 0, 0, 0, 7, 56, 255, 255, 32, 0, 0, 0, 0, 0, 0, 0,
+                          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+	registers_hours_alarm: 0
+	registers_seconds: 59
+	registers_hours: 10
+	registers_date_of_the_month: 18
+	registers_day_of_the_week: 4
+	registers_minutes_alarm: 0
+	registers_c: 80
+	registers_b: 2
+	registers_seconds_alarm: 0
+	registers_minutes: 55
+	irq_dev: isa0
+	irq_level: 8
+	base_rtc_time: 0x3d884ea0
+}
+OBJECT core0 TYPE pc-shadow {
+	queue: cpu0
+	build_id: 0xa26
+	index: 0
+	config_register: (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                          0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                          0, 0, 0, 0)
+}
+OBJECT bcast0 TYPE x86_broadcast {
+	queue: cpu0
+	build_id: 0xa26
+	cpus: (cpu0)
+	images: (ram0_image)
+}
+OBJECT rom0 TYPE rom {
+	queue: cpu0
+	build_id: 0xa26
+	image: rom0_image
+	tags: NIL
+}
+OBJECT rom1 TYPE rom {
+	queue: cpu0
+	build_id: 0xa26
+	image: rom1_image
+	tags: NIL
+}
+OBJECT pci_to_ide0 TYPE piix4_ide {
+	queue: cpu0
+	build_id: 0xa26
+	pci_bus: pci_bus0
+	config_registers: (0x71118086, 0x2800005, 0x1018001, 0, 0, 0, 0, 0,
+                           0x2111, 0, 0, 0, 0, 0, 0, 0, 0xa307a307, 0,
+                           0x2020005, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                           0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                           0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+	memory: pci_mem0
+	primary_ide: ide0
+	secondary_ide: ide1
+	rwcon: (0, 0)
+	ssbm: (0, 0)
+	dmacap0: (1, 1)
+	dmacap1: (0, 0)
+	ideints: (0, 1)
+	dma_error: (0, 0)
+	bmidea: (0, 0)
+	dtba: (0xf8bd000, 0)
+	dma_active: (0, 0)
+	ignore_demap: FALSE
+}
+OBJECT rom1_image TYPE image {
+	queue: cpu0
+	build_id: 0xa26
+	image_snoop_devices: ()
+	size: 0x10000
+	files: (("bootupSingleUserMode.rom1_image", "ro", 0, 0x10000, 0))
+	page_alignment: 0x1000
+	linear: 0
+	init_pattern: 0
+}
+OBJECT sim TYPE sim {
+	queue: NIL
+	build_id: 0xa26
+	cell_list: (cell0)
+	version: 0xa26
+	handle_outside_memory: TRUE
+	always_reissue_after_stall: FALSE
+	simics_path: ("/home/master/simicsimages",
+                      "/home/master/Repos/adv-comparch/simics-workspace/targets/x86-440bx",
+                      "%simics%/targets/x86-440bx/images")
+	default_log_level: 1
+	event_queue_max: 0x1000
+	checkpoint_path: ("/home/master/Repos/adv-comparch/simics-workspace")
+	page_sharing: FALSE
+	cygpath_conversion: FALSE
+	frontend_current_processor: cpu0
+}
+OBJECT pci_mem0 TYPE memory-space {
+	queue: cpu0
+	build_id: 0xa26
+	map: ((0xa0000, vga0, 1, 0, 0x20000, NIL, 0, 8, 0),
+              (0xc0000, core0, 0, 0, 0x40000, shadow0, 1, 0, 0),
+              (0xf0000, rom0, 0, 0, 0x10000, NIL, 0, 0x2000, 0),
+              (0xe0000000, vga0_dmap_ram, 0, 0, 0x1000000, NIL, 0, 0x2000, 0),
+              (0xf0000080, dec0, 1, 0, 128, NIL, 0, 8, 0),
+              (0xfec00000, ioapic0, 0, 0, 32, NIL, 0, 8, 0),
+              (0xffe81000, hfs0, 0, 0, 16, NIL, 0, 8, 0),
+              (0xffff0000, rom0, 0, 0, 0x10000, NIL, 0, 0x2000, 0))
+	timing_model: NIL
+	snoop_device: NIL
+	default_target: (dram0, 0, 0, dram0)
+}
+OBJECT isa0 TYPE ISA {
+	queue: cpu0
+	build_id: 0xa26
+	pic: pic0
+	ioapic: ioapic0
+	irq_to_pin: (2, 1, 0, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
+                     17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
+                     31)
+	irq_status: (1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+OBJECT cell0 TYPE cell {
+	queue: NIL
+	build_id: 0xa26
+	schedule_list: (cpu0)
+	scheduled_object: cpu0
+	current_processor: cpu0
+	current_step_obj: cpu0
+	current_cycle_obj: cpu0
+	time_quantum: 0x1.999999999999ap-5 /* 0.05 */
+	default_cell: FALSE
+	sync_domain: default_sync_domain
+}
+OBJECT flp0 TYPE i82077 {
+	queue: cpu0
+	build_id: 0xa26
+	irq_dev: isa0
+	dma_dev: dma0
+	dma_channel: 2
+	irq_level: 6
+	state: 0
+	interrupt_pin: 0
+	enabled: 1
+	dma_enabled: 1
+	drive_select: 0
+	receive_ready: 1
+	direction_cpu: 0
+	command_busy: 0
+	fifo_enabled: 0
+	fifo_threshold: 0
+	poll_enabled: 1
+	poll_change: 0
+	precomp: 0
+	cmd_id: 8
+	cmd_len: 1
+	cur_cmd_len: 1
+	res_len: 2
+	cur_res_pos: 2
+	implied_seek: 0
+	step_rate: 0
+	head_load: 0
+	head_unload: 0
+	st0: 0
+	st1: 0
+	st2: 0
+	drives: (fd0, fd1)
+	cmd: (8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+	res: (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+OBJECT cpu0_apic TYPE apic {
+	queue: cpu0
+	build_id: 0xa26
+	apic_id: 0
+	apic_bus: apic_bus0
+	version: 20
+	apic_type: "P4"
+	cpu: cpu0
+	task_priority: 0
+	logical_destination: 0x1000000
+	destination_format: 0xffffffff
+	spurious_interrupt_vector: 511
+	interrupt_command: 0xfe00000000000630
+	lvt_timer: 0x200ef
+	lvt_lint0: 0x10700
+	lvt_lint1: 0x400
+	lvt_error: 254
+	lvt_performance_counter: 0x10000
+	lvt_thermal_sensor: 0
+	initial_count: 0x9c4
+	divisor_ln_2: 4
+	count_in_progress: 1
+	count_initial: 0x9c4
+	count_start: 0xfa3c00006
+	ext_int_obj: NIL
+	cpu_bus_divisor: 0x1p+1 /* 2 */
+	status: ((0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (1, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0),
+                 (0, 0, 0))
+	arbitration_id: 0
+	error_status: 0
+	remote_read: 0
+	interrupt_posted: 0
+	physical_broadcast_address: 255
+}
+OBJECT conf0 TYPE pc-config {
+	queue: cpu0
+	build_id: 0xa26
+	build_acpi_tables: TRUE
+	cpu_list: (cpu0)
+	megs: 256
+	ioapic_id: 1
+	user_rsdp_address: 0xef000
+	ebda_base: 0x9fc00
+	rsdp_offs: 96
+	high_desc_offs: 144
+	nvr_desc_offs: 164
+	reclaim_desc_offs: 184
+	high_desc_offs2: 204
+	smem_offs: 256
+}
+OBJECT isa_bus0 TYPE port-space {
+	queue: cpu0
+	build_id: 0xa26
+	map: ((0, dma0, 0, 0, 1), (1, dma0, 0, 1, 1), (2, dma0, 0, 2, 1),
+              (3, dma0, 0, 3, 1), (4, dma0, 0, 4, 1), (5, dma0, 0, 5, 1),
+              (6, dma0, 0, 6, 1), (7, dma0, 0, 7, 1), (8, dma0, 0, 8, 1),
+              (10, dma0, 0, 10, 1), (11, dma0, 0, 11, 1), (12, dma0, 0, 12, 1),
+              (13, dma0, 0, 13, 1), (14, dma0, 0, 14, 1), (32, pic0, 0, 32, 1),
+              (33, pic0, 0, 33, 1), (64, pit0, 0, 0, 1), (65, pit0, 0, 1, 1),
+              (66, pit0, 0, 2, 1), (67, pit0, 0, 3, 1), (96, kbd0, 0, 0, 1),
+              (97, pit0, 1, 0, 1), (100, kbd0, 0, 4, 1), (112, rtc0, 0, 0, 1),
+              (113, rtc0, 0, 1, 1), (129, dma0, 0, 129, 1),
+              (130, dma0, 0, 130, 1), (131, dma0, 0, 131, 1),
+              (132, dma0, 0, 132, 1), (133, dma0, 0, 133, 1),
+              (134, dma0, 0, 134, 1), (135, dma0, 0, 135, 1),
+              (136, dma0, 0, 136, 1), (137, dma0, 0, 137, 1),
+              (138, dma0, 0, 138, 1), (139, dma0, 0, 139, 1),
+              (140, dma0, 0, 140, 1), (141, dma0, 0, 141, 1),
+              (142, dma0, 0, 142, 1), (143, dma0, 0, 143, 1),
+              (146, kbd0, 0, 50, 1), (160, pic0, 0, 160, 1),
+              (161, pic0, 0, 161, 1), (178, apm0, 0, 0, 2),
+              (192, dma0, 0, 192, 1), (194, dma0, 0, 194, 1),
+              (196, dma0, 0, 196, 1), (198, dma0, 0, 198, 1),
+              (200, dma0, 0, 200, 1), (202, dma0, 0, 202, 1),
+              (204, dma0, 0, 204, 1), (206, dma0, 0, 206, 1),
+              (208, dma0, 0, 208, 1), (212, dma0, 0, 212, 1),
+              (214, dma0, 0, 214, 1), (216, dma0, 0, 216, 1),
+              (218, dma0, 0, 218, 1), (220, dma0, 0, 220, 1),
+              (368, ide1, 0, 0, 4), (369, ide1, 0, 1, 1), (370, ide1, 0, 2, 1),
+              (371, ide1, 0, 3, 1), (372, ide1, 0, 4, 1), (373, ide1, 0, 5, 1),
+              (374, ide1, 0, 6, 1), (375, ide1, 0, 7, 1), (496, ide0, 0, 0, 4),
+              (497, ide0, 0, 1, 1), (498, ide0, 0, 2, 1), (499, ide0, 0, 3, 1),
+              (500, ide0, 0, 4, 1), (501, ide0, 0, 5, 1), (502, ide0, 0, 6, 1),
+              (503, ide0, 0, 7, 1), (760, com2, 2, 0, 1), (761, com2, 2, 1, 1),
+              (762, com2, 2, 2, 1), (763, com2, 2, 3, 1), (764, com2, 2, 4, 1),
+              (765, com2, 2, 5, 1), (766, com2, 2, 6, 1), (767, com2, 2, 7, 1),
+              (886, ide1, 0, 8, 1), (0x3f2, flp0, 0, 0, 1),
+              (0x3f4, flp0, 0, 2, 1), (0x3f5, flp0, 0, 3, 1),
+              (0x3f6, ide0, 0, 8, 1), (0x3f7, flp0, 0, 5, 1),
+              (0x3f8, com1, 1, 0, 1), (0x3f9, com1, 1, 1, 1),
+              (0x3fa, com1, 1, 2, 1), (0x3fb, com1, 1, 3, 1),
+              (0x3fc, com1, 1, 4, 1), (0x3fd, com1, 1, 5, 1),
+              (0x3fe, com1, 1, 6, 1), (0x3ff, com1, 1, 7, 1),
+              (0x4d0, pic0, 0, 0x4d0, 1), (0x4d1, pic0, 0, 0x4d1, 1),
+              (0x8000, power0, 0, 0, 1), (0x8001, power0, 0, 1, 1),
+              (0x8002, power0, 0, 2, 1), (0x8003, power0, 0, 3, 1),
+              (0x8004, power0, 0, 4, 1), (0x8005, power0, 0, 5, 1),
+              (0x8006, power0, 0, 6, 1), (0x8007, power0, 0, 7, 1),
+              (0x8008, power0, 0, 8, 1), (0x8009, power0, 0, 9, 1),
+              (0x800a, power0, 0, 10, 1), (0x800b, power0, 0, 11, 1),
+              (0x800c, power0, 0, 12, 1), (0x800d, power0, 0, 13, 1),
+              (0x800e, power0, 0, 14, 1), (0x800f, power0, 0, 15, 1),
+              (0x8010, power0, 0, 16, 1), (0x8011, power0, 0, 17, 1),
+              (0x8012, power0, 0, 18, 1), (0x8013, power0, 0, 19, 1),
+              (0x8014, power0, 0, 20, 1), (0x8015, power0, 0, 21, 1),
+              (0x8016, power0, 0, 22, 1), (0x8017, power0, 0, 23, 1),
+              (0x8018, power0, 0, 24, 1), (0x8019, power0, 0, 25, 1),
+              (0x801a, power0, 0, 26, 1), (0x801b, power0, 0, 27, 1),
+              (0x801c, power0, 0, 28, 1), (0x801d, power0, 0, 29, 1),
+              (0x801e, power0, 0, 30, 1), (0x801f, power0, 0, 31, 1),
+              (0x8020, power0, 0, 32, 1), (0x8021, power0, 0, 33, 1),
+              (0x8022, power0, 0, 34, 1), (0x8023, power0, 0, 35, 1),
+              (0x8024, power0, 0, 36, 1), (0x8025, power0, 0, 37, 1),
+              (0x8026, power0, 0, 38, 1), (0x8027, power0, 0, 39, 1),
+              (0x8028, power0, 0, 40, 1), (0x8029, power0, 0, 41, 1),
+              (0x802a, power0, 0, 42, 1), (0x802b, power0, 0, 43, 1),
+              (0x802c, power0, 0, 44, 1), (0x802d, power0, 0, 45, 1),
+              (0x802e, power0, 0, 46, 1), (0x802f, power0, 0, 47, 1),
+              (0x8030, power0, 0, 48, 1), (0x8031, power0, 0, 49, 1),
+              (0x8032, power0, 0, 50, 1), (0x8033, power0, 0, 51, 1),
+              (0x8034, power0, 0, 52, 1), (0x8035, power0, 0, 53, 1),
+              (0x8036, power0, 0, 54, 1), (0x8037, power0, 0, 55, 1))
+	default_target: NIL
+}
+OBJECT cd0 TYPE ide-cdrom {
+	queue: cpu0
+	build_id: 0xa26
+	control: 0
+	status: 80
+	sector_cnt: 3
+	sector_num: 0
+	cylinder: 0
+	head: 0
+	command: 160
+	error: 32
+	features: 0
+	pio_mode: 2
+	udma_mode: 2
+	udma_enabled: 1
+	multiword_dma_mode: 0
+	multiword_dma_enabled: 0
+	sectors_per_int: 0
+	tr_sectors_size: 12
+	tr_sectors_per_block: 1
+	tr_sectors_last_block: 0
+	tr_num_blocks: 0
+	tr_update_address: 0
+	tr_pos: 12
+	tr_req_length: 8
+	tr_drq_bytes: 8
+	tr_bytes_remaining: 0
+	tr_current_lba: 0
+	tr_disk_finished: 0
+	tr_dma_finished: 0
+	tr_packet_use_dma: 0
+	atapi_packet: (30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+	sense_key: 0
+	sense_asc: 0
+	sense_ascq: 0
+	sector_buffer: (0, 4, 4, 86, 0, 0, 0, 0, 0, 0, 0, 0, 58, 0, 0, 0, 0, 0,
+                        0, 2, 2, 0, 2, 194, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 3, 0, 0, 4, 0, 0, 76, 65, 72, 80, 49, 65,
+                        32, 32, 105, 86, 116, 114, 116, 117, 99, 101, 32, 104,
+                        117, 84, 98, 114, 32, 111, 68, 67, 82, 45, 77, 79, 32,
+                        32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32,
+                        32, 32, 32, 0, 0, 0, 0, 3, 3, 0, 0, 0, 2, 0, 2, 7, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 3, 0, 120, 0, 120, 0, 120, 0, 120, 0, 0, 0, 0, 0,
+                        30, 0, 30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        30, 0, 0, 0, 96, 64, 0, 64, 0, 64, 96, 64, 0, 0, 0, 64,
+                        7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+	state: 0
+	current_profile: NIL
+	power_mode: 0
+	locked: 0
+	media_change: 0
+	unit_attension: 0
+	stat_commands: (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 23, 1,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 2, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0)
+	stat_atapi_commands: (5, 0, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
+                              0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                              0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0,
+                              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+                              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+	stat_bytes_read: 714
+	stat_bytes_written: 276
+	stat_bytes_transfered_dma: 0
+	geometry_valid: 1
+	serial_number: " VT00001"
+	firmware_id: "ALPHA1  "
+	model_id: "Virtutech Turbo CD-ROM                  "
+	cd_media: NIL
+}
+OBJECT cpu_cmp0 TYPE pentium-4-cpu {
+	queue: cpu0
+	build_id: 0xa26
+	object_list: {"apic[0]" :  cpu0_apic, "space[0]" :  cpu0_mem, "cpu[0]" :  cpu0,
+                      "tlb[0]" :  cpu0_tlb}
+	object_prefix: ""
+	connections: (("system", system_cmp0, "cpu0"))
+	top_component: system_cmp0
+	instantiated: TRUE
+	cpu_frequency: 20
+	cpi: 1
+	apic_frequency: 10
+}
+OBJECT default_sync_domain TYPE sync_domain {
+	queue: NIL
+	build_id: 0xa26
+	sync_domain: NIL
+	min_latency: 0x1p+0 /* 1 */
+	events: ()
+}
+OBJECT cpu0 TYPE x86-p4 {
+	queue: cpu0
+	build_id: 0xa26
+	physical_memory: cpu0_mem
+	physical_io: NIL
+	stall_time: 0
+	is_stalling: FALSE
+	stalling_info: (0, 0, 0)
+	cpu_group: reset0
+	recorder: recorder0
+	enabled_flag: TRUE
+	processor_number: 0
+	frequency: (0x1312d00, 1)
+	time_offset: 0.0
+	step_queue: ()
+	time_queue: ((cpu0_apic, "timer interrupt", NIL, "default", 0xe1d7),
+                     (pit0, "handle irq", 0, "default", 0x1351f),
+                     (sim, "Time Quantum End", cpu0, "sync", 0x30a51),
+                     (cell0, "Machine Sync Event",
+                      (power0, "piix4_power", "pmtmr23 toggle", NIL),
+                      "default", 0x2582801),
+                     (rtc0, "alarm_interrupt", NIL, "default", 0xdb0d2285e1))
+	step_rate: (1, 1, 0)
+	steps: 0xfa3c056af
+	cycles: 0xfa3c056af
+	step_per_cycle_mode: "constant"
+	quantum_cycle_error: 0
+	cell: cell0
+	eax: 0xc03d3000
+	ebx: 2
+	ecx: 0xc03a1f9c
+	edx: 0xc033c300
+	esp: 0xc03d3ff0
+	ebp: 0xcf882800
+	esi: 0xc0402700
+	edi: 10
+	eip: 0xc011e8ad
+	cpl: 0
+	activity_state: 0
+	halt_steps: 0xdf87e8cb2
+	ext: 0
+	cr0: 0x8005003b
+	cr2: 0xbf8dba28
+	cr4: 0x6d0
+	cr3: 0xfb2a000
+	cs: (96, 1, 0, 1, 1, 1, 11, 0, 0xffffffff, 1)
+	ds: (123, 1, 3, 1, 1, 1, 3, 0, 0xffffffff, 1)
+	ss: (104, 1, 0, 1, 1, 1, 3, 0, 0xffffffff, 1)
+	es: (123, 1, 3, 1, 1, 1, 3, 0, 0xffffffff, 1)
+	fs: (0, 0, 0, 0, 0, 0, 0, 0, 0xffffffff, 0)
+	gs: (0, 0, 0, 0, 0, 0, 0, 0xb7fb66b0, 0xffffffff, 0)
+	dr0: 0
+	dr1: 0
+	dr2: 0
+	dr3: 0
+	dr6: 0xffff0ff0
+	dr7: 0x400
+	pending_debug_exception: 0
+	pending_debug_exception_dr6: 0xffff0ff0
+	disabled_breakpoints_update_dr6: 0
+	idtr_base: 0xc0396000
+	idtr_limit: 0x7ff
+	gdtr_base: 0xc1202000
+	gdtr_limit: 255
+	tr: (128, 0, 0, 0, 1, 0, 11, 0xc033c860, 0x2073, 1)
+	ldtr: (136, 0, 0, 0, 1, 0, 2, 0xc03d1020, 39, 1)
+	eflags: 518
+	mxcsr: 0x1f80
+	xmm: ((0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0))
+	pending_exception: 0
+	pending_exception_error_code: 0
+	pending_exception_instruction_length: 0
+	pending_interrupt: 0
+	pending_vector: 49
+	pending_vector_valid: 0
+	waiting_interrupt: 0
+	fpu_regs: ((1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+                   (1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+                   (1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+                   (1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+                   (1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+                   (1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+                   (1, 0, 0, 0, 0, 0, 0, 0, 128, 2, 64),
+                   (1, 0, 0, 0, 0, 0, 0, 0, 128, 255, 63))
+	fpu_control: 895
+	fpu_status: 0x4000
+	fpu_tag: 0xffff
+	fpu_last_instr_selector0: 115
+	fpu_last_instr_selector1: 115
+	fpu_last_instr_pointer0: 0x8069425
+	fpu_last_instr_pointer1: 0x8069425
+	fpu_last_opcode0: 0
+	fpu_last_opcode1: 861
+	fpu_last_operand_selector0: 123
+	fpu_last_operand_selector1: 123
+	fpu_last_operand_pointer0: 0xbfb53e44
+	fpu_last_operand_pointer1: 0xbfb53e44
+	fpu_commit_last_instr: 0
+	fpu_fopcode_compatibility_mode: FALSE
+	a20mask: 0xffffffff
+	temporary_interrupt_mask: 2
+	disable_block_merge: 1
+	port_space: port_mem0
+	apic: cpu0_apic
+	bsp: 1
+	one_step_per_string_instruction: FALSE
+	null_clear_base_and_limit: FALSE
+	mov_default32: FALSE
+	skip_canonical_logical_check: FALSE
+	debug_len_10b_8_bytes: FALSE
+	seg_push_zero_pad: TRUE
+	pause_slow_cycles: 0
+	rdtsc_slow_cycles: 0
+	port_io_slow_cycles: 0
+	cpuid_sse3: 0
+	cpuid_vendor_id: "GenuineIntel"
+	cpuid_extended_family: 0
+	cpuid_extended_model: 0
+	cpuid_family: 15
+	cpuid_model: 0
+	cpuid_stepping: 1
+	cpuid_brand_id: 8
+	cpuid_clflush_size: 8
+	cpuid_logical_processor_count: 0
+	cpuid_physical_apic_id: 0
+	cpuid_2_eax: 0x65b5001
+	cpuid_2_ebx: 0
+	cpuid_2_ecx: 0
+	cpuid_2_edx: 0x407b0a
+	cpuid_processor_name: "Virtutech Processor"
+	cpuid_l2_cache_size_kb: 0x400
+	cpuid_l2_cache_assoc: 1
+	cpuid_l2_cache_lines_per_tag: 1
+	cpuid_l2_cache_line_size: 64
+	smm_base: 0x30000
+	smi_pending: 0
+	in_smm: 0
+	block_init: 0
+	block_smi: 0
+	block_nmi: 0
+	latch_init: 0
+	latch_smi: 0
+	latch_nmi: 0
+	threads: (cpu0)
+	ferr_status: 0
+	ignne_status: 0
+	tlb: cpu0_tlb
+	reorder_buffer_size: 1
+	system: bcast0
+	ia32_p5_mc_addr: 0
+	ia32_p5_mc_type: 0
+	ia32_monitor_filter_line_size: 0
+	ia32_time_stamp_counter: 0xfa3c056af
+	ia32_platform_id: 0
+	ia32_apicbase: 0xfee00900
+	ebc_hard_poweron: 0
+	ebc_soft_poweron: 0
+	ebc_frequency_id: 0
+	ia32_bios_updt_trig: 0
+	ia32_bios_sign_id: 0
+	ia32_mtrrcap: 0x508
+	ia32_sysenter_cs: 0
+	ia32_sysenter_esp: 0
+	ia32_sysenter_eip: 0
+	ia32_mcg_cap: 260
+	ia32_mcg_status: 0
+	ia32_mcg_ctl: 0
+	ia32_mcg_eax: 0
+	ia32_mcg_ebx: 0
+	ia32_mcg_ecx: 0
+	ia32_mcg_edx: 0
+	ia32_mcg_esi: 0
+	ia32_mcg_edi: 0
+	ia32_mcg_ebp: 0
+	ia32_mcg_esp: 0
+	ia32_mcg_eflags: 0
+	ia32_mcg_eip: 0
+	ia32_mcg_misc: 0
+	ia32_clock_modulation: 0
+	ia32_therm_interrupt: 0
+	ia32_therm_status: 0
+	ia32_therm2_ctl: 0
+	ia32_misc_enable: 0
+	platform_brv: 0
+	ler_from_lip: 0
+	ler_to_lip: 0
+	ia32_debugctl: 0
+	lastbranch_tos: 0
+	lastbranch_0: 0
+	lastbranch_1: 0
+	lastbranch_2: 0
+	lastbranch_3: 0
+	mtrr_base0: 6
+	mtrr_mask0: 0xff0000800
+	mtrr_base1: 0
+	mtrr_mask1: 0
+	mtrr_base2: 0
+	mtrr_mask2: 0
+	mtrr_base3: 0
+	mtrr_mask3: 0
+	mtrr_base4: 0
+	mtrr_mask4: 0
+	mtrr_base5: 0
+	mtrr_mask5: 0
+	mtrr_base6: 0
+	mtrr_mask6: 0
+	mtrr_base7: 0
+	mtrr_mask7: 0
+	mtrr_fix_64k_00000: 0x606060606060606
+	mtrr_fix_16k_80000: 0x606060606060606
+	mtrr_fix_16k_a0000: 0
+	mtrr_fix_4k_c0000: 0
+	mtrr_fix_4k_c8000: 0
+	mtrr_fix_4k_d0000: 0
+	mtrr_fix_4k_d8000: 0
+	mtrr_fix_4k_e0000: 0
+	mtrr_fix_4k_e8000: 0
+	mtrr_fix_4k_f0000: 0
+	mtrr_fix_4k_f8000: 0
+	ia32_cr_pat: 0x7040600070406
+	mtrr_def_type: 0xc00
+	bpu_counter0: 0
+	bpu_counter1: 0
+	bpu_counter2: 0
+	bpu_counter3: 0
+	ms_counter0: 0
+	ms_counter1: 0
+	ms_counter2: 0
+	ms_counter3: 0
+	flame_counter0: 0
+	flame_counter1: 0
+	flame_counter2: 0
+	flame_counter3: 0
+	iq_counter0: 0
+	iq_counter1: 0
+	iq_counter2: 0
+	iq_counter3: 0
+	iq_counter4: 0
+	iq_counter5: 0
+	bpu_cccr0: 0
+	bpu_cccr1: 0
+	bpu_cccr2: 0
+	bpu_cccr3: 0
+	ms_cccr0: 0
+	ms_cccr1: 0
+	ms_cccr2: 0
+	ms_cccr3: 0
+	flame_ccr0: 0
+	flame_ccr1: 0
+	flame_ccr2: 0
+	flame_ccr3: 0
+	iq_ccr0: 0
+	iq_ccr1: 0
+	iq_ccr2: 0
+	iq_ccr3: 0
+	iq_ccr4: 0
+	iq_ccr5: 0
+	bsu_escr0: 0
+	bsu_escr1: 0
+	fsb_escr0: 0
+	fsb_escr1: 0
+	firm_escr0: 0
+	firm_escr1: 0
+	flame_escr0: 0
+	flame_escr1: 0
+	dac_escr0: 0
+	dac_escr1: 0
+	mob_escr0: 0
+	mob_escr1: 0
+	pmh_escr0: 0
+	pmh_escr1: 0
+	saat_escr0: 0
+	saat_escr1: 0
+	u2l_escr0: 0
+	u2l_escr1: 0
+	bpu_escr0: 0
+	bpu_escr1: 0
+	is_escr0: 0
+	is_escr1: 0
+	itlb_escr0: 0
+	itlb_escr1: 0
+	cru_escr0: 0
+	cru_escr1: 0
+	iq_escr0: 0
+	iq_escr1: 0
+	rat_escr0: 0
+	rat_escr1: 0
+	ssu_escr0: 0
+	ms_escr0: 0
+	ms_escr1: 0
+	tbpu_escr0: 0
+	tbpu_escr1: 0
+	tc_escr0: 0
+	tc_escr1: 0
+	ix_escr0: 0
+	ix_escr1: 0
+	alf_escr0: 0
+	alf_escr1: 0
+	cru_escr2: 0
+	cru_escr3: 0
+	cru_escr4: 0
+	cru_escr5: 0
+	tc_precise_event: 0
+	ia32_pebs_enable: 0
+	pebs_matrix_vert: 0
+	mc0_ctl: -1
+	mc0_status: 0
+	mc0_addr: 0
+	mc0_misc: 0
+	mc1_ctl: -1
+	mc1_status: 0
+	mc1_addr: 0
+	mc1_misc: 0
+	mc2_ctl: -1
+	mc2_status: 0
+	mc2_addr: 0
+	mc2_misc: 0
+	mc3_ctl: -1
+	mc3_status: 0
+	mc3_addr: 0
+	mc3_misc: 0
+	ia32_ds_area: 0
+	lastbranch_0_from_lip: 0
+	lastbranch_1_from_lip: 0
+	lastbranch_2_from_lip: 0
+	lastbranch_3_from_lip: 0
+	lastbranch_4_from_lip: 0
+	lastbranch_5_from_lip: 0
+	lastbranch_6_from_lip: 0
+	lastbranch_7_from_lip: 0
+	lastbranch_8_from_lip: 0
+	lastbranch_9_from_lip: 0
+	lastbranch_10_from_lip: 0
+	lastbranch_11_from_lip: 0
+	lastbranch_12_from_lip: 0
+	lastbranch_13_from_lip: 0
+	lastbranch_14_from_lip: 0
+	lastbranch_15_from_lip: 0
+	lastbranch_0_to_lip: 0
+	lastbranch_1_to_lip: 0
+	lastbranch_2_to_lip: 0
+	lastbranch_3_to_lip: 0
+	lastbranch_4_to_lip: 0
+	lastbranch_5_to_lip: 0
+	lastbranch_6_to_lip: 0
+	lastbranch_7_to_lip: 0
+	lastbranch_8_to_lip: 0
+	lastbranch_9_to_lip: 0
+	lastbranch_10_to_lip: 0
+	lastbranch_11_to_lip: 0
+	lastbranch_12_to_lip: 0
+	lastbranch_13_to_lip: 0
+	lastbranch_14_to_lip: 0
+	lastbranch_15_to_lip: 0
+	cpuid_list: ()
+	pending_start_up: 0
+	pending_start_up_address: 0
+}
+OBJECT sio_cmp0 TYPE std-super-io {
+	queue: cpu0
+	build_id: 0xa26
+	object_list: {"com1" :  com1, "flp" :  flp0, "com2" :  com2, "kbd" :  kbd0, "fd1" : 
+                      fd1, "fd0" :  fd0}
+	object_prefix: ""
+	connections: (("mse-console", gfx_console_cmp0, "mouse"),
+                      ("kbd-console", gfx_console_cmp0, "keyboard"),
+                      ("reset", system_cmp0, "reset"),
+                      ("isa-bus", south_bridge_cmp0, "isa-bus"))
+	top_component: system_cmp0
+	instantiated: TRUE
+	add_par_port: FALSE
+}
+OBJECT ethernet_link_cmp0 TYPE std-ethernet-link {
+	queue: cpu0
+	build_id: 0xa26
+	object_list: {"link" :  cell0_link0, "cell0_link0" :  cell0_link0}
+	object_prefix: ""
+	connections: (("device", eth_adapter_cmp0, "ethernet"),
+                      ("device", service_node_cmp0, "link0"))
+	top_component: system_cmp0
+	instantiated: TRUE
+	latency: 0xf4240
+	link_name: "link0"
+	distributed: FALSE
+	frame_echo: 0
+	cell_objects: {"cell0" :  cell0_link0}
+}
+OBJECT pit0 TYPE i8254 {
+	queue: cpu0
+	build_id: 0xa26
+	irq_dev: isa0
+	irq_level: 0
+	interrupt_pin: 1
+	refresh_clock: 1
+	speaker: 0
+	have_speaker: 1
+	beep: 0
+	count: (0x12a5, 10, 0x5a5e)
+	initial_count: (0x12a5, 18, 0x5d39)
+	latched_count: (0x12a3, 0, 0)
+	latched_status: (0, 0, 0)
+	latched: (0, 0, 0)
+	latched_s: (0, 0, 0)
+	next_read_high: (0, 0, 0)
+	next_write_high: (0, 0, 0)
+	counting: (1, 1, 1)
+	gate: (1, 1, 1)
+	out: (1, 1, 0)
+	cmd: (3, 1, 3)
+	mode: (2, 2, 0)
+	bcd: (0, 0, 0)
+	null_count: (0, 0, 0)
+	initial_time: (0x1.a3d2e13cfc09dp+11 /* 3358.59 */,
+                       0x1.a711c20df5775p+3 /* 13.2209 */,
+                       0x1.a70ccb4320d5ap+3 /* 13.2203 */)
+	clock_freq_hz: (0x1.234dcp+20 /* 1.19318e+06 */,
+                        0x1.234dcp+20 /* 1.19318e+06 */,
+                        0x1.234dcp+20 /* 1.19318e+06 */)
+}
+OBJECT dma0 TYPE i8237x2 {
+	queue: cpu0
+	build_id: 0xa26
+	memory: pci_mem0
+	current_addr: ((0, 0, 0, 0), (0, 0, 0, 0))
+	base_addr: ((0, 0, 0, 0), (0, 0, 0, 0))
+	current_count: ((0, 0, 0, 0), (0, 0, 0, 0))
+	base_count: ((0, 0, 0, 0), (0, 0, 0, 0))
+	disabled: (0, 0)
+	mask: ((1, 1, 1, 1), (0, 1, 1, 1))
+	flip_flop: (0, 0)
+	dec_address: ((0, 0, 0, 0), (0, 0, 0, 0))
+	auto_init: ((0, 0, 0, 0), (0, 0, 0, 0))
+	dma_type: ((0, 0, 0, 0), (0, 0, 0, 0))
+	dma_mode: ((0, 0, 0, 0), (3, 0, 0, 0))
+	request: ((0, 0, 0, 0), (0, 0, 0, 0))
+	tc: ((0, 0, 0, 0), (0, 0, 0, 0))
+	page_addr: ((0, 0, 0, 0), (0, 0, 0, 0))
+	page_size: (0x10000, 0x20000)
+	extra_page_addr: ((0, 0, 0, 0), (0, 0, 0, 0))
+}
+OBJECT pci_io0 TYPE memory-space {
+	queue: cpu0
+	build_id: 0xa26
+	map: ((0, isa_bus0, 0, 0, 0x10000, NIL, 2, 4, 0),
+              (460, vga0, 3, 0, 2, NIL, 0, 8, 0),
+              (462, vga0, 3, 1, 2, NIL, 0, 8, 0),
+              (948, vga0, 0, 948, 1, NIL, 0, 8, 0),
+              (949, vga0, 0, 949, 1, NIL, 0, 8, 0),
+              (954, vga0, 0, 954, 1, NIL, 0, 8, 0),
+              (960, vga0, 0, 960, 1, NIL, 0, 8, 0),
+              (961, vga0, 0, 961, 1, NIL, 0, 8, 0),
+              (962, vga0, 0, 962, 1, NIL, 0, 8, 0),
+              (964, vga0, 0, 964, 1, NIL, 0, 8, 0),
+              (965, vga0, 0, 965, 1, NIL, 0, 8, 0),
+              (966, vga0, 0, 966, 1, NIL, 0, 8, 0),
+              (967, vga0, 0, 967, 1, NIL, 0, 8, 0),
+              (968, vga0, 0, 968, 1, NIL, 0, 8, 0),
+              (969, vga0, 0, 969, 1, NIL, 0, 8, 0),
+              (972, vga0, 0, 972, 1, NIL, 0, 8, 0),
+              (974, vga0, 0, 974, 1, NIL, 0, 8, 0),
+              (975, vga0, 0, 975, 1, NIL, 0, 8, 0),
+              (980, vga0, 0, 980, 1, NIL, 0, 8, 0),
+              (981, vga0, 0, 981, 1, NIL, 0, 8, 0),
+              (986, vga0, 0, 986, 1, NIL, 0, 8, 0),
+              (0x2080, dec0, 0, 0, 128, NIL, 0, 8, 0),
+              (0x2110, pci_to_ide0, 1, 0, 1, NIL, 0, 8, 0),
+              (0x2112, pci_to_ide0, 1, 2, 1, NIL, 0, 8, 0),
+              (0x2114, pci_to_ide0, 1, 4, 4, NIL, 0, 8, 0),
+              (0x2118, pci_to_ide0, 1, 8, 1, NIL, 0, 8, 0),
+              (0x211a, pci_to_ide0, 1, 10, 1, NIL, 0, 8, 0),
+              (0x211c, pci_to_ide0, 1, 12, 4, NIL, 0, 8, 0),
+              (0x2140, pci_to_usb0, 1, 0, 32, NIL, 0, 8, 0))
+	timing_model: NIL
+	snoop_device: NIL
+	default_target: NIL
+}
+OBJECT service_node_cmp0 TYPE std-service-node {
+	queue: cpu0
+	build_id: 0xa26
+	object_list: {"snd[0]" :  snd0, "sn" :  sn0}
+	object_prefix: ""
+	connections: (("link0", ethernet_link_cmp0, "device"))
+	top_component: NIL
+	instantiated: TRUE
+	next_connector_id: 1
+	dynamic_connectors: ((0, "10.10.0.1/24"))
+}
+OBJECT vga0_vram_image TYPE image {
+	queue: cpu0
+	build_id: 0xa26
+	image_snoop_devices: (vga0)
+	size: 0x1000000
+	files: (("bootupSingleUserMode.vga0_vram_image", "ro", 0, 0x1000000, 0))
+	page_alignment: 0x1000
+	linear: 1
+	init_pattern: 0
+}
+OBJECT gfx_console_cmp0 TYPE std-graphics-console {
+	queue: cpu0
+	build_id: 0xa26
+	object_list: {"con" :  con0}
+	object_prefix: ""
+	connections: (("mouse", sio_cmp0, "mse-console"),
+                      ("keyboard", sio_cmp0, "kbd-console"),
+                      ("device", gfx_adapter_cmp0, "console"))
+	top_component: system_cmp0
+	instantiated: TRUE
+	window: TRUE
+}
+OBJECT vga0_prom TYPE rom {
+	queue: cpu0
+	build_id: 0xa26
+	image: vga0_prom_image
+	tags: NIL
+}
+OBJECT vga0_prom_image TYPE image {
+	queue: cpu0
+	build_id: 0xa26
+	image_snoop_devices: ()
+	size: 0x10000
+	files: (("vgabios-12102.bin", "ro", 0, 0x10000, 0))
+	page_alignment: NIL
+	linear: 0
+	init_pattern: 0
+}
+OBJECT south_bridge_cmp0 TYPE south-bridge-piix4 {
+	queue: cpu0
+	build_id: 0xa26
+	object_list: {"dma" :  dma0, "pci_to_isa" :  pci_to_isa0, "power" :  power0,
+                      "rtc" :  rtc0, "pit" :  pit0, "pic" :  pic0, "pci_to_usb" : 
+                      pci_to_usb0, "pci_to_ide" :  pci_to_ide0, "apm" :  apm0,
+                      "isa_bus" :  isa_bus0, "isa" :  isa0, "ide0" :  ide0, "ide1" :  ide1}
+	object_prefix: ""
+	connections: (("interrupt", system_cmp0, "interrupt"),
+                      ("pci-bus", north_bridge_cmp0, "pci-slot7"),
+                      ("isa-bus", sio_cmp0, "isa-bus"),
+                      ("ide0-master", ide_disk_cmp0, "ide-slot"),
+                      ("ide1-master", ide_cdrom_cmp0, "ide-slot"))
+	top_component: system_cmp0
+	instantiated: TRUE
+}
+OBJECT hfs0 TYPE hostfs {
+	queue: cpu0
+	build_id: 0xa26
+	write_state: 0
+	host_func: 0
+	hnode: 0
+	datapos: 0
+	data_out: 
+              [0000000000000000000000000000000000000000000000000000000000000000
+/* 0x000020 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x000040 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x000060 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x000080 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x0000a0 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x0000c0 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x0000e0 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x000100 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x000120 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x000140 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x000160 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x000180 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x0001a0 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x0001c0 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x0001e0 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x000200 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x000220 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x000240 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x000260 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x000280 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x0002a0 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x0002c0 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x0002e0 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x000300 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x000320 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x000340 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x000360 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x000380 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x0003a0 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x0003c0 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x0003e0 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x000400 */ 00000000000000000000000000000000]
+	data_in: 
+              [0000000000000000000000000000000000000000000000000000000000000000
+/* 0x000020 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x000040 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x000060 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x000080 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x0000a0 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x0000c0 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x0000e0 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x000100 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x000120 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x000140 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x000160 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x000180 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x0001a0 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x0001c0 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x0001e0 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x000200 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x000220 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x000240 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x000260 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x000280 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x0002a0 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x0002c0 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x0002e0 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x000300 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x000320 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x000340 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x000360 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x000380 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x0003a0 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x0003c0 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x0003e0 */ 0000000000000000000000000000000000000000000000000000000000000000
+/* 0x000400 */ 00000000000000000000000000000000]
+	files: ((1, "", "/", 2, 0, 0, 0, 0, 0, 0))
+	root: 1
+	version: -1
+	host_root: "/"
+	big_endian: FALSE
+	mounted: FALSE
+}
+OBJECT ram0_image TYPE image {
+	queue: cpu0
+	build_id: 0xa26
+	image_snoop_devices: ()
+	size: 0x10000000
+	files: (("bootupSingleUserMode.ram0_image", "ro", 0, 0x10000000, 0))
+	page_alignment: 0x1000
+	linear: 0
+	init_pattern: 0
+}
+OBJECT gfx_adapter_cmp0 TYPE pci-accel-vga {
+	queue: cpu0
+	build_id: 0xa26
+	object_list: {"vga_vram_image" :  vga0_vram_image, "vga_dmap_ram" : 
+                      vga0_dmap_ram, "vga_prom_image" :  vga0_prom_image, "vga" : 
+                      vga0, "vga_dmap_space" :  vga0_dmap_space, "vga_prom" : 
+                      vga0_prom}
+	object_prefix: ""
+	connections: (("pci-bus", north_bridge_cmp0, "pci-slot5"),
+                      ("console", gfx_console_cmp0, "device"))
+	top_component: system_cmp0
+	instantiated: TRUE
+}
+OBJECT pci_bus0 TYPE pci-bus {
+	queue: cpu0
+	build_id: 0xa26
+	conf_space: pci_conf0
+	memory_space: pci_mem0
+	io_space: pci_io0
+	bridge: north_bridge0
+	interrupt: (pci_to_isa0)
+	bus_number: 0
+	sub_bus_number: 255
+	send_interrupt_to_bridge: 1
+	pci_devices: ((0, 0, north_bridge0, 1), (7, 1, pci_to_ide0, 1),
+                      (7, 3, power0, 1), (7, 0, pci_to_isa0, 1),
+                      (5, 0, vga0, 1), (4, 0, dec0, 1), (7, 2, pci_to_usb0, 1))
+}
+OBJECT cpu0_mem TYPE memory-space {
+	queue: cpu0
+	build_id: 0xa26
+	map: ((0xfee00000, cpu0_apic, 0, 0, 0x4000, NIL, 0, 8, 0))
+	timing_model: NIL
+	snoop_device: NIL
+	default_target: (phys_mem0, 0, 0, phys_mem0)
+}
+OBJECT vga0_dmap_space TYPE memory-space {
+	queue: cpu0
+	build_id: 0xa26
+	map: ((0, vga0, 1, 0, 0x10000, NIL, 0, 8, 0))
+	timing_model: NIL
+	snoop_device: NIL
+	default_target: NIL
+}
+OBJECT disk0 TYPE ide-disk {
+	queue: cpu0
+	build_id: 0xa26
+	control: 0
+	status: 80
+	sector_cnt: 8
+	sector_num: 197
+	cylinder: 0xc331
+	head: 1
+	command: 202
+	error: 0
+	features: 0
+	disk_cylinders: 0x3fff
+	disk_sectors_per_track: 63
+	disk_heads: 16
+	disk_sectors: 0x262d5e0
+	pio_mode: 2
+	udma_mode: 2
+	udma_enabled: 1
+	multiword_dma_mode: 0
+	multiword_dma_enabled: 0
+	sectors_per_int: 63
+	tr_sectors_size: 512
+	tr_sectors_per_block: 1
+	tr_sectors_last_block: 0
+	tr_num_blocks: 0
+	tr_update_address: 0
+	tr_drq_start_offset: 0
+	tr_drq_bytes_handled: 0
+	tr_pos: 0
+	tr_req_length: 0
+	tr_drq_bytes: 512
+	tr_bytes_remaining: 0x1000
+	tr_current_lba: 0x1c331c5
+	tr_disk_finished: 1
+	tr_dma_finished: 0
+	sector_buffer: (64, 0, 255, 63, 0, 0, 16, 0, 0, 0, 0, 0, 63, 0, 0, 0,
+                        0, 0, 0, 0, 86, 32, 48, 84, 48, 48, 50, 48, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 4, 0, 0, 76, 65, 72,
+                        80, 49, 65, 32, 32, 105, 86, 116, 114, 116, 117, 99,
+                        101, 32, 104, 117, 84, 98, 114, 32, 111, 97, 72, 100,
+                        114, 114, 100, 118, 105, 32, 101, 32, 32, 32, 32, 32,
+                        32, 32, 32, 32, 32, 32, 32, 32, 32, 63, 0, 0, 0, 3, 3,
+                        0, 0, 0, 2, 0, 2, 7, 0, 255, 63, 16, 0, 63, 0, 224,
+                        213, 98, 2, 63, 1, 224, 213, 98, 2, 0, 0, 7, 0, 3, 0,
+                        120, 0, 120, 0, 120, 0, 120, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 30, 0, 0, 0,
+                        96, 64, 0, 64, 0, 64, 96, 64, 0, 0, 0, 64, 7, 4, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+	state: 0
+	power_mode: 0
+	image: disk0_image
+	stat_commands: (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        1, 0, 0x5ef, 0, 583, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 3, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0, 0)
+	stat_atapi_commands: (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                              0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+	stat_bytes_read: 0x600
+	stat_bytes_written: 0
+	stat_bytes_transfered_dma: 0x2b4c000
+	geometry_valid: 1
+	disksim: NIL
+	disksim_devno: 0
+	serial_number: " VT00002"
+	firmware_id: "ALPHA1  "
+	model_id: "Virtutech Turbo Harddrive               "
+}
+OBJECT disk0_image TYPE image {
+	queue: cpu0
+	build_id: 0xa26
+	image_snoop_devices: ()
+	size: 0x4c5abc000
+	files: (("tango1-fedora5.craff", "ro", 0, 0x4c5abc000, 0),
+                ("bootupSingleUserMode.disk0_image", "ro", 0, 0x4c5abc000, 0))
+	page_alignment: NIL
+	linear: 0
+	init_pattern: 0
+}
+OBJECT rom0_image TYPE image {
+	queue: cpu0
+	build_id: 0xa26
+	image_snoop_devices: ()
+	size: 0x10000
+	files: (("bootupSingleUserMode.rom0_image", "ro", 0, 0x10000, 0))
+	page_alignment: 0x1000
+	linear: 0
+	init_pattern: 0
+}
+OBJECT ide0 TYPE ide {
+	queue: cpu0
+	build_id: 0xa26
+	irq_dev: isa0
+	irq_level: 14
+	selected_drive: 0
+	lba_mode: 1
+	interrupt_pin: 0
+	interrupt_delay: 0x1.4f8b588e368f1p-17 /* 1e-05 */
+	primary: 1
+	model_dma_delay: 0
+	master: disk0
+	slave: NIL
+	bus_master_dma: pci_to_ide0
+	dma_ready: 0
+}
+OBJECT ide1 TYPE ide {
+	queue: cpu0
+	build_id: 0xa26
+	irq_dev: isa0
+	irq_level: 15
+	selected_drive: 0
+	lba_mode: 0
+	interrupt_pin: 0
+	interrupt_delay: 0x1.4f8b588e368f1p-17 /* 1e-05 */
+	primary: 0
+	model_dma_delay: 0
+	master: cd0
+	slave: NIL
+	bus_master_dma: pci_to_ide0
+	dma_ready: 0
+}
+OBJECT ioapic0 TYPE io-apic {
+	queue: cpu0
+	build_id: 0xa26
+	apic_bus: apic_bus0
+	ioapic_id: 0x1000000
+	register_select: 36
+	redirection: (0x10000, 0x100000000000939, 0x100000000000931,
+                      0x100000000010941, 0x100000000000949, 0x100000000000951,
+                      0x100000000000959, 0x100000000000961, 0x100000000000969,
+                      0x10000000000a971, 0x10000000000a979, 0x10000000000a981,
+                      0x100000000000989, 0x100000000000991, 0x100000000000999,
+                      0x1000000000009a1, 0x10000, 0x10000, 0x10000, 0x10000,
+                      0x10000, 0x10000, 0x10000, 0x10000)
+	pin_raised: (0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                     0, 0, 0, 0, 0)
+	int_deliver_status: (0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0,
+                             0, 0, 0, 0, 0, 0, 0)
+	ioapic_version: 0x170011
+	boot_configuration: 0
+}
+OBJECT pci_to_isa0 TYPE piix4_isa {
+	queue: cpu0
+	build_id: 0xa26
+	pci_bus: pci_bus0
+	config_registers: (0x71108086, 0x2800007, 0x6010002, 0x800000, 0, 0, 0,
+                           0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x3004d, 0, 0,
+                           0, 0, 0xb0a0b0a, 16, 512, 0, 0, 0xc0c0000, 0, 0, 0,
+                           0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                           0x21000000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+	irq_dev: isa0
+	pirqrca: 10
+	pirqrcb: 11
+	pirqrcc: 10
+	pirqrcd: 11
+	pirq_active: ((), (), (), ())
+}
+OBJECT apm0 TYPE apm {
+	queue: cpu0
+	build_id: 0xa26
+	control: 240
+	status: 0
+	pm: power0
+}
+OBJECT com1 TYPE NS16550_dml {
+	queue: cpu0
+	build_id: 0xa26
+	irq_high: FALSE
+	receive_ready_waiting: FALSE
+	RXRDYn_high: FALSE
+	TXRDYn: NIL
+	interrupt_mask_out2: 1
+	recv_fifo: []
+	xmit_fifo: []
+	receive_throttled: FALSE
+	console: NIL
+	TXRDYn_high: FALSE
+	in_fifo_mode: FALSE
+	RXRDYn: NIL
+	recorder: recorder0
+	regs_ii: 1
+	regs_scr: 0
+	regs_msr: 0
+	regs_ier: 0
+	regs_iir: 1
+	regs_mcr: 0
+	regs_drm: 0
+	regs_drl: 0
+	regs_lcr: 0
+	multiple_transfer: FALSE
+	link: NIL
+	irq_level: 4
+	irq_dev: isa0
+	trigger_lvl: 1
+	xmit_time: 1000
+}
+OBJECT com2 TYPE NS16550_dml {
+	queue: cpu0
+	build_id: 0xa26
+	irq_high: FALSE
+	receive_ready_waiting: FALSE
+	RXRDYn_high: FALSE
+	TXRDYn: NIL
+	interrupt_mask_out2: 1
+	recv_fifo: []
+	xmit_fifo: []
+	receive_throttled: FALSE
+	console: NIL
+	TXRDYn_high: FALSE
+	in_fifo_mode: FALSE
+	RXRDYn: NIL
+	recorder: recorder0
+	regs_ii: 1
+	regs_scr: 0
+	regs_msr: 0
+	regs_ier: 0
+	regs_iir: 1
+	regs_mcr: 0
+	regs_drm: 0
+	regs_drl: 0
+	regs_lcr: 0
+	multiple_transfer: FALSE
+	link: NIL
+	irq_level: 3
+	irq_dev: isa0
+	trigger_lvl: 1
+	xmit_time: 1000
+}
+OBJECT phys_mem0 TYPE memory-space {
+	queue: cpu0
+	build_id: 0xa26
+	map: ((0, dram0, 0, 0, 0xa0000, dram0, 0, 0, 0),
+              (0x100000, ram0, 0, 0x100000, 0xff00000, NIL, 0, 0x2000, 0))
+	timing_model: NIL
+	snoop_device: NIL
+	default_target: (pci_mem0, 0, 0, pci_mem0)
+}
+OBJECT port_mem0 TYPE port-space {
+	queue: cpu0
+	build_id: 0xa26
+	map: ((34, north_bridge0, 0, 34, 1),
+              (0xcf8, north_bridge0, 0, 0xcf8, 4),
+              (0xcf9, north_bridge0, 0, 0xcf9, 2),
+              (0xcfa, north_bridge0, 0, 0xcfa, 2),
+              (0xcfb, north_bridge0, 0, 0xcfb, 1),
+              (0xcfc, north_bridge0, 0, 0xcfc, 4),
+              (0xcfd, north_bridge0, 0, 0xcfd, 2),
+              (0xcfe, north_bridge0, 0, 0xcfe, 2),
+              (0xcff, north_bridge0, 0, 0xcff, 1), (0xfff0, conf0, 0, 0, 1),
+              (0xfff1, conf0, 1, 0, 1), (0xfff2, conf0, 2, 0, 2),
+              (0xfff4, core0, 0, 0, 1), (0xfff5, core0, 0, 1, 1))
+	default_target: (pci_io0, 0, 0, pci_io0)
+}
+OBJECT reset0 TYPE x86-reset-bus {
+	queue: cpu0
+	build_id: 0xa26
+	reset_targets: (cpu0)
+}
+OBJECT dram0 TYPE memory-space {
+	queue: cpu0
+	build_id: 0xa26
+	map: ((0, ram0, 0, 0, 0x10000000, NIL, 0, 0x2000, 0))
+	timing_model: NIL
+	snoop_device: NIL
+	default_target: NIL
+}
+OBJECT apic_bus0 TYPE apic-bus {
+	queue: cpu0
+	build_id: 0xa26
+	apics: (cpu0_apic)
+	ioapic: (ioapic0)
+	pic: pic0
+}
+OBJECT cpu0_tlb TYPE x86-tlb {
+	queue: cpu0
+	build_id: 0xa26
+	cpu: cpu0
+	type: "unlimited"
+	large_tlb_select: 4
+	itlb_large: NIL
+	dtlb_large: (((0xcd800000, 0xd800000, 1, 0, 1, "WB", "WB"),
+                      (0xcf800000, 0xf800000, 1, 0, 1, "WB", "WB"),
+                      (0xc1000000, 0x1000000, 1, 0, 1, "WB", "WB"),
+                      (0xc0400000, 0x400000, 1, 0, 1, "WB", "WB"),
+                      (0xcfc00000, 0xfc00000, 1, 0, 1, "WB", "WB"),
+                      (0xcdc00000, 0xdc00000, 1, 0, 1, "WB", "WB"),
+                      (0xce400000, 0xe400000, 1, 0, 1, "WB", "WB"),
+                      (0xcec00000, 0xec00000, 1, 0, 1, "WB", "WB"),
+                      (0xcf400000, 0xf400000, 1, 0, 1, "WB", "WB"),
+                      (0xce000000, 0xe000000, 1, 0, 1, "WB", "WB"),
+                      (0xcf000000, 0xf000000, 1, 0, 1, "WB", "WB"),
+                      (0xce800000, 0xe800000, 1, 0, 1, "WB", "WB"),
+                      (0xcd400000, 0xd400000, 1, 0, 1, "WB", "WB")))
+	itlb_4k: NIL
+	dtlb_4k: (((0xc0149000, 0x149000, 1, 1, 1, "WB", "WB"),
+                   (0xc02dc000, 0x2dc000, 1, 1, 1, "WB", "WB"),
+                   (0xc01c4000, 0x1c4000, 1, 1, 1, "WB", "WB"),
+                   (0xc0343000, 0x343000, 1, 0, 1, "WB", "WB"),
+                   (0xc013d000, 0x13d000, 1, 1, 1, "WB", "WB"),
+                   (0xc03a0000, 0x3a0000, 1, 1, 1, "WB", "WB"),
+                   (0xc013c000, 0x13c000, 1, 1, 1, "WB", "WB"),
+                   (0xc014f000, 0x14f000, 1, 1, 1, "WB", "WB"),
+                   (0xc0130000, 0x130000, 1, 1, 1, "WB", "WB"),
+                   (0xd097f000, 0xdb74000, 1, 0, 1, "WB", "WB"),
+                   (0xc0102000, 0x102000, 1, 1, 1, "WB", "WB"),
+                   (0xc0143000, 0x143000, 1, 1, 1, "WB", "WB"),
+                   (0xc0148000, 0x148000, 1, 1, 1, "WB", "WB"),
+                   (0xc0141000, 0x141000, 1, 1, 1, "WB", "WB"),
+                   (0xc0142000, 0x142000, 1, 1, 1, "WB", "WB"),
+                   (0xc03e0000, 0x3e0000, 1, 0, 1, "WB", "WB"),
+                   (0xc013e000, 0x13e000, 1, 1, 1, "WB", "WB"),
+                   (0xc013f000, 0x13f000, 1, 1, 1, "WB", "WB"),
+                   (0xc01c2000, 0x1c2000, 1, 1, 1, "WB", "WB"),
+                   (0xc02dd000, 0x2dd000, 1, 1, 1, "WB", "WB"),
+                   (0xc0341000, 0x341000, 1, 0, 1, "WB", "WB"),
+                   (0xc02db000, 0x2db000, 1, 1, 1, "WB", "WB"),
+                   (0xc0116000, 0x116000, 1, 1, 1, "WB", "WB"),
+                   (0xc011b000, 0x11b000, 1, 1, 1, "WB", "WB"),
+                   (0xc0146000, 0x146000, 1, 1, 1, "WB", "WB"),
+                   (0xc0145000, 0x145000, 1, 1, 1, "WB", "WB"),
+                   (0xc0396000, 0x396000, 1, 1, 1, "WB", "WB"),
+                   (0xc033c000, 0x33c000, 1, 0, 1, "WB", "WB"),
+                   (0xc02e0000, 0x2e0000, 1, 1, 1, "WB", "WB"),
+                   (0xc03e1000, 0x3e1000, 1, 0, 1, "WB", "WB"),
+                   (0xc011e000, 0x11e000, 1, 1, 1, "WB", "WB"),
+                   (0xffffd000, 0xfee00000, 1, 0, 1, "UC-", "UC"),
+                   (0xc03d2000, 0x3d2000, 1, 0, 1, "WB", "WB"),
+                   (0xc0112000, 0x112000, 1, 1, 1, "WB", "WB"),
+                   (0xc016c000, 0x16c000, 1, 1, 1, "WB", "WB"),
+                   (0xc0118000, 0x118000, 1, 1, 1, "WB", "WB"),
+                   (0xc0398000, 0x398000, 1, 0, 1, "WB", "WB"),
+                   (0xc0129000, 0x129000, 1, 1, 1, "WB", "WB"),
+                   (0xc012c000, 0x12c000, 1, 1, 1, "WB", "WB"),
+                   (0xc0134000, 0x134000, 1, 1, 1, "WB", "WB"),
+                   (0xc01b6000, 0x1b6000, 1, 1, 1, "WB", "WB"),
+                   (0xc0151000, 0x151000, 1, 1, 1, "WB", "WB"),
+                   (0xc0150000, 0x150000, 1, 1, 1, "WB", "WB"),
+                   (0xd0877000, 0xfbbc000, 1, 1, 1, "WB", "WB"),
+                   (0xc017d000, 0x17d000, 1, 1, 1, "WB", "WB"),
+                   (0xc0164000, 0x164000, 1, 1, 1, "WB", "WB"),
+                   (0xc0163000, 0x163000, 1, 1, 1, "WB", "WB"),
+                   (0xc0344000, 0x344000, 1, 0, 1, "WB", "WB"),
+                   (0xc0160000, 0x160000, 1, 1, 1, "WB", "WB"),
+                   (0xc0153000, 0x153000, 1, 1, 1, "WB", "WB"),
+                   (0xc0173000, 0x173000, 1, 1, 1, "WB", "WB"),
+                   (0xc0172000, 0x172000, 1, 1, 1, "WB", "WB"),
+                   (0xd085d000, 0xfba2000, 1, 1, 1, "WB", "WB"),
+                   (0xd085c000, 0xfba1000, 1, 1, 1, "WB", "WB"),
+                   (0xc034b000, 0x34b000, 1, 0, 1, "WB", "WB"),
+                   (0xc019e000, 0x19e000, 1, 1, 1, "WB", "WB"),
+                   (0xc0128000, 0x128000, 1, 1, 1, "WB", "WB"),
+                   (0xc0342000, 0x342000, 1, 0, 1, "WB", "WB"),
+                   (0xc0166000, 0x166000, 1, 1, 1, "WB", "WB"),
+                   (0xc01c0000, 0x1c0000, 1, 1, 1, "WB", "WB"),
+                   (0xc0169000, 0x169000, 1, 1, 1, "WB", "WB"),
+                   (0xc0345000, 0x345000, 1, 0, 1, "WB", "WB"),
+                   (0xc01bd000, 0x1bd000, 1, 1, 1, "WB", "WB"),
+                   (0xc035e000, 0x35e000, 1, 0, 1, "WB", "WB"),
+                   (0xc01be000, 0x1be000, 1, 1, 1, "WB", "WB"),
+                   (0xc01b8000, 0x1b8000, 1, 1, 1, "WB", "WB"),
+                   (0xc01b7000, 0x1b7000, 1, 1, 1, "WB", "WB"),
+                   (0xc011c000, 0x11c000, 1, 1, 1, "WB", "WB"),
+                   (0xc011d000, 0x11d000, 1, 1, 1, "WB", "WB"),
+                   (0xc01c1000, 0x1c1000, 1, 1, 1, "WB", "WB"),
+                   (0xc0139000, 0x139000, 1, 1, 1, "WB", "WB"),
+                   (0xc013b000, 0x13b000, 1, 1, 1, "WB", "WB"),
+                   (0xc03df000, 0x3df000, 1, 1, 1, "WB", "WB"),
+                   (0xc03d1000, 0x3d1000, 1, 0, 1, "WB", "WB"),
+                   (0xc0103000, 0x103000, 1, 1, 1, "WB", "WB"),
+                   (0xc0101000, 0x101000, 1, 1, 1, "WB", "WB"),
+                   (0xc0196000, 0x196000, 1, 1, 1, "WB", "WB"),
+                   (0xc0168000, 0x168000, 1, 1, 1, "WB", "WB"),
+                   (0xc019c000, 0x19c000, 1, 1, 1, "WB", "WB"),
+                   (0xc019a000, 0x19a000, 1, 1, 1, "WB", "WB"),
+                   (0xc033f000, 0x33f000, 1, 0, 1, "WB", "WB"),
+                   (0xc0123000, 0x123000, 1, 1, 1, "WB", "WB"),
+                   (0xc0122000, 0x122000, 1, 1, 1, "WB", "WB"),
+                   (0xc0117000, 0x117000, 1, 1, 1, "WB", "WB"),
+                   (0xc010d000, 0x10d000, 1, 1, 1, "WB", "WB"),
+                   (0xc03d6000, 0x3d6000, 1, 0, 1, "WB", "WB"),
+                   (0xc0104000, 0x104000, 1, 1, 1, "WB", "WB"),
+                   (0xc03d4000, 0x3d4000, 1, 0, 1, "WB", "WB"),
+                   (0xc0138000, 0x138000, 1, 1, 1, "WB", "WB"),
+                   (0xc0113000, 0x113000, 1, 1, 1, "WB", "WB"),
+                   (0xc0105000, 0x105000, 1, 1, 1, "WB", "WB"),
+                   (0xc039f000, 0x39f000, 1, 0, 1, "WB", "WB"),
+                   (0xc0340000, 0x340000, 1, 0, 1, "WB", "WB"),
+                   (0xc03d5000, 0x3d5000, 1, 1, 1, "WB", "WB"),
+                   (0xc0121000, 0x121000, 1, 1, 1, "WB", "WB"),
+                   (0xc012a000, 0x12a000, 1, 1, 1, "WB", "WB"),
+                   (0xc012b000, 0x12b000, 1, 1, 1, "WB", "WB"),
+                   (0xc03db000, 0x3db000, 1, 1, 1, "WB", "WB"),
+                   (0xc0111000, 0x111000, 1, 1, 1, "WB", "WB"),
+                   (0xc03d3000, 0x3d3000, 1, 0, 1, "WB", "WB"),
+                   (0xc02da000, 0x2da000, 1, 1, 1, "WB", "WB"),
+                   (0xc01c3000, 0x1c3000, 1, 1, 1, "WB", "WB"),
+                   (0xc017f000, 0x17f000, 1, 1, 1, "WB", "WB"),
+                   (0xc0127000, 0x127000, 1, 1, 1, "WB", "WB"),
+                   (0xc033e000, 0x33e000, 1, 0, 1, "WB", "WB"),
+                   (0xc0115000, 0x115000, 1, 1, 1, "WB", "WB"),
+                   (0xc0281000, 0x281000, 1, 1, 1, "WB", "WB"),
+                   (0xc0167000, 0x167000, 1, 1, 1, "WB", "WB"),
+                   (0xc0365000, 0x365000, 1, 0, 1, "WB", "WB"),
+                   (0xc02ed000, 0x2ed000, 1, 1, 1, "WB", "WB"),
+                   (0xd097d000, 0xdb72000, 1, 0, 1, "WB", "WB"),
+                   (0xd094a000, 0xdb3f000, 1, 1, 1, "WB", "WB"),
+                   (0xd0980000, 0xdb75000, 1, 0, 1, "WB", "WB"),
+                   (0xd097e000, 0xdb73000, 1, 0, 1, "WB", "WB"),
+                   (0xc0283000, 0x283000, 1, 1, 1, "WB", "WB"),
+                   (0xc0284000, 0x284000, 1, 1, 1, "WB", "WB"),
+                   (0xd096b000, 0xdb60000, 1, 1, 1, "WB", "WB"),
+                   (0xc0282000, 0x282000, 1, 1, 1, "WB", "WB"),
+                   (0xc02e1000, 0x2e1000, 1, 1, 1, "WB", "WB"),
+                   (0xc02fc000, 0x2fc000, 1, 1, 1, "WB", "WB"),
+                   (0xc034c000, 0x34c000, 1, 0, 1, "WB", "WB"),
+                   (0xc02e4000, 0x2e4000, 1, 1, 1, "WB", "WB"),
+                   (0xc0165000, 0x165000, 1, 1, 1, "WB", "WB"),
+                   (0xc0155000, 0x155000, 1, 1, 1, "WB", "WB"),
+                   (0xc03d0000, 0x3d0000, 1, 1, 1, "WB", "WB"),
+                   (0xc01ad000, 0x1ad000, 1, 1, 1, "WB", "WB"),
+                   (0xc0147000, 0x147000, 1, 1, 1, "WB", "WB"),
+                   (0xc0106000, 0x106000, 1, 1, 1, "WB", "WB"),
+                   (0xc0161000, 0x161000, 1, 1, 1, "WB", "WB"),
+                   (0xd0865000, 0xfbaa000, 1, 1, 1, "WB", "WB"),
+                   (0xc0137000, 0x137000, 1, 1, 1, "WB", "WB"),
+                   (0xc02c1000, 0x2c1000, 1, 1, 1, "WB", "WB"),
+                   (0xd095b000, 0xdb50000, 1, 1, 1, "WB", "WB"),
+                   (0xc0367000, 0x367000, 1, 0, 1, "WB", "WB"),
+                   (0xc02c2000, 0x2c2000, 1, 1, 1, "WB", "WB"),
+                   (0xd0968000, 0xdb5d000, 1, 1, 1, "WB", "WB"),
+                   (0xd094e000, 0xdb43000, 1, 1, 1, "WB", "WB"),
+                   (0xd094c000, 0xdb41000, 1, 1, 1, "WB", "WB"),
+                   (0xd0955000, 0xdb4a000, 1, 1, 1, "WB", "WB"),
+                   (0xd0956000, 0xdb4b000, 1, 1, 1, "WB", "WB"),
+                   (0xd0950000, 0xdb45000, 1, 1, 1, "WB", "WB"),
+                   (0xc0359000, 0x359000, 1, 0, 1, "WB", "WB"),
+                   (0xc02cf000, 0x2cf000, 1, 1, 1, "WB", "WB"),
+                   (0xd0962000, 0xdb57000, 1, 1, 1, "WB", "WB"),
+                   (0xd094b000, 0xdb40000, 1, 1, 1, "WB", "WB"),
+                   (0xc02c4000, 0x2c4000, 1, 1, 1, "WB", "WB"),
+                   (0xd0969000, 0xdb5e000, 1, 1, 1, "WB", "WB"),
+                   (0xc0156000, 0x156000, 1, 1, 1, "WB", "WB"),
+                   (0xc0368000, 0x368000, 1, 1, 1, "WB", "WB"),
+                   (0xc02ee000, 0x2ee000, 1, 1, 1, "WB", "WB"),
+                   (0xc02bc000, 0x2bc000, 1, 1, 1, "WB", "WB"),
+                   (0xc02ba000, 0x2ba000, 1, 1, 1, "WB", "WB"),
+                   (0xc029f000, 0x29f000, 1, 1, 1, "WB", "WB"),
+                   (0xc029e000, 0x29e000, 1, 1, 1, "WB", "WB"),
+                   (0xc028c000, 0x28c000, 1, 1, 1, "WB", "WB"),
+                   (0xc02c9000, 0x2c9000, 1, 1, 1, "WB", "WB"),
+                   (0xc02bd000, 0x2bd000, 1, 1, 1, "WB", "WB"),
+                   (0xc028e000, 0x28e000, 1, 1, 1, "WB", "WB"),
+                   (0xc02be000, 0x2be000, 1, 1, 1, "WB", "WB"),
+                   (0xc02c6000, 0x2c6000, 1, 1, 1, "WB", "WB"),
+                   (0xc02c8000, 0x2c8000, 1, 1, 1, "WB", "WB"),
+                   (0xc0369000, 0x369000, 1, 0, 1, "WB", "WB"),
+                   (0xc02c7000, 0x2c7000, 1, 1, 1, "WB", "WB"),
+                   (0xc02bb000, 0x2bb000, 1, 1, 1, "WB", "WB"),
+                   (0xd0831000, 0xfe01000, 1, 1, 1, "WB", "WB"),
+                   (0xc0154000, 0x154000, 1, 1, 1, "WB", "WB"),
+                   (0xd085e000, 0xfba3000, 1, 1, 1, "WB", "WB"),
+                   (0xd082f000, 0xfb63000, 1, 1, 1, "WB", "WB"),
+                   (0xd082b000, 0xfb5f000, 1, 1, 1, "WB", "WB"),
+                   (0xd0837000, 0xfb67000, 1, 1, 1, "WB", "WB"),
+                   (0xd082c000, 0xfb60000, 1, 1, 1, "WB", "WB"),
+                   (0xd0866000, 0xfbab000, 1, 1, 1, "WB", "WB"),
+                   (0xd0861000, 0xfba6000, 1, 1, 1, "WB", "WB"),
+                   (0xc02ea000, 0x2ea000, 1, 1, 1, "WB", "WB"),
+                   (0xc0350000, 0x350000, 1, 0, 1, "WB", "WB"),
+                   (0xc0201000, 0x201000, 1, 1, 1, "WB", "WB"),
+                   (0xc0202000, 0x202000, 1, 1, 1, "WB", "WB"),
+                   (0xc0399000, 0x399000, 1, 0, 1, "WB", "WB"),
+                   (0xc0239000, 0x239000, 1, 1, 1, "WB", "WB"),
+                   (0xc0240000, 0x240000, 1, 1, 1, "WB", "WB"),
+                   (0xc0242000, 0x242000, 1, 1, 1, "WB", "WB"),
+                   (0xc035f000, 0x35f000, 1, 1, 1, "WB", "WB"),
+                   (0xc023b000, 0x23b000, 1, 1, 1, "WB", "WB"),
+                   (0xc023a000, 0x23a000, 1, 1, 1, "WB", "WB"),
+                   (0xc01bf000, 0x1bf000, 1, 1, 1, "WB", "WB"),
+                   (0xd083b000, 0xfb50000, 1, 1, 1, "WB", "WB"),
+                   (0xd0819000, 0xee13000, 1, 1, 1, "WB", "WB"),
+                   (0xc01b5000, 0x1b5000, 1, 1, 1, "WB", "WB"),
+                   (0xd0839000, 0xfb4e000, 1, 1, 1, "WB", "WB"),
+                   (0xd083a000, 0xfb4f000, 1, 1, 1, "WB", "WB"),
+                   (0xc0152000, 0x152000, 1, 1, 1, "WB", "WB"),
+                   (0xc015e000, 0x15e000, 1, 1, 1, "WB", "WB"),
+                   (0xc016f000, 0x16f000, 1, 1, 1, "WB", "WB"),
+                   (0xc015f000, 0x15f000, 1, 1, 1, "WB", "WB"),
+                   (0xc015d000, 0x15d000, 1, 1, 1, "WB", "WB"),
+                   (0xd086b000, 0xfbb0000, 1, 1, 1, "WB", "WB"),
+                   (0xc0157000, 0x157000, 1, 1, 1, "WB", "WB"),
+                   (0xc0170000, 0x170000, 1, 1, 1, "WB", "WB"),
+                   (0xd085f000, 0xfba4000, 1, 1, 1, "WB", "WB"),
+                   (0xc013a000, 0x13a000, 1, 1, 1, "WB", "WB"),
+                   (0xc0159000, 0x159000, 1, 1, 1, "WB", "WB"),
+                   (0xc015a000, 0x15a000, 1, 1, 1, "WB", "WB"),
+                   (0xc034f000, 0x34f000, 1, 1, 1, "WB", "WB"),
+                   (0xc016a000, 0x16a000, 1, 1, 1, "WB", "WB"),
+                   (0xc014a000, 0x14a000, 1, 1, 1, "WB", "WB"),
+                   (0xc0144000, 0x144000, 1, 1, 1, "WB", "WB"),
+                   (0xc0346000, 0x346000, 1, 1, 1, "WB", "WB"),
+                   (0xc017e000, 0x17e000, 1, 1, 1, "WB", "WB"),
+                   (0xc0180000, 0x180000, 1, 1, 1, "WB", "WB"),
+                   (0xc0124000, 0x124000, 1, 1, 1, "WB", "WB"),
+                   (0xc0119000, 0x119000, 1, 1, 1, "WB", "WB"),
+                   (0xc0107000, 0x107000, 1, 1, 1, "WB", "WB"),
+                   (0xc015b000, 0x15b000, 1, 1, 1, "WB", "WB"),
+                   (0xc0177000, 0x177000, 1, 1, 1, "WB", "WB"),
+                   (0xd0868000, 0xfbad000, 1, 1, 1, "WB", "WB"),
+                   (0xd0878000, 0xfbbd000, 1, 1, 1, "WB", "WB"),
+                   (0xc02fd000, 0x2fd000, 1, 1, 1, "WB", "WB"),
+                   (0xc02f9000, 0x2f9000, 1, 1, 1, "WB", "WB"),
+                   (0xc0176000, 0x176000, 1, 1, 1, "WB", "WB"),
+                   (0xc019d000, 0x19d000, 1, 1, 1, "WB", "WB"),
+                   (0xc015c000, 0x15c000, 1, 1, 1, "WB", "WB"),
+                   (0xc0356000, 0x356000, 1, 0, 1, "WB", "WB"),
+                   (0xc021d000, 0x21d000, 1, 1, 1, "WB", "WB"),
+                   (0xc031c000, 0x31c000, 1, 1, 1, "WB", "WB"),
+                   (0xc0361000, 0x361000, 1, 1, 1, "WB", "WB"),
+                   (0xc02ef000, 0x2ef000, 1, 1, 1, "WB", "WB"),
+                   (0xc0347000, 0x347000, 1, 1, 1, "WB", "WB"),
+                   (0xd086e000, 0xfbb3000, 1, 1, 1, "WB", "WB"),
+                   (0xd086f000, 0xfbb4000, 1, 1, 1, "WB", "WB"),
+                   (0xc0348000, 0x348000, 1, 1, 1, "WB", "WB"),
+                   (0xc016b000, 0x16b000, 1, 1, 1, "WB", "WB"),
+                   (0xc016d000, 0x16d000, 1, 1, 1, "WB", "WB"),
+                   (0xc02fe000, 0x2fe000, 1, 1, 1, "WB", "WB"),
+                   (0xc031a000, 0x31a000, 1, 1, 1, "WB", "WB"),
+                   (0xc0318000, 0x318000, 1, 1, 1, "WB", "WB"),
+                   (0xc0181000, 0x181000, 1, 1, 1, "WB", "WB"),
+                   (0xc0175000, 0x175000, 1, 1, 1, "WB", "WB"),
+                   (0xd0863000, 0xfba8000, 1, 1, 1, "WB", "WB"),
+                   (0xc014c000, 0x14c000, 1, 1, 1, "WB", "WB"),
+                   (0xc014b000, 0x14b000, 1, 1, 1, "WB", "WB"),
+                   (0xc0158000, 0x158000, 1, 1, 1, "WB", "WB"),
+                   (0xc0182000, 0x182000, 1, 1, 1, "WB", "WB"),
+                   (0xc0206000, 0x206000, 1, 1, 1, "WB", "WB"),
+                   (0xc0285000, 0x285000, 1, 1, 1, "WB", "WB"),
+                   (0xc0286000, 0x286000, 1, 1, 1, "WB", "WB"),
+                   (0xc02d7000, 0x2d7000, 1, 1, 1, "WB", "WB"),
+                   (0xc02d5000, 0x2d5000, 1, 1, 1, "WB", "WB"),
+                   (0xc02d6000, 0x2d6000, 1, 1, 1, "WB", "WB"),
+                   (0xc036a000, 0x36a000, 1, 0, 1, "WB", "WB"),
+                   (0xc0126000, 0x126000, 1, 1, 1, "WB", "WB"),
+                   (0xd0862000, 0xfba7000, 1, 1, 1, "WB", "WB"),
+                   (0xc0162000, 0x162000, 1, 1, 1, "WB", "WB"),
+                   (0xc0289000, 0x289000, 1, 1, 1, "WB", "WB"),
+                   (0xd088b000, 0xfda6000, 1, 1, 1, "WB", "WB"),
+                   (0xd0894000, 0xe67c000, 1, 1, 1, "WB", "WB"),
+                   (0xd0895000, 0xe00e000, 1, 1, 1, "WB", "WB"),
+                   (0xd088a000, 0xe016000, 1, 1, 1, "WB", "WB"),
+                   (0xc01c5000, 0x1c5000, 1, 1, 1, "WB", "WB"),
+                   (0xd088d000, 0xe049000, 1, 1, 1, "WB", "WB"),
+                   (0xc0292000, 0x292000, 1, 1, 1, "WB", "WB"),
+                   (0xc0291000, 0x291000, 1, 1, 1, "WB", "WB"),
+                   (0xc028a000, 0x28a000, 1, 1, 1, "WB", "WB"),
+                   (0xc0297000, 0x297000, 1, 1, 1, "WB", "WB"),
+                   (0xc028b000, 0x28b000, 1, 1, 1, "WB", "WB"),
+                   (0xc0295000, 0x295000, 1, 1, 1, "WB", "WB"),
+                   (0xc028f000, 0x28f000, 1, 1, 1, "WB", "WB"),
+                   (0xd094d000, 0xdb42000, 1, 1, 1, "WB", "WB"),
+                   (0xd0953000, 0xdb48000, 1, 1, 1, "WB", "WB"),
+                   (0xd0958000, 0xdb4d000, 1, 1, 1, "WB", "WB"),
+                   (0xd0959000, 0xdb4e000, 1, 1, 1, "WB", "WB"),
+                   (0xd0951000, 0xdb46000, 1, 1, 1, "WB", "WB"),
+                   (0xc016e000, 0x16e000, 1, 1, 1, "WB", "WB"),
+                   (0xc03ce000, 0x3ce000, 1, 1, 1, "WB", "WB"),
+                   (0xc0321000, 0x321000, 1, 1, 1, "WB", "WB"),
+                   (0xc0226000, 0x226000, 1, 1, 1, "WB", "WB"),
+                   (0xc0366000, 0x366000, 1, 0, 1, "WB", "WB"),
+                   (0xc0186000, 0x186000, 1, 1, 1, "WB", "WB"),
+                   (0xc0125000, 0x125000, 1, 1, 1, "WB", "WB"),
+                   (0xd086c000, 0xfbb1000, 1, 1, 1, "WB", "WB"),
+                   (0xd0860000, 0xfba5000, 1, 1, 1, "WB", "WB"),
+                   (0xd0864000, 0xfba9000, 1, 1, 1, "WB", "WB"),
+                   (0xd0957000, 0xdb4c000, 1, 1, 1, "WB", "WB"),
+                   (0xd0954000, 0xdb49000, 1, 1, 1, "WB", "WB"),
+                   (0xc029b000, 0x29b000, 1, 1, 1, "WB", "WB"),
+                   (0xc0290000, 0x290000, 1, 1, 1, "WB", "WB"),
+                   (0xd094f000, 0xdb44000, 1, 1, 1, "WB", "WB"),
+                   (0xc02a8000, 0x2a8000, 1, 1, 1, "WB", "WB"),
+                   (0xc02aa000, 0x2aa000, 1, 1, 1, "WB", "WB"),
+                   (0xd0965000, 0xdb5a000, 1, 1, 1, "WB", "WB"),
+                   (0xc02a9000, 0x2a9000, 1, 1, 1, "WB", "WB"),
+                   (0xc02b5000, 0x2b5000, 1, 1, 1, "WB", "WB"),
+                   (0xd096c000, 0xdb61000, 1, 1, 1, "WB", "WB"),
+                   (0xd0964000, 0xdb59000, 1, 1, 1, "WB", "WB"),
+                   (0xc0288000, 0x288000, 1, 1, 1, "WB", "WB"),
+                   (0xc02ad000, 0x2ad000, 1, 1, 1, "WB", "WB"),
+                   (0xc02ac000, 0x2ac000, 1, 1, 1, "WB", "WB"),
+                   (0xc02b6000, 0x2b6000, 1, 1, 1, "WB", "WB"),
+                   (0xc02b7000, 0x2b7000, 1, 1, 1, "WB", "WB"),
+                   (0xc02ab000, 0x2ab000, 1, 1, 1, "WB", "WB"),
+                   (0xc0351000, 0x351000, 1, 0, 1, "WB", "WB"),
+                   (0xc020b000, 0x20b000, 1, 1, 1, "WB", "WB"),
+                   (0xc0210000, 0x210000, 1, 1, 1, "WB", "WB"),
+                   (0xc0211000, 0x211000, 1, 1, 1, "WB", "WB"),
+                   (0xc01cf000, 0x1cf000, 1, 1, 1, "WB", "WB"),
+                   (0xc01d0000, 0x1d0000, 1, 1, 1, "WB", "WB"),
+                   (0xc02e5000, 0x2e5000, 1, 1, 1, "WB", "WB"),
+                   (0xc00b9000, 0xb9000, 1, 0, 1, "WB", "UC"),
+                   (0xc03e2000, 0x3e2000, 1, 0, 1, "WB", "WB"),
+                   (0xc011a000, 0x11a000, 1, 1, 1, "WB", "WB"),
+                   (0xc020d000, 0x20d000, 1, 1, 1, "WB", "WB"),
+                   (0xc0207000, 0x207000, 1, 1, 1, "WB", "WB"),
+                   (0xc0203000, 0x203000, 1, 1, 1, "WB", "WB"),
+                   (0xc0204000, 0x204000, 1, 1, 1, "WB", "WB"),
+                   (0xc011f000, 0x11f000, 1, 1, 1, "WB", "WB"),
+                   (0xc0120000, 0x120000, 1, 1, 1, "WB", "WB"),
+                   (0xc020e000, 0x20e000, 1, 1, 1, "WB", "WB"),
+                   (0xd082e000, 0xfb62000, 1, 1, 1, "WB", "WB"),
+                   (0xc0208000, 0x208000, 1, 1, 1, "WB", "WB"),
+                   (0xc020a000, 0x20a000, 1, 1, 1, "WB", "WB"),
+                   (0xc0209000, 0x209000, 1, 1, 1, "WB", "WB"),
+                   (0xc0205000, 0x205000, 1, 1, 1, "WB", "WB"),
+                   (0xc0287000, 0x287000, 1, 1, 1, "WB", "WB"),
+                   (0xd082d000, 0xfb61000, 1, 1, 1, "WB", "WB"),
+                   (0xd0830000, 0xfe00000, 1, 1, 1, "WB", "WB"),
+                   (0xc01de000, 0x1de000, 1, 1, 1, "WB", "WB"),
+                   (0xc02e8000, 0x2e8000, 1, 1, 1, "WB", "WB"),
+                   (0xc034d000, 0x34d000, 1, 1, 1, "WB", "WB"),
+                   (0xc01ea000, 0x1ea000, 1, 1, 1, "WB", "WB"),
+                   (0xc01eb000, 0x1eb000, 1, 1, 1, "WB", "WB"),
+                   (0xc01fa000, 0x1fa000, 1, 1, 1, "WB", "WB"),
+                   (0xc03a1000, 0x3a1000, 1, 0, 1, "WB", "WB"),
+                   (0xc014e000, 0x14e000, 1, 1, 1, "WB", "WB"),
+                   (0xc014d000, 0x14d000, 1, 1, 1, "WB", "WB"),
+                   (0xc00ba000, 0xba000, 1, 0, 1, "WB", "UC"),
+                   (0xc020f000, 0x20f000, 1, 1, 1, "WB", "WB"),
+                   (0xc020c000, 0x20c000, 1, 1, 1, "WB", "WB"),
+                   (0xc0352000, 0x352000, 1, 1, 1, "WB", "WB"),
+                   (0xc026f000, 0x26f000, 1, 1, 1, "WB", "WB"),
+                   (0xc026c000, 0x26c000, 1, 1, 1, "WB", "WB"),
+                   (0xc0270000, 0x270000, 1, 1, 1, "WB", "WB"),
+                   (0xc0363000, 0x363000, 1, 1, 1, "WB", "WB"),
+                   (0xc021c000, 0x21c000, 1, 1, 1, "WB", "WB"),
+                   (0xc0296000, 0x296000, 1, 1, 1, "WB", "WB"),
+                   (0xd088c000, 0xe781000, 1, 1, 1, "WB", "WB"),
+                   (0xd0890000, 0xe0f2000, 1, 1, 1, "WB", "WB"),
+                   (0xd088f000, 0xfacf000, 1, 1, 1, "WB", "WB"),
+                   (0xc03e5000, 0x3e5000, 1, 0, 1, "WB", "WB"),
+                   (0xc02a1000, 0x2a1000, 1, 1, 1, "WB", "WB"),
+                   (0xd095f000, 0xdb54000, 1, 1, 1, "WB", "WB"),
+                   (0xd0960000, 0xdb55000, 1, 1, 1, "WB", "WB"),
+                   (0xd0961000, 0xdb56000, 1, 1, 1, "WB", "WB"),
+                   (0xd0952000, 0xdb47000, 1, 1, 1, "WB", "WB"),
+                   (0xc0225000, 0x225000, 1, 1, 1, "WB", "WB"),
+                   (0xc0185000, 0x185000, 1, 1, 1, "WB", "WB"),
+                   (0xc0304000, 0x304000, 1, 1, 1, "WB", "WB"),
+                   (0xc0302000, 0x302000, 1, 1, 1, "WB", "WB"),
+                   (0xc0300000, 0x300000, 1, 1, 1, "WB", "WB"),
+                   (0xc0183000, 0x183000, 1, 1, 1, "WB", "WB"),
+                   (0xc0187000, 0x187000, 1, 1, 1, "WB", "WB"),
+                   (0xc030d000, 0x30d000, 1, 1, 1, "WB", "WB"),
+                   (0xc030c000, 0x30c000, 1, 1, 1, "WB", "WB"),
+                   (0xc0227000, 0x227000, 1, 1, 1, "WB", "WB"),
+                   (0xc02ff000, 0x2ff000, 1, 1, 1, "WB", "WB"),
+                   (0xc02f0000, 0x2f0000, 1, 1, 1, "WB", "WB"),
+                   (0xc0320000, 0x320000, 1, 1, 1, "WB", "WB"),
+                   (0xc034a000, 0x34a000, 1, 1, 1, "WB", "WB"),
+                   (0xc0349000, 0x349000, 1, 1, 1, "WB", "WB"),
+                   (0xc02a2000, 0x2a2000, 1, 1, 1, "WB", "WB"),
+                   (0xc0136000, 0x136000, 1, 1, 1, "WB", "WB"),
+                   (0xc029a000, 0x29a000, 1, 1, 1, "WB", "WB"),
+                   (0xc029c000, 0x29c000, 1, 1, 1, "WB", "WB"),
+                   (0xc00a5000, 0xa5000, 1, 0, 1, "WB", "UC"),
+                   (0xc00a4000, 0xa4000, 1, 0, 1, "WB", "UC"),
+                   (0xc00a1000, 0xa1000, 1, 0, 1, "WB", "UC"),
+                   (0xc00a0000, 0xa0000, 1, 0, 1, "WB", "UC"),
+                   (0xc02a0000, 0x2a0000, 1, 1, 1, "WB", "WB"),
+                   (0xc012d000, 0x12d000, 1, 1, 1, "WB", "WB"),
+                   (0xc0229000, 0x229000, 1, 1, 1, "WB", "WB"),
+                   (0xc02f8000, 0x2f8000, 1, 1, 1, "WB", "WB"),
+                   (0xc02c5000, 0x2c5000, 1, 1, 1, "WB", "WB"),
+                   (0xc02c0000, 0x2c0000, 1, 1, 1, "WB", "WB"),
+                   (0xc02bf000, 0x2bf000, 1, 1, 1, "WB", "WB"),
+                   (0xc02d9000, 0x2d9000, 1, 1, 1, "WB", "WB"),
+                   (0xc02ca000, 0x2ca000, 1, 1, 1, "WB", "WB"),
+                   (0xc02ce000, 0x2ce000, 1, 1, 1, "WB", "WB"),
+                   (0xc01a6000, 0x1a6000, 1, 1, 1, "WB", "WB"),
+                   (0xd0963000, 0xdb58000, 1, 1, 1, "WB", "WB"),
+                   (0xc02a7000, 0x2a7000, 1, 1, 1, "WB", "WB"),
+                   (0xc02a6000, 0x2a6000, 1, 1, 1, "WB", "WB"),
+                   (0xc02a5000, 0x2a5000, 1, 1, 1, "WB", "WB"),
+                   (0xc02a4000, 0x2a4000, 1, 1, 1, "WB", "WB"),
+                   (0xbf8bf000, 0xfb75000, 0, 0, 0, "WB", "WB"),
+                   (0x12b000, 0x127a000, 0, 1, 0, "WB", "WB"),
+                   (0xa74000, 0xeac8000, 0, 1, 0, "WB", "WB"),
+                   (0x804d000, 0xfc28000, 0, 1, 0, "WB", "WB"),
+                   (0xb7fb6000, 0xf59d000, 0, 1, 0, "WB", "WB"),
+                   (0x804e000, 0x13cf000, 0, 1, 0, "WB", "WB"),
+                   (0x804a000, 0xfb96000, 0, 1, 0, "WB", "WB"),
+                   (0x8049000, 0xfb86000, 0, 1, 0, "WB", "WB"),
+                   (0x8050000, 0xd416000, 0, 1, 0, "WB", "WB"),
+                   (0xa2f000, 0xfc10000, 0, 1, 0, "WB", "WB"),
+                   (0x8aa1000, 0xfbc1000, 0, 0, 0, "WB", "WB"),
+                   (0x8aa2000, 0xd472000, 0, 0, 0, "WB", "WB"),
+                   (0x804c000, 0xfb3c000, 0, 1, 0, "WB", "WB"),
+                   (0xa1c000, 0x128e000, 0, 1, 0, "WB", "WB"),
+                   (0xa6a000, 0xfbf2000, 0, 1, 0, "WB", "WB"),
+                   (0x9c8000, 0x1297000, 0, 1, 0, "WB", "WB"),
+                   (0x804f000, 0x12a7000, 0, 1, 0, "WB", "WB"),
+                   (0xa72000, 0x12ae000, 0, 1, 0, "WB", "WB"),
+                   (0xd0828000, 0xf0000000, 1, 0, 0, "UC-", "UC")))
+}
+OBJECT fd0 TYPE floppy-drive {
+	queue: cpu0
+	build_id: 0xa26
+	drive_busy: 0
+	seek_in_progress: 0
+	disk_changed: 1
+	write_protect: 0
+	motor_on: 0
+	data_rate: 0
+	tracks: 0
+	sectors_per_track: 0
+	heads: 0
+	cur_track: 0
+	cur_head: 0
+	cur_sector: 0
+	image: NIL
+}
+OBJECT fd1 TYPE floppy-drive {
+	queue: cpu0
+	build_id: 0xa26
+	drive_busy: 0
+	seek_in_progress: 0
+	disk_changed: 1
+	write_protect: 0
+	motor_on: 0
+	data_rate: 0
+	tracks: 0
+	sectors_per_track: 0
+	heads: 0
+	cur_track: 0
+	cur_head: 0
+	cur_sector: 0
+	image: NIL
+}
+OBJECT dec0 TYPE DEC21143 {
+	queue: cpu0
+	build_id: 0xa26
+	pci_bus: pci_bus0
+	interrupt_pin: (0, 0, 0, 0)
+	config_registers: (0x191011, 0x2800007, 0x2000041, 0x4000, 0x2081,
+                           0xf0000080, 0, 0, 0, 0, 0, 0xb0bb0e11, 0, 0, 0, 266,
+                           0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                           0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                           0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+	write_masks: ((0, 0), (2, 0), (4, 0x3ff), (6, 0xf900), (8, 0), (9, 0),
+                      (12, 255), (13, 255), (14, 0), (15, 64),
+                      (16, 0xfffffffc), (20, 0xfffffff0), (24, 0), (28, 0),
+                      (32, 0), (36, 0), (40, 0), (44, 0), (46, 0), (48, 0),
+                      (52, 0), (53, 0), (56, 0), (60, 255), (61, 0), (62, 0),
+                      (63, 0))
+	mappings: ((20, 0xf0000080, 128, 0, 1, 1, 0, 0, NIL, 0, 0),
+                   (16, 0x2080, 128, 1, 0, 1, 0, 0, NIL, 0, 0))
+	expansion_rom: NIL
+	csrs: (0xa08000, 0xffffffff, 0xffffffff, 0xe189000, 0xe189800,
+               0xf0660000, 0x820e2202, 0x801fbff, 0xe0000000, 0x50008, 0,
+               0xfffe0000, 198, 0xffff0000, 0xffffffff, 0x8ff00000)
+	pending_irq: 0
+	current_tx_descriptor: 0xe1899c0
+	current_rx_descriptor: 0xe189030
+	srom_address_width: 6
+	send_delay: 0x1.a36e2eb1c432dp-14 /* 0.0001 */
+	srom_info: (
+              [6c143014000000000000000000000002fd480401101010101030001e00000008
+/* 0x000020 */ 018d030000000078e00100500018800000000000000000000000000000000000
+/* 0x000040 */ 0000000000000000000000000000000000000000000000000000000000001f17
+/* 0x000060 */ 0000000000000040c79a0f1b4000000000000000000000000000000000003d35],
+                    0, 0, 0, 0, 0, 0)
+	cfdd: 0
+	recorder: recorder0
+	link: cell0_link0
+	mac_address: "10:10:10:10:10:30"
+	model_crc: 0
+	add_crc_on_inject: 1
+	bmcr: 0x1000
+	bmsr: 0x786d
+	anar: 481
+	anlpar: 481
+	aner: 1
+	mode: 0
+	poll_reg: -1
+	cs_conf: 0
+	tp10_conf: 0
+	serial_num_cycles: 1
+	serial_data_in: 0
+	serial_data_out: 481
+	serial_clock: 1
+	serial_port_status: -1
+}
+OBJECT power0 TYPE piix4_power {
+	queue: cpu0
+	build_id: 0xa26
+	pci_bus: pci_bus0
+	config_registers: (0x71138086, 0x2800000, 0x6800002, 0, 0, 0, 0, 0, 0,
+                           0, 0, 0, 0, 0, 0, 266, 0x8001, 0, 0, 0, 0, 0, 0, 0,
+                           0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0,
+                           0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                           0, 0, 0, 0, 0, 0)
+	pmsts: 1
+	pmen: 0x420
+	pmcntrl: 1
+	gpsts: 0
+	gpen: 256
+	pcntrl: 512
+	glbsts: 0
+	devsts: 0
+	glben: 0
+	glbctl: 0
+	devctl: 0
+	last_zero_time: 0xfa0822540
+	sci_irq_dev: isa0
+	sci_irq_level: 9
+	sci_interrupt_pin: 0
+}
+
