@@ -1,9 +1,0 @@
-#!/bin/sh
-# this file will be overwritten by the workspace setup script
-SIMICS_BASE_PACKAGE="/home/master/simics/simics-4.0.63"
-export SIMICS_BASE_PACKAGE
-if [ -f "/home/master/Repos/adv-comparch/simics-workspace/.package-list" ]; then
-    exec "/home/master/simics/simics-4.0.63/bin/lookup-file" --package-list "/home/master/Repos/adv-comparch/simics-workspace/.package-list"  ${1+"$@"}
-else
-    exec "/home/master/simics/simics-4.0.63/bin/lookup-file"  ${1+"$@"}
-fi

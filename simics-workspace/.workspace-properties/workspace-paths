@@ -1,4 +1,0 @@
-workspace: /home/master/Repos/adv-comparch/simics-workspace
-simics-root: /home/master/simics/simics-4.0.63
-simics-model-builder: /home/master/simics/simics-model-builder-4.0.17
-mingw: None
