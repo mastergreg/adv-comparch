@@ -20,7 +20,7 @@ run-command-file /home/master/Repos/adv-comparch/scripts/equake/cache-hierarchy.
 #Continue simulation for 100,000,000 instructions to warm-up caches
 echo "Warming up caches"
 c 100_000_000
-$outputfile = ("equake-16.2")
+$outputfile = ("equake-16.4")
 output-file-start $outputfile
 #Reset statistics
 dc.reset-statistics
