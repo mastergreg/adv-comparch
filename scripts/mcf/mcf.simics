@@ -24,7 +24,7 @@ run-command-file /home/master/Repos/adv-comparch/scripts/mcf/cache-hierarchy.sim
 echo "Warming up caches"
 c 100_000_000
 $outputfile = ("mcf-16.2")
-output-file-stmcf $outputfile
+output-file-start $outputfile
 #Reset statistics
 dc.reset-statistics
 ic.reset-statistics
