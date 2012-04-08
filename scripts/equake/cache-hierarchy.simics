@@ -25,7 +25,7 @@
 @ic.cpus = conf.cpu0
 @ic.config_line_number = 512
 @ic.config_line_size = 64
-@ic.config_assoc = 4
+@ic.config_assoc = 8
 @ic.config_virtual_index = 0
 @ic.config_virtual_tag = 0
 @ic.config_replacement_policy = 'lru'
@@ -40,7 +40,7 @@
 @dc.cpus = conf.cpu0
 @dc.config_line_number = 512
 @dc.config_line_size = 64
-@dc.config_assoc = 4
+@dc.config_assoc = 8
 @dc.config_virtual_index = 0
 @dc.config_virtual_tag = 0
 @dc.config_replacement_policy = 'lru'
