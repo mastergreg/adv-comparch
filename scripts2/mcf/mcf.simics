@@ -23,7 +23,7 @@ run-command-file /home/master/Repos/adv-comparch/scripts/mcf/cache-hierarchy.sim
 #Continue simulation for 100,000,000 instructions to warm-up caches
 echo "Warming up caches"
 c 100_000_000
-$outputfile = ("mcf-64.4.128.512")
+$outputfile = ("mcf-64.8.128.512")
 output-file-start $outputfile
 #Reset statistics
 dc.reset-statistics
