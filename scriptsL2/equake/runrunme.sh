@@ -1,11 +1,8 @@
 #!/bin/sh
-#./runnme.sh 16 4 32 512
-#./runnme.sh 16 4 128 128
-#./runnme.sh 32 4 32 1024
-./runnme.sh 32 4 128 256
-./runnme.sh 32 8 32 1024
-./runnme.sh 32 8 128 256
-./runnme.sh 64 4 32 2048
-./runnme.sh 64 4 128 512
-./runnme.sh 64 8 32 2048
-./runnme.sh 64 8 128 512
+./runnme.sh 4   2048   
+./runnme.sh 4   4096   
+./runnme.sh 8   4096   
+./runnme.sh 8   8192   
+./runnme.sh 16  8192   
+./runnme.sh 8   16384  
+./runnme.sh 16  16384  

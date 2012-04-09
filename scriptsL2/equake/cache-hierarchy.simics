@@ -8,7 +8,7 @@
 @l2c.cpus = conf.cpu0
 @l2c.config_line_number = 8192
 @l2c.config_line_size = 128
-@l2c.config_assoc = 8
+@l2c.config_assoc = 4
 @l2c.config_virtual_index = 0
 @l2c.config_virtual_tag = 0
 @l2c.config_write_back = 0
@@ -24,7 +24,7 @@
 @ic = pre_conf_object('ic', 'g-cache')
 @ic.cpus = conf.cpu0
 @ic.config_line_number = 512
-@ic.config_line_size = 128
+@ic.config_line_size = 64
 @ic.config_assoc = 4
 @ic.config_virtual_index = 0
 @ic.config_virtual_tag = 0
@@ -39,7 +39,7 @@
 @dc = pre_conf_object('dc', 'g-cache')
 @dc.cpus = conf.cpu0
 @dc.config_line_number = 512
-@dc.config_line_size = 128
+@dc.config_line_size = 64
 @dc.config_assoc = 4
 @dc.config_virtual_index = 0
 @dc.config_virtual_tag = 0
@@ -54,13 +54,13 @@
 @ts_i = pre_conf_object('ts_i', 'trans-splitter')
 @ts_i.cache = ic
 @ts_i.timing_model = ic
-@ts_i.next_cache_line_size = 128
+@ts_i.next_cache_line_size = 64
 #
 # transaction splitter for data cache
 @ts_d = pre_conf_object('ts_d', 'trans-splitter')
 @ts_d.cache = dc
 @ts_d.timing_model = dc
-@ts_d.next_cache_line_size = 128
+@ts_d.next_cache_line_size = 64
 #
 # instruction-data splitter
 @id = pre_conf_object('id', 'id-splitter')

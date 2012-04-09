@@ -23,7 +23,7 @@ run-command-file /home/master/Repos/adv-comparch/scripts/art/cache-hierarchy.sim
 #Continue simulation for 100,000,000 instructions to warm-up caches
 echo "Warming up caches"
 c 100_000_000
-$outputfile = ("art-256.2")
+$outputfile = ("art-1024.8")
 #Reset statistics
 dc.reset-statistics
 ic.reset-statistics
