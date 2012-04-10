@@ -64,16 +64,16 @@ Cache statistics: l2c
  Uncacheable instruction fetches:             0
 
           Data read transactions:      93682617
-                Data read misses:      58831275
-             Data read hit ratio:         37.20%
+                Data read misses:      58494236
+             Data read hit ratio:         37.56%
 
   Instruction fetch transactions:          7002
-        Instruction fetch misses:          3711
-     Instruction fetch hit ratio:         47.00%
+        Instruction fetch misses:          3717
+     Instruction fetch hit ratio:         46.92%
 
          Data write transactions:      68688648
-               Data write misses:       1719202
-            Data write hit ratio:         97.50%
+               Data write misses:       1662323
+            Data write hit ratio:         97.58%
 
           Copy back transactions:             0
 

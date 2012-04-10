@@ -19,7 +19,7 @@ con0.input "./art -scanfile c756hel.in -trainfile1 a10.img -trainfile2 hc.img -s
 
 #Load cache hierarcy parameters
 echo "Loading caches"
-run-command-file /home/master/Repos/adv-comparch/scripts/art/cache-hierarchy.simics
+run-command-file cache-hierarchy.simics
 #Continue simulation for 100,000,000 instructions to warm-up caches
 echo "Warming up caches"
 c 100_000_000
