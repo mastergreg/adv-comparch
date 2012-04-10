@@ -19,11 +19,11 @@ con0.input "./mcf ./inp.in.mcf.train \n"
 
 #Load cache hierarcy parameters
 echo "Loading caches"
-run-command-file /home/master/Repos/adv-comparch/scripts/mcf/cache-hierarchy.simics
+run-command-file cache-hierarchy.simics
 #Continue simulation for 100,000,000 instructions to warm-up caches
 echo "Warming up caches"
 c 100_000_000
-$outputfile = ("mcf-64.4.128.512")
+$outputfile = ("mcf-16.16384..")
 output-file-start $outputfile
 #Reset statistics
 dc.reset-statistics
