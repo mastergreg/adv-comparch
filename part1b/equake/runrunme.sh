@@ -8,4 +8,4 @@
 ./runnme.sh 64 4 32 2048
 ./runnme.sh 64 4 128 512
 ./runnme.sh 64 8 32 2048
-#./runnme.sh 64 8 128 512
+./runnme.sh 64 8 128 512

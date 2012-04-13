@@ -1,7 +1,6 @@
 #!/bin/sh
-sed -i 's/l2c\.config_assoc = .*$/l2c\.config_assoc = '$1'/g' cache-hierarchy.simics
-sed -i 's/l2c\.config_lines =.*$/l2c\.config_lines = '$2'/g' cache-hierarchy.simics
-
+sed -i 's/l2c\.config_line_size =.*$/l2c\.config_line_size = '$2'/g' cache-hierarchy.simics
+sed -i 's/l2c\.config_line_number =.*$/l2c\.config_line_number = '$3'/g' cache-hierarchy.simics
 
 sed -i 's/outputfile = .*$/outputfile = ("art-'$1'.'$2'")/g' art.simics
 ../../simics-workspace/simics -stall -x art.simics
