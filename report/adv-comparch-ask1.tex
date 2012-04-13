@@ -26,48 +26,114 @@
 
 \include{title/title}
 
+%{{{ L1 cache, constant line size
 \section{L1 cache, constant line size}
+\begin{tabular}{c c c c}
+    Size & line size & lines & associativity\\ 
+    \hline
+    \hline
+    16K   & 64 &  256  & 2\\
+    16K   & 64 &  256  & 4\\
+    \hline
+    32K   & 64 &  512  & 4\\
+    32K   & 64 &  512  & 8\\
+    \hline
+    64K   & 64 &  1024 & 4\\
+    64K   & 64 &  1024 & 8\\
+\end{tabular}
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{files/ipc_all_1.png}
-    \caption{IPC for each bencmark}
+    \caption{IPC ανά bencmark}
 \end{figure}
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{files/missrate_all_1.png}
-    \caption{sth}
+    \caption{miss-rate ανά benchmark}
 \end{figure}
+%}}}
 
+%{{{ L1 cache, variable line size
 \section{L1 cache, variable line size}
+\begin{tabular}{c c c c}
+    Size & line size &lines & associativity\\ 
+    \hline
+    \hline
+    16K & 32    & 512   & 4\\
+    16K & 128   & 128   & 4\\
+    \hline
+    32K & 32    & 1024  & 4\\
+    32K & 128   & 256   & 4\\
+    32K & 32    & 1024  & 8\\
+    32K & 128   & 256   & 8\\
+    \hline
+    64K & 32    & 2048  & 4\\
+    64K & 128   & 512   & 4\\
+    64K & 32    & 2048  & 8\\
+    64K & 128   & 512   & 8\\
+\end{tabular}
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{files/ipc_all_2.png}
-    \caption{IPC for each bencmark}
+    \caption{IPC ανά bencmark}
 \end{figure}
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{files/missrate_all_2.png}
-    \caption{sth}
+    \caption{miss-rate ανά benchmark}
 \end{figure}
+%}}}
+
+%{{{ L2 cache, constant line size
 
 \section{L2 cache, constant line size}
+\begin{tabular}{c c c c}
+    Size & line size & lines & associativity\\ 
+    \hline
+    \hline
+    256K   & 128 & 2048  & 4\\
+    \hline
+    512K   & 128 & 4096  & 4\\
+    512K   & 128 & 4096  & 8\\
+    \hline
+    1024K  & 128 & 8192  & 8\\
+    1024K  & 128 & 8192  & 16\\
+    \hline
+    2048K  & 128 & 16384 & 8\\
+    2048K  & 128 & 16384 & 16\\
+\end{tabular}
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{files/ipc_all_3.png}
-    \caption{IPC for each bencmark}
+    \caption{IPC ανά bencmark}
 \end{figure}
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{files/missrate_all_3.png}
-    \caption{sth}
+    \caption{miss-rate ανά benchmark}
 \end{figure}
+%}}}
 
+%{{{ L2 cache, variable line size
 \section{L2 cache, variable line size}
+\begin{tabular}{c c c c}
+    Size & line size & lines & associativity\\ 
+    \hline
+    \hline
+    512K   & 64  & 8192  & 8\\
+    512K   & 256 & 2048  & 8\\
+    \hline
+    1024K  & 64  & 16384 & 8\\
+    1024K  & 256 & 4096  & 8\\
+    \hline
+    2048K  & 64  & 32768 & 8\\
+    2048K  & 256 & 8192  & 8\\
+\end{tabular}
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{files/ipc_all_4.png}
-    \caption{IPC for each bencmark}
+    \caption{IPC ανά bencmark}
 \end{figure}
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{files/missrate_all_4.png}
-    \caption{sth}
+    \caption{miss-rate ανά benchmark}
 \end{figure}
-
+%}}}
 \end{document}

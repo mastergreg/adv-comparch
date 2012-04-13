@@ -9,9 +9,9 @@
 gnuplot << EOF
 set terminal png size 1024,768
 set output "missrate_all.png"
-plot "$1" smooth csplines ,\
-     "$2" smooth csplines , \
-     "$3" smooth csplines ,\
-     "$4" smooth csplines
+plot "$1" smooth csplines ,"$1" notitle,\
+     "$2" smooth csplines ,"$2" notitle,\
+     "$3" smooth csplines ,"$3" notitle,\
+     "$4" smooth csplines ,"$4" notitle
 EOF
 
