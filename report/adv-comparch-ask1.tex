@@ -1,0 +1,73 @@
+%{{{ preamble
+\documentclass[a4paper,9pt]{article}
+\usepackage{anysize}
+\marginsize{2cm}{2cm}{1cm}{1cm}
+%\textwidth 6.0in \textheight = 664pt
+\usepackage{xltxtra}
+\usepackage{xunicode}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{xgreek}
+\usepackage{fancyvrb}
+\usepackage{minted}
+\usepackage{listings}
+\usepackage{enumitem} 
+\usepackage{framed} 
+\usepackage{relsize}
+\usepackage{float} 
+\usepackage{pstricks}
+\usepackage{pst-node}
+\usepackage{pst-blur}
+\setmainfont[Mapping=tex-text]{FreeSerif}
+%}}}
+\begin{document}
+
+\def\thesection {\roman{section}: }
+
+\include{title/title}
+
+\section{L1 cache, constant line size}
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{files/ipc_all_1.png}
+    \caption{IPC for each bencmark}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{files/missrate_all_1.png}
+    \caption{sth}
+\end{figure}
+
+\section{L1 cache, variable line size}
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{files/ipc_all_2.png}
+    \caption{IPC for each bencmark}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{files/missrate_all_2.png}
+    \caption{sth}
+\end{figure}
+
+\section{L2 cache, constant line size}
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{files/ipc_all_3.png}
+    \caption{IPC for each bencmark}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{files/missrate_all_3.png}
+    \caption{sth}
+\end{figure}
+
+\section{L2 cache, variable line size}
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{files/ipc_all_4.png}
+    \caption{IPC for each bencmark}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{files/missrate_all_4.png}
+    \caption{sth}
+\end{figure}
+
+\end{document}

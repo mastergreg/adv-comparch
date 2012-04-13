@@ -2,3 +2,16 @@ local*
 checkpoints
 simics-workspace
 *.png
+*.jpg
+*.jpeg
+*.PNG
+*.JPG
+*.JPEG
+
+*.ps
+*.eps
+*.PS
+*.EPS
+*.pdf
+*.PDF
+dummy
