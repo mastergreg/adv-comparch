@@ -1,3 +1,4 @@
 local*
 checkpoints
 simics-workspace
+*.png
