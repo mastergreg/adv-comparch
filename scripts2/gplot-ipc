@@ -1,0 +1,17 @@
+#!/bin/bash
+#plot "$1" smooth csplines lc rgb "#0055ff", \
+#    "$1" lc rgb "magenta"
+
+#plot "$1", "$1" smooth csplines lc rgb "#0055ff",\
+#     "$2", "$2" smooth csplines lc rgb "#555500", \
+#     "$3", "$3" smooth csplines ,\
+#     "$4", "$4" smooth csplines
+gnuplot << EOF
+set terminal png size 1024,768
+set output "ipc_all.png"
+plot "$1" smooth csplines ,\
+     "$2" smooth csplines , \
+     "$3" smooth csplines ,\
+     "$4" smooth csplines
+EOF
+
