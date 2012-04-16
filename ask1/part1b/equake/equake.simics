@@ -2,7 +2,7 @@
 #Load checkpoint taken after the first breakpoint of the application
 read-configuration /home/master/simics/checkpoints/bench1.check
 #We disable breakpoints
-disable-magic-breakpoint
+enable-magic-breakpoint
 instruction-fetch-mode instruction-fetch-trace
 istc-disable
 dstc-disable
@@ -12,6 +12,7 @@ dstc-disable
 
 #Run the wanted benchmark
 con0.input "./equake < inp.in.equake.train \n"
+c
 
 
 #Load cache hierarcy parameters
