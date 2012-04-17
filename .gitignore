@@ -1,12 +1,6 @@
 local*
 checkpoints
 simics-workspace
-*.png
-*.jpg
-*.jpeg
-*.PNG
-*.JPG
-*.JPEG
 
 *.ps
 *.eps
