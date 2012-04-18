@@ -24,7 +24,7 @@ run-command-file cache-hierarchy.simics
 #Continue simulation for 100,000,000 instructions to warm-up caches
 echo "Warming up caches"
 c 100_000_000
-$outputfile = ("gzip-1024.4")
+$outputfile = ("gzip-1024.8")
 output-file-start $outputfile
 #Reset statistics
 dc.reset-statistics
