@@ -6,7 +6,7 @@
 # l2 cache: 1Mb
 @l2c = pre_conf_object('l2c', 'g-cache')
 @l2c.cpus = conf.cpu0
-@l2c.config_line_number = 8192
+@l2c.config_line_number = 16384
 @l2c.config_line_size = 128
 @l2c.config_assoc = 16
 @l2c.config_virtual_index = 0
