@@ -2,7 +2,7 @@
 \documentclass[a4paper,9pt]{article}
 \usepackage{anysize}
 \marginsize{2cm}{2cm}{1cm}{1cm}
-%\textwidth 6.0in \textheight = 664pt
+%0.7\textwidth 6.0in \textheight = 664pt
 \usepackage{xltxtra}
 \usepackage{xunicode}
 \usepackage{graphicx}
@@ -42,18 +42,30 @@
     64K   & 64 &  1024 & 8\\
 \end{tabular}
 \begin{figure}[H]
-    \includegraphics[width=\textwidth]{files/part1a-ipc_all.png}
+    \centering
+    \includegraphics[width=0.8\textwidth]{files/part1a-ipc_all.png}
     \caption{IPC ανά bencmark}
 \end{figure}
 
+Παρατηρούμε πως αλλάζοντας το μέγεθος της cache το IPC παραμένει σχεδόν
+σταθερό.
+
 \begin{figure}[H]
-    \includegraphics[width=\textwidth]{files/part1a-missrate_all.png}
+    \centering
+    \includegraphics[width=0.8\textwidth]{files/part1a-missrate_all.png}
     \caption{miss-rate ανά benchmark}
 \end{figure}
+
+Ωστόσο το miss-rate πέφτει σημαντικά όσο το μέγεθος της l1 cache αυξάνει.
+
 %}}}
 
+\pagebreak
+
 %{{{ L1 cache, variable line size
+
 \section{L1 cache, variable line size}
+
 \begin{tabular}{c c c c}
     Size & line size &lines & associativity\\ 
     \hline
@@ -71,24 +83,34 @@
     64K & 32    & 2048  & 8\\
     64K & 128   & 512   & 8\\
 \end{tabular}
+
 \begin{figure}[H]
-    \includegraphics[width=\textwidth]{files/part1b-32-ipc_all.png}
+    \centering
+    \includegraphics[width=0.8\textwidth]{files/part1b-32-ipc_all.png}
     \caption{IPC ανά bencmark (cache-line 32)}
 \end{figure}
+
 \begin{figure}[H]
-    \includegraphics[width=\textwidth]{files/part1b-32-missrate_all.png}
+    \centering
+    \includegraphics[width=0.8\textwidth]{files/part1b-32-missrate_all.png}
     \caption{miss-rate ανά benchmark (cache-line 32)}
 \end{figure}
 
 \begin{figure}[H]
-    \includegraphics[width=\textwidth]{files/part1b-128-ipc_all.png}
+    \centering
+    \includegraphics[width=0.8\textwidth]{files/part1b-128-ipc_all.png}
     \caption{IPC ανά bencmark (cache-line 128)}
 \end{figure}
+
 \begin{figure}[H]
-    \includegraphics[width=\textwidth]{files/part1b-128-missrate_all.png}
+    \centering
+    \includegraphics[width=0.8\textwidth]{files/part1b-128-missrate_all.png}
     \caption{miss-rate ανά benchmark (cache-line 128)}
 \end{figure}
+
 %}}}
+
+\pagebreak
 
 %{{{ L2 cache, constant line size
 
@@ -108,19 +130,27 @@
     2048K  & 128 & 16384 & 8\\
     2048K  & 128 & 16384 & 16\\
 \end{tabular}
+
 \begin{figure}[H]
-    \includegraphics[width=\textwidth]{files/part2a-ipc_all.png}
+    \centering
+    \includegraphics[width=0.8\textwidth]{files/part2a-ipc_all.png}
     \caption{IPC ανά bencmark}
 \end{figure}
 
 \begin{figure}[H]
-    \includegraphics[width=\textwidth]{files/part2a-missrate_all.png}
+    \centering
+    \includegraphics[width=0.8\textwidth]{files/part2a-missrate_all.png}
     \caption{miss-rate ανά benchmark}
 \end{figure}
+
 %}}}
 
+\pagebreak
+
 %{{{ L2 cache, variable line size
+
 \section{L2 cache, variable line size}
+
 \begin{tabular}{c c c c}
     Size & line size & lines & associativity\\ 
     \hline
@@ -134,23 +164,32 @@
     2048K  & 64  & 32768 & 8\\
     2048K  & 256 & 8192  & 8\\
 \end{tabular}
+
 \begin{figure}[H]
-    \includegraphics[width=\textwidth]{files/part2b-64-ipc_all.png}
+    \centering
+    \includegraphics[width=0.8\textwidth]{files/part2b-64-ipc_all.png}
     \caption{IPC ανά bencmark (cache-line 64)}
 \end{figure}
 
 \begin{figure}[H]
-    \includegraphics[width=\textwidth]{files/part2b-64-missrate_all.png}
+    \centering
+    \includegraphics[width=0.8\textwidth]{files/part2b-64-missrate_all.png}
     \caption{miss-rate ανά benchmark (cache-line 64)}
 \end{figure}
+
 \begin{figure}[H]
-    \includegraphics[width=\textwidth]{files/part2b-256-ipc_all.png}
+    \centering
+    \includegraphics[width=0.8\textwidth]{files/part2b-256-ipc_all.png}
     \caption{IPC ανά bencmark (cache-line 256)}
 \end{figure}
 
 \begin{figure}[H]
-    \includegraphics[width=\textwidth]{files/part2b-256-missrate_all.png}
+    \centering
+    \includegraphics[width=0.8\textwidth]{files/part2b-256-missrate_all.png}
     \caption{miss-rate ανά benchmark (cache-line 256)}
 \end{figure}
+
 %}}}
+
+
 \end{document}
