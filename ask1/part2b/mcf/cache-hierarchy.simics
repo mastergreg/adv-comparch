@@ -7,7 +7,7 @@
 @l2c = pre_conf_object('l2c', 'g-cache')
 @l2c.cpus = conf.cpu0
 @l2c.config_line_number = 8192
-@l2c.config_line_size = 64
+@l2c.config_line_size = 256
 @l2c.config_assoc = 8
 @l2c.config_virtual_index = 0
 @l2c.config_virtual_tag = 0

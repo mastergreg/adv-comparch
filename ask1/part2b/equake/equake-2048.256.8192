@@ -1,0 +1,81 @@
+processor         steps        cycles   time [s]
+cpu0       240290997896  240290997896  12014.550
+Simulating...
+[cpu0] cs:0x0804a678 p:0x0d996678  fdiv st(0), st(0)
+
+Cache statistics: dc
+-----------------
+    Total number of transactions:     635039761
+
+         Device data reads (DMA):             0
+        Device data writes (DMA):             0
+
+          Uncacheable data reads:           332
+         Uncacheable data writes:           986
+ Uncacheable instruction fetches:             0
+
+          Data read transactions:     496700618
+                Data read misses:      15265185
+             Data read hit ratio:         96.93%
+
+  Instruction fetch transactions:             0
+        Instruction fetch misses:             0
+
+         Data write transactions:     138337825
+               Data write misses:       4377611
+            Data write hit ratio:         96.84%
+
+          Copy back transactions:             0
+
+
+Cache statistics: ic
+-----------------
+    Total number of transactions:     999975847
+
+         Device data reads (DMA):             0
+        Device data writes (DMA):             0
+
+          Uncacheable data reads:             0
+         Uncacheable data writes:             0
+ Uncacheable instruction fetches:             0
+
+          Data read transactions:             0
+                Data read misses:             0
+
+  Instruction fetch transactions:     999975847
+        Instruction fetch misses:          9237
+     Instruction fetch hit ratio:        100.00%
+
+         Data write transactions:             0
+               Data write misses:             0
+
+          Copy back transactions:             0
+
+
+Cache statistics: l2c
+-----------------
+    Total number of transactions:     153613565
+
+         Device data reads (DMA):             0
+        Device data writes (DMA):             0
+
+          Uncacheable data reads:           332
+         Uncacheable data writes:           986
+ Uncacheable instruction fetches:             0
+
+          Data read transactions:      15265185
+                Data read misses:       2796734
+             Data read hit ratio:         81.68%
+
+  Instruction fetch transactions:          9237
+        Instruction fetch misses:          3756
+     Instruction fetch hit ratio:         59.34%
+
+         Data write transactions:     138337825
+               Data write misses:       1759560
+            Data write hit ratio:         98.73%
+
+          Copy back transactions:             0
+
+processor         steps        cycles   time [s]
+cpu0       241290997896  241290997896  12064.550
