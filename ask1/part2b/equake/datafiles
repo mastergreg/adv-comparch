@@ -1,7 +1,6 @@
-equake-4.2048..
-equake-4.4096..
-equake-8.4096..
-equake-8.8192..
-equake-8.16384..
-equake-16.8192..
-equake-16.16384..
+equake-512.256.2048
+equake-512.64.8192
+equake-1024.256.4096
+equake-1024.64.16384
+equake-2048.64.32768
+equake-2048.64.8192
