@@ -10,6 +10,7 @@ gnuplot << EOF
 set terminal png
 set output "missrate_all.png"
 set title "Missrate"
+set key right outside top
 set grid
 set xtics("2x16K" 1, "4x16K" 2, "4x32K" 3, "8x32K" 4, "4x64K" 5, "8x64K" 6)
 set xlabel "Assocciativity x Cache Size"
