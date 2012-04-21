@@ -1,0 +1,22 @@
+#!/bin/bash
+#plot "$1" smooth csplines lc rgb "#0055ff", \
+#    "$1" lc rgb "magenta"
+
+#plot "$1", "$1" smooth csplines lc rgb "#0055ff",\
+#     "$2", "$2" smooth csplines lc rgb "#555500", \
+#     "$3", "$3" smooth csplines ,\
+#     "$4", "$4" smooth csplines
+gnuplot << EOF
+set terminal png
+set output "missrate_all.png"
+set title "Missrate"
+set grid
+set xtics("8x512K" 1, "8x1024K" 2, "8x2048K" 3)
+set xlabel "Assocciativity x Cache Size"
+set ylabel "miss-rate"
+plot "$1" title "art" smooth csplines ,"$1" notitle,\
+     "$2" title "equake" smooth csplines ,"$2" notitle,\
+     "$3" title "gzip" smooth csplines ,"$3" notitle,\
+     "$4" title "mcf" smooth csplines ,"$4" notitle
+EOF
+

@@ -21,7 +21,7 @@ run-command-file cache-hierarchy.simics
 #Continue simulation for 100,000,000 instructions to warm-up caches
 echo "Warming up caches"
 c 100_000_000
-$outputfile = ("equake-2048.64.8192")
+$outputfile = ("equake-2048.256.8192")
 output-file-start $outputfile
 #Reset statistics
 dc.reset-statistics

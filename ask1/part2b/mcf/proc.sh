@@ -1,1 +1,1 @@
-../../postproc/proc.sh
+../../postproc/proc2b.sh
