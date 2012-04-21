@@ -7,11 +7,16 @@
 #     "$3", "$3" smooth csplines ,\
 #     "$4", "$4" smooth csplines
 gnuplot << EOF
-set terminal png size 1024,768
+set terminal png
 set output "missrate_all.png"
-plot "$1" smooth csplines ,"$1" notitle,\
-     "$2" smooth csplines ,"$2" notitle,\
-     "$3" smooth csplines ,"$3" notitle,\
-     "$4" smooth csplines ,"$4" notitle
+set title "Missrate"
+set grid
+set xtics("2x16K" 1, "4x16K" 2, "4x32K" 3, "8x32K" 4, "4x64K" 5, "8x64K" 6)
+set xlabel "Assocciativity x Cache Size"
+set ylabel "miss-rate"
+plot "$1" title "art" smooth csplines ,"$1" notitle,\
+     "$2" title "equake" smooth csplines ,"$2" notitle,\
+     "$3" title "gzip" smooth csplines ,"$3" notitle,\
+     "$4" title "mcf" smooth csplines ,"$4" notitle
 EOF
 

@@ -26,7 +26,7 @@ def miss_ratio(fname):
 def main():
     f = open("datafiles","r")
     for i,df in enumerate(f):
-        print i,miss_ratio(df.strip())
+        print i+1,miss_ratio(df.strip())
 
 if __name__=="__main__":
     main()

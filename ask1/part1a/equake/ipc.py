@@ -44,7 +44,7 @@ def main():
         mem_acc = int(data['mem_acc'])
         cyc = cycles(inst, l1_acc, l2_acc, mem_acc)
         IPC = float(inst)/float(cyc)
-        print i,IPC
+        print i+1,IPC
 if __name__=="__main__":
     main()
 
