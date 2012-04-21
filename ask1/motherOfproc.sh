@@ -5,5 +5,8 @@ for i in $(seq 0 1 3)
 do
     curr=${folders[$i]}
     echo $curr
-    cd $curr && ./postproc.sh && cd ../
+    cd $curr 
+    ./postproc.sh 
+    ./draw.sh
+    cd ../
 done
