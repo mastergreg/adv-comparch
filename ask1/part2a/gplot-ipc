@@ -12,7 +12,7 @@ set output "ipc_all.png"
 set title "IPC"
 set key right outside top
 set grid
-set xtics("4x256K" 1, "4x512K" 2, "8x512K" 3, "8x1024K" 4, "14x1024K" 5, "8x2048K" 6, "16x2048K" 7)
+set xtics("4x256K" 1, "4x512K" 2, "8x512K" 3, "8x1024K" 4, "16x1024K" 5, "8x2048K" 6, "16x2048K" 7)
 set xlabel "Assocciativity x Cache Size"
 set ylabel "IPC"
 
