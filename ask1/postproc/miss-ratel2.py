@@ -4,7 +4,7 @@
 #* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
 # File Name : miss-rate.py
 # Creation Date : 13-04-2012
-# Last Modified : Sun 22 Apr 2012 04:30:04 PM EEST
+# Last Modified : Sun 22 Apr 2012 07:49:38 PM EEST
 # Created By : Greg Liras <gregliras@gmail.com>
 #_._._._._._._._._._._._._._._._._._._._._.*/
 import re
@@ -31,7 +31,7 @@ def main():
         missrs.append(miss_ratio(df.strip())['l2_miss_rate'])
     norm = missrs[0]
     for i,m in enumerate(missrs):
-        print i+1,m/norm
+        print i+1,m#/norm
 
 
 if __name__=="__main__":

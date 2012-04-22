@@ -4,7 +4,7 @@
 #* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
 # File Name : proc.py
 # Creation Date : 13-04-2012
-# Last Modified : Sun 22 Apr 2012 07:17:09 PM EEST
+# Last Modified : Sun 22 Apr 2012 07:49:01 PM EEST
 # Created By : Greg Liras <gregliras@gmail.com>
 #_._._._._._._._._._._._._._._._._._._._._.*/
 
@@ -16,6 +16,7 @@ def cycles(inst, l1_acc, l2_acc, mem_acc):
     l2_time = 20
     mem_time = 300
     cyc = inst+l1_time*l1_acc+l2_time*l2_acc+mem_time*mem_acc
+    #print cyc
     return cyc
 
 def accesses(fname):
@@ -49,14 +50,14 @@ def main():
         data = accesses(df.strip())
         inst = data['inst']
         l1_acc = data['l1_acc']
-        l2_acc = data['l1_acc']
+        l2_acc = data['l2_acc']
         mem_acc = data['mem_acc']
         cyc = cycles(inst, l1_acc, l2_acc, mem_acc)
         IPC = float(inst)/float(cyc)
         ipcs.append(IPC)
     norm = ipcs[0]
     for i,IPC in enumerate(ipcs):
-        print i+1,IPC/norm
+        print i+1,IPC#/norm
 if __name__=="__main__":
     main()
 
