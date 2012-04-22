@@ -4,7 +4,7 @@
 #* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
 # File Name : proc.py
 # Creation Date : 13-04-2012
-# Last Modified : Sat 21 Apr 2012 08:56:23 PM EEST
+# Last Modified : Sun 22 Apr 2012 07:17:09 PM EEST
 # Created By : Greg Liras <gregliras@gmail.com>
 #_._._._._._._._._._._._._._._._._._._._._.*/
 
@@ -30,12 +30,13 @@ def accesses(fname):
         if re.search(r2,i):
             misses.append(int(i.split(':')[-1]))
 
-    labels = ['l1_acc','l2_acc','l1_hit_ratio','l2_acc','mem_acc','l2_hit_ratio']
     ret = {}
     ret['inst'] = transactions[1]
-    ret['l1_acc'] = sum(transactions[0:2])
-    ret['l2_acc'] = sum(misses[0:6])
+    ret['l1_acc'] = transactions[0] - sum(misses[0:4])
+    ret['l2_acc'] = transactions[2] - sum(misses[6:])
     ret['mem_acc'] = sum(misses[6:])
+    #print misses
+    #print ret
 
     return ret
 
@@ -43,8 +44,8 @@ def accesses(fname):
 def main():
     #l1_acc, l2_acc, mem_acc,miss-rates = accesses(argv[1])
     f = open("datafiles","r")
-    labels = ['l1_acc','l2_acc','l1_hit_ratio','l2_acc','mem_acc','l2_hit_ratio']
-    for i,df in enumerate(f):
+    ipcs=[]
+    for df in f:
         data = accesses(df.strip())
         inst = data['inst']
         l1_acc = data['l1_acc']
@@ -52,7 +53,10 @@ def main():
         mem_acc = data['mem_acc']
         cyc = cycles(inst, l1_acc, l2_acc, mem_acc)
         IPC = float(inst)/float(cyc)
-        print i+1,IPC
+        ipcs.append(IPC)
+    norm = ipcs[0]
+    for i,IPC in enumerate(ipcs):
+        print i+1,IPC/norm
 if __name__=="__main__":
     main()
 
