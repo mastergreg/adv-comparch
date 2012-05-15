@@ -8,3 +8,6 @@ predict:	predict.cc trace.cc predictor.h branch.h trace.h nbit_predictor.h gshar
 
 clean:
 		rm -f predict
+
+patch:
+		patch -p1 trace.cc < trace_master.patch
