@@ -1,6 +1,11 @@
 // predictor.h
 // This file declares branch_update and branch_predictor classes.
 
+#ifndef PREDICTOR_H
+#define PREDICTOR_H
+
+#include "branch.h"
+
 class branch_update {
 	bool _direction_prediction; // H problepsh gia to apotelesma tou branch
 	unsigned int _target_prediction; // H problepsh gia to target tou branch
@@ -32,3 +37,5 @@ public:
 	virtual void update (branch_update *, bool, unsigned int) {}
 	virtual ~branch_predictor (void) {}
 };
+
+#endif

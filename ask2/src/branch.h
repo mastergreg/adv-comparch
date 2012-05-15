@@ -1,6 +1,10 @@
 // branch.h
 // This file defines the branch_info class.
 
+#ifndef BRANCH_H
+#define BRANCH_H
+
+
 #define OP_JO	0
 #define OP_JNO	1
 #define OP_JC	2
@@ -34,3 +38,5 @@ struct branch_info {
 		opcode,		// opcode for conditional branch
 		br_flags;	// OR of some BR_ flags
 };
+
+#endif

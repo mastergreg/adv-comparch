@@ -2,6 +2,9 @@
 // 
 //
 
+#ifndef BTB_H
+#define BTB_H
+
 #include <math.h>
 
 class btb_update : public branch_update {
@@ -117,3 +120,4 @@ public:
 		return -1;
 	}
 };
+#endif

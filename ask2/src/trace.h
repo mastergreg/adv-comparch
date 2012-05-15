@@ -5,6 +5,9 @@
 // plain files.  If they are somewhere else on your system, change these
 // definitions.
 
+#ifndef TRACE_H
+#define TRACE_H
+
 #define ZCAT            "/bin/gzip -dc"
 #define BZCAT           "/usr/bin/bzip2 -dc"
 #define CAT             "/bin/cat"
@@ -18,3 +21,5 @@ struct trace {
 void init_trace (char *);
 trace *read_trace (void);
 void end_trace (void);
+
+#endif

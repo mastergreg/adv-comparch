@@ -2,6 +2,8 @@
 // This file contains a sample my_predictor class.
 // It is a simple 32,768-entry gshare with a history length of 15.
 
+#ifndef GSHARE_PREDICTOR_H
+#define GSHARE_PREDICTOR_H
 class gshare_update : public branch_update {
 public:
 	unsigned int index;
@@ -64,3 +66,4 @@ public:
 		}
 	}
 };
+#endif
