@@ -16,7 +16,7 @@ predict:	$(OBJFILES)
 %.o:		%.cpp
 		$(CXX) $(CXXFLAGS) $^ -c -o $@
 clean:
-		rm -f predict
+		rm -f predict $(OBJFILES)
 
 patch:
 		patch -p1 trace.cpp < trace_master.patch
