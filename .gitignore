@@ -8,5 +8,6 @@ simics-workspace
 *.EPS
 *.pdf
 *.PDF
+*.trace
 dummy
 zoo
