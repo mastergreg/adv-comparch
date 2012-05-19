@@ -1,0 +1,19 @@
+#!/bin/bash
+gnuplot << EOF
+set terminal png size 1024, 768
+set output "results_B1.png"
+set title "btb predictor"
+set key right outside top
+set grid
+set xtics("512x1" 1, "256x2" 2, "128x4" 3, "64x8" 4)
+set xlabel "predictor specs"
+set ylabel "MPKI"
+
+plot "$1" ,"$1" smooth csplines notitle ,\
+     "$2" ,"$2" smooth csplines notitle ,\
+     "$3" ,"$3" smooth csplines notitle ,\
+     "$4" ,"$4" smooth csplines notitle ,\
+     "$5" ,"$5" smooth csplines notitle ,\
+     "$6" ,"$6" smooth csplines notitle 
+EOF
+
