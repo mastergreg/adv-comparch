@@ -1,5 +1,5 @@
 #!/bin/bash
-files=tests/*
+files=$1/*
 
 for i in $files
 do
