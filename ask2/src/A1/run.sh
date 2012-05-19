@@ -1,8 +1,31 @@
 #!/bin/bash
-files=$1/*
 
-for i in $files
+files03=team03/*
+files46=team46/*
+files79=team79/*
+
+resultfolder03=results03
+resultfolder46=results46
+resultfolder79=results79
+
+
+for i in $files03
 do
     echo $i
     ./predict $i > $i.res
+    mv $i.res $resultfolder03
+done
+
+for i in $files46
+do
+    echo $i
+    ./predict $i > $i.res
+    mv $i.res $resultfolder46
+done
+
+for i in $files79
+do
+    echo $i
+    ./predict $i > $i.res
+    mv $i.res $resultfolder79
 done
