@@ -12,6 +12,8 @@
 #define BZCAT           "/usr/bin/bzip2 -dc"
 #define CAT             "/bin/cat"
 
+#include "predictor.h"
+
 struct trace {
 	bool	taken;
 	unsigned int target;

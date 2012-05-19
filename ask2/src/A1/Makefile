@@ -10,7 +10,7 @@ all:		predict
 predict:	$(OBJFILES)
 		$(CXX) $(CXXFLAGS) $^ -o $@
 
-%.o:		%.cpp
-		$(CXX) $(CXXFLAGS) $^ -c -o $@
+%.o:		%.cpp %.h
+		$(CXX) $(CXXFLAGS) $< -c
 clean:
 		rm -f predict $(OBJFILES)
