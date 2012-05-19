@@ -1,3 +1,3 @@
-1:nbit predictor: 3.908 MPKI
-2:nbit predictor: 3.136 MPKI
-4:nbit predictor: 3.353 MPKI
+1 3.908
+2 3.136
+4 3.353

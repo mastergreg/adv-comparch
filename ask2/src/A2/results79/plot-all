@@ -1,0 +1,18 @@
+#!/bin/bash
+gnuplot << EOF
+set terminal png size 1024, 768
+set output "results_A2.png"
+set title "nbit predictor"
+set key right outside top
+set grid
+set xlabel "predictor bits"
+set ylabel "MPKI"
+
+plot "$1" ,"$1" smooth csplines notitle ,\
+     "$2" ,"$2" smooth csplines notitle ,\
+     "$3" ,"$3" smooth csplines notitle ,\
+     "$4" ,"$4" smooth csplines notitle ,\
+     "$5" ,"$5" smooth csplines notitle ,\
+     "$6" ,"$6" smooth csplines notitle 
+EOF
+
