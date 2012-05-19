@@ -46,7 +46,7 @@ int main (int argc, char *argv[]) {
     //for ( int i = 0 ; i < NR_PREDICTORS ; ++i ) {
     //    p[i] = new nbit_predictor(i + 1);
     //}
-    p[0] = new nbit_predictor(2);
+    p[0] = new nbit_predictor(4);
 	// some statistics to keep, currently just for conditional branches
 
 	long long int 
@@ -96,10 +96,13 @@ int main (int argc, char *argv[]) {
 	// give final mispredictions per kilo-instruction and exit.
 	// each trace represents exactly 100 million instructions.
 
-	for(int i = 0; i < NR_PREDICTORS; i++) {
-        printf("%d:nbit predictor: %0.3f MPKI\n",i+1,1000.0 * (dmiss[i]/1e8));
-		delete p[i];
-    }
+	//for(int i = 0; i < NR_PREDICTORS; i++) {
+    //    printf("%d:nbit predictor: %0.3f MPKI\n",i+1,1000.0 * (dmiss[i]/1e8));
+	//	delete p[i];
+    //}
+
+    printf("4:nbit predictor: %0.3f MPKI\n",1000.0 * (dmiss[0]/1e8));
+    delete p[0];
 	delete [] p;
 
 	exit (0);

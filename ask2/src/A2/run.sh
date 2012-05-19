@@ -1,8 +1,8 @@
 #!/bin/bash
 
-files03=team03/*
-files46=team46/*
-files79=team79/*
+files03=team03/*.trace
+files46=team46/*.trace
+files79=team79/*.trace
 
 resultfolder03=results03
 resultfolder46=results46
