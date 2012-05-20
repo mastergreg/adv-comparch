@@ -27,249 +27,65 @@
 \include{title/title}
 
 \section{Εισαγωγή}
-Σκοπός της άσκησης αυτής ήταν η χρήση και εξοικείωση με το λογισμικό Simics της
-Wind River, σε συνδυασμό με τη μελέτη της επίδρασης διαφόρων παραμέτρων των
-μνημών L1 και L2 cache στην απόδοση συγκεκριμένων benchmarks.
+%{{{ A1
 
-Πιο συγκεκριμένα, χρησιμοποιήσαμε ένα εικονικό μηχάνημα που έτρεχε Fedora 5
-εξετάσαμε τις μεταβολές στην επίδοση art, gzip, equake και mcf,
-χρησιμοποιώντας ως μετρική απόδοσης το IPC (Instructions Per Cycle) και Miss
-Rate.
-
-%{{{ L1 cache, constant line size
-
-\section{L1 cache, constant line size}
-
-Στο τμήμα αυτό χρησιμοποιήσαμε διαφορετικές L1 cache κρατώντας σταθερό το
-cache line size και τροποποιώντας το μέγεθος της cache και το associativity
-όπως φαίνεται στον παρακάτω πίνακα. Ακόμη κρατήσαμε σταθερή την L2 cache με
-χαρακτηριστικά: μέγεθος 1ΜΒ, line size 128B και associativity 8. Όλες οι cache
-που χρησιμοποιήσαμε ακολουθούν πολιτική αντικατάστασης LRU (least recently
-used).
-
-\begin{table}[H]
-    \centering
-    \begin{tabular}{c c c c}
-        Size & line size & lines & associativity\\ 
-        \hline
-        \hline
-        16K   & 64 &  256  & 2\\
-        16K   & 64 &  256  & 4\\
-        \hline
-        32K   & 64 &  512  & 4\\
-        32K   & 64 &  512  & 8\\
-        \hline
-        64K   & 64 &  1024 & 4\\
-        64K   & 64 &  1024 & 8\\
-    \end{tabular}
-\end{table}
-
-Στα παρακάτω διαγράμματα παρατηρούμε πως αυξάνοντας το μέγεθος της cache το
-IPC αυξάνει ελαφρώς. Ακόμη παρατηρούμε πως το benchmark art έχει πολύ μικρό
-IPC πράγμα που δηλώνει πως δε χαρακτηρίζεται από τοπικότητα αναφορών και έτσι
-δεν αξιοποιεί το μέγεθος της cache. Ωστόσο το miss-rate πέφτει πολύ
-περισσότερο όσο το μέγεθος της L1 cache αυξάνει για κάθε benchmark.
-
+\section{A1}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{files/part1a-ipc_all.png}
-    \caption{IPC: L1 cache line size 64}
+    \includegraphics[width=0.8\textwidth]{files/src-A1-results79-results_A1.png}
+    \caption{}
 \end{figure}
 
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{files/part1a-missrate_all.png}
-    \caption{miss-rate: L1 cache line size 64}
-\end{figure}
 
 %}}}
 
 \pagebreak
 
-%{{{ L1 cache, variable line size
+%{{{ A2
 
-\section{L1 cache, variable line size}
-
-Στο τμήμα αυτό χρησιμοποιήσαμε διαφορετικές L1 cache μεταβάλλοντας αυτή τη
-φορά το το cache line size και το μέγεθος της cache και το associativity όπως
-φαίνεται στον παρακάτω πίνακα. Ακόμη κρατήσαμε σταθερή την L2 cache με
-χαρακτηριστικά: μέγεθος 1ΜΒ, line size 128B και associativity 8. Όλες οι cache
-που χρησιμοποιήσαμε ακολουθούν πολιτική αντικατάστασης LRU (least recently
-used).
-
-\begin{table}[H]
-    \centering
-    \begin{tabular}{c c c c}
-        Size & line size &lines & associativity\\ 
-        \hline
-        \hline
-        16K & 32    & 512   & 4\\
-        16K & 128   & 128   & 4\\
-        \hline
-        32K & 32    & 1024  & 4\\
-        32K & 128   & 256   & 4\\
-        32K & 32    & 1024  & 8\\
-        32K & 128   & 256   & 8\\
-        \hline
-        64K & 32    & 2048  & 4\\
-        64K & 128   & 512   & 4\\
-        64K & 32    & 2048  & 8\\
-        64K & 128   & 512   & 8\\
-    \end{tabular}
-\end{table}
-
-Τα αποτελέσματα που ακολουθούν είναι ξεχωριστά ανά cache line size ώστε να
-ξεχωρίζει η επίδραση της κάθε μετρικής σε αυτά. Παρατηρήσαμε πως το μέγεθος
-της cache είναι αυτό που παίζει το σημαντικότερο ρόλο στην επίδοση των
-benchmarks, ενώ αξιοσημείωτο είναι το γεγονός πως το art δεν δείχνει να
-επηρεάζεται από το μέγεθος της L1 cache, πράγμα που σημαίνει πως η υπόθεση
-που κάναμε παραπάνω για την κακή αξιοποίηση της τοπικότητας φαίνεται σωστή.
+\section{A2}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{files/part1b-32-ipc_all.png}
-    \caption{IPC: L1 cache line size 32}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{files/part1b-32-missrate_all.png}
-    \caption{miss-rate: L1 cache line size 32}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{files/part1b-128-ipc_all.png}
-    \caption{IPC: L1 cache line size 128}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{files/part1b-128-missrate_all.png}
-    \caption{miss-rate: L1 cache line size 128}
+    \includegraphics[width=0.8\textwidth]{files/src-A2-results79-results_A2.png}
+    \caption{}
 \end{figure}
 
 %}}}
 
-\pagebreak
+%{{{ B1
 
-%{{{ L2 cache, constant line size
-
-\section{L2 cache, constant line size}
-Στο τμήμα αυτό της άσκησης μελετήσαμε την επίδραση της μεταβολής του μεγέθους
-και του associativity της L2 cache στην εκτέλεση των benchmarks. Τα
-χαρακτηριστικά που θέσαμε για την L2 φαίνονται στον ακόλουθο πίνακα. Ακόμη
-η L1 cache είχε μέγεθος 32K και cache line size 64B.
-
-\begin{table}[H]
-    \centering
-    \begin{tabular}{c c c c}
-        Size & line size & lines & associativity\\ 
-        \hline
-        \hline
-        256K   & 128 & 2048  & 4\\
-        \hline
-        512K   & 128 & 4096  & 4\\
-        512K   & 128 & 4096  & 8\\
-        \hline
-        1024K  & 128 & 8192  & 8\\
-        1024K  & 128 & 8192  & 16\\
-        \hline
-        2048K  & 128 & 16384 & 8\\
-        2048K  & 128 & 16384 & 16\\
-    \end{tabular}
-\end{table}
-
-Καθώς μεταβάλλουμε το μέγεθος της L2 cache διαπιστώσαμε σημαντική βελτίωση στο
-IPC και πτώση στο miss-rate κατά μία τάξη μεγέθους. Επίσης εδώ φαίνεται να
-έχει σημασία και το μέγεθος του cache-line όπως δείχνουν τα αποτελέσματα
-ειδικά στις δύο τελευταίες εκτελέσεις των benchmarks.
+\section{B1. Μελέτη του BTB}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{files/part2a-ipc_all.png}
-    \caption{IPC: L2 cache line size 128}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{files/part2a-missrate_all.png}
-    \caption{miss-rate: L2 cache line size 128}
+    \includegraphics[width=0.8\textwidth]{files/src-B1-results79-results_B1.png}
+    \caption{}
 \end{figure}
 
 %}}}
 
-\pagebreak
+%{{{ C1
 
-%{{{ L2 cache, variable line size
+\section{C1. Σύγκριση διαφορετικών predictors}
 
+\begin{itemize}
+    \item Static Not-Taken
+        \inputminted[linenos,fontsize=\footnotesize,frame=leftline]{cpp}{files/src-C1-nt_predictor.h}
+        \inputminted[linenos,fontsize=\footnotesize,frame=leftline]{cpp}{files/src-C1-nt_predictor.cpp}
+    \item Static Backward Taken Forward Not Taken
+        \inputminted[linenos,fontsize=\footnotesize,frame=leftline]{cpp}{files/src-C1-btfnt_predictor.h}
+        \inputminted[linenos,fontsize=\footnotesize,frame=leftline]{cpp}{files/src-C1-btfnt_predictor.cpp}
+    \item 4-bit predictor
+    \item gshare predictor
+    \item Local-History two-level predictors
+    \item Global-History two-level predictors
+    \item Tournament Hybrid predictors
 
-\section{L2 cache, variable line size}
-
-Τέλος μεταβάλλουμε το το μέγεθος του cache-line και το μέγεθος της L2 cache
-σύμφωνα με τον παρακάτω πίνακα κρατώντας τα χαρακτηριστικά της L1 όπως ίδια με
-τις προηγούμενες εκτελέσεις.
-
-\begin{table}[H]
-    \centering
-    \begin{tabular}{c c c c}
-        Size & line size & lines & associativity\\ 
-        \hline
-        \hline
-        512K   & 64  & 8192  & 8\\
-        512K   & 256 & 2048  & 8\\
-        \hline
-        1024K  & 64  & 16384 & 8\\
-        1024K  & 256 & 4096  & 8\\
-        \hline
-        2048K  & 64  & 32768 & 8\\
-        2048K  & 256 & 8192  & 8\\
-    \end{tabular}
-\end{table}
-
-Τα αποτελέσματα ακολουθούν χωρισμένα ανά μέγεθος cache-line. Παρατηρούμε πως
-το IPC βελτιώνεται κατά πολύ όσο μεγαλώνει τόσο το μέγεθος της cache όσο και
-του cache-line. Τα equake και gzip δείχνουν να μην επηρεάζονται από τις
-αλλαγές στην L2 cache πράγμα που δηλώνει πως έχουν μικρό αριθμό προσβάσεων
-στην L2.
-
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{files/part2b-64-ipc_all.png}
-    \caption{IPC: L2 cache line size 64}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{files/part2b-64-missrate_all.png}
-    \caption{miss-rate: L2 cache line size 64}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{files/part2b-256-ipc_all.png}
-    \caption{IPC: L2 cache line size 256}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{files/part2b-256-missrate_all.png}
-    \caption{miss-rate: L2 cache line size 256}
-\end{figure}
-
-\section{Συμπεράσματα}
-Κυριότερο χαρακτηριστικό που επηρέασε την απόδοση της εκάστοτε cache ήταν το
-μέγεθος της. Το associativity δεν έδειξε να επηρεάζει σχεδόν καθόλου ενώ το
-μέγεθος του cache-line συνεισφέρει αλλά σε λιγότερο βαθμό εν γένει.
-Επιπρόσθετα η ιεραρχία της cache δεν αποτελεί πανάκεια στην απόδοση των
-προγραμμάτων που γράφει κάποιος. Είναι δυνατό η ίδια ιεραρχία μνήμης να
-συμπεριφέρεται πολύ χειρότερα από κάποια φαινομενικά καλύτερη της σε ειδικές
-περιπτώσεις.
+\end{itemize}
 
 %}}}
-
 
 \end{document}
