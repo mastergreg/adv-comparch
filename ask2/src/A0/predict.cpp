@@ -9,12 +9,20 @@
 #include <string.h>
 #include <assert.h>
 
+
+#include <algorithm>
+
 #include "branch.h"
 #include "trace.h"
 #include "predictor.h"
 #include "nbit_predictor.h"		//the .h files of the branch predictors' implementations
 #include "gshare_predictor.h"
 #include "btb.h"
+
+
+#define NR_PREDICTORS 7
+
+using namespace std;
 
 int main (int argc, char *argv[])
 {
@@ -34,20 +42,22 @@ int main (int argc, char *argv[])
 
     // you can use more than one predictor in an array of predictors!!!
 
-    branch_predictor **p = new branch_predictor*[2];
+    branch_predictor **p = new branch_predictor*[NR_PREDICTORS];
 
-    p[0] = new gshare_predictor();
-    p[1] = new btb_predictor(512, 1);
-
+    for ( int i = 0 ; i < NR_PREDICTORS ; ++i ) {
+        p[i] = new gshare_predictor();
+    }
     // some statistics to keep, currently just for conditional branches
 
     long long int
-    tmiss[2],	// number of target mispredictions
-          dmiss[2]; 	// number of direction mispredictions
+    tmiss[NR_PREDICTORS],	// number of target mispredictions
+          dmiss[NR_PREDICTORS]; 	// number of direction mispredictions
 
-    for(int i = 0; i < 2; i++)
-        dmiss[i] = tmiss[i] = 0;
-    // keep looping until end of file
+    fill( tmiss, tmiss+NR_PREDICTORS, 0);
+    fill( dmiss, dmiss+NR_PREDICTORS, 0);
+    //for(int i = 0; i < 2; i++)
+    //	dmiss[i] = tmiss[i] = 0;
+    //// keep looping until end of file
 
     for (;;) {
 
@@ -63,18 +73,20 @@ int main (int argc, char *argv[])
 
         branch_update *u;
 
-        u = p[0]->predict(t->bi);
-        dmiss[0] += u->direction_prediction() != t->taken;
-        p[0]->update(u, t->taken, t->target);
-
-        u = p[1]->predict(t->bi);
-        if (!(t->bi.br_flags & BR_RETURN)) {
-            dmiss[1] += u->direction_prediction() != t->taken;
-            if((t->taken == u->direction_prediction()) && (u->direction_prediction() ==true)) {
-                tmiss[1] += u->target_prediction() != t->target;
-            }
+        for(int i = 0; i < NR_PREDICTORS; i++) {
+            u = p[i]->predict(t->bi);
+            dmiss[i] += u->direction_prediction() != t->taken;
+            p[i]->update(u, t->taken, t->target);
         }
-        p[1]->update(u, t->taken, t->target);
+
+        //u = p[1]->predict(t->bi);
+        //if (!(t->bi.br_flags & BR_RETURN)) {
+        //	dmiss[1] += u->direction_prediction() != t->taken;
+        //	if((t->taken == u->direction_prediction()) && (u->direction_prediction() ==true)) {
+        //		tmiss[1] += u->target_prediction() != t->target;
+        //	}
+        //}
+        //p[1]->update(u, t->taken, t->target);
     }
 
     // done reading traces
@@ -84,12 +96,10 @@ int main (int argc, char *argv[])
     // give final mispredictions per kilo-instruction and exit.
     // each trace represents exactly 100 million instructions.
 
-    printf("gshare_pred: %0.3f MPKI\n",1000.0 * (dmiss[0]/1e8));
-    printf("btb : direction_misses  %lld target_misses  %lld\n",dmiss[1], tmiss[1]);
-
-    for(int i = 0; i < 2; i++)
+    for(int i = 0; i < NR_PREDICTORS; i++) {
+        printf("%d\t%0.3f\n",i+1,1000.0 * (dmiss[i]/1e8));
         delete p[i];
-
+    }
     delete [] p;
 
     exit (0);
