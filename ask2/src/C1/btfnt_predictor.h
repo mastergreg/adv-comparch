@@ -12,16 +12,17 @@
 #include <math.h>
 #include "predictor.h"
 
-class btfnt_predictor : public branch_predictor {
-    public:
+class btfnt_predictor : public branch_predictor
+{
+public:
 
-        branch_update u;
-        branch_info bi;
-        bool jump;
+    branch_update u;
+    branch_info bi;
+    bool jump;
 
-        void target(bool t);
-        branch_update *predict (branch_info & b);
-        void update (branch_update *u, bool taken, unsigned int target);
+    void target(bool t);
+    branch_update *predict (branch_info & b);
+    void update (branch_update *u, bool taken, unsigned int target);
 };
 
 #endif

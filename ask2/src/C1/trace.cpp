@@ -1,6 +1,6 @@
 // trace.cc
 // This file contains code for reading traces.  There's nothing in this
-// file you need to understand to participate in the branch prediction 
+// file you need to understand to participate in the branch prediction
 // contest.
 
 // djimenez
@@ -13,7 +13,7 @@
 #include "branch.h"
 #include "trace.h"
 
-// A trace is a piece of information about a branch.  The external 
+// A trace is a piece of information about a branch.  The external
 // representation of a trace is 9 bytes:
 // - A one byte "code."  The lower 4 bits are the x86 opcode for a
 // conditional branch (modulo 16).  The upper four bits are one of the
@@ -25,9 +25,9 @@
 // 5 : call
 // 6 : indirect call
 // 7 : return
-// - A four byte little-endian branch address.  This is the address in memory 
+// - A four byte little-endian branch address.  This is the address in memory
 // of the first byte of the branch instruction.
-// - A four byte little-endian branch target.  This is the address in memory 
+// - A four byte little-endian branch target.  This is the address in memory
 // where the branch jumped.
 //
 // The input file is usually compressed either with gzip or bzip2 and this
@@ -67,100 +67,105 @@ bool end_of_file;
 
 // read a single byte from the trace file
 
-unsigned char read_byte (void) {
+unsigned char read_byte (void)
+{
 
-	// if the buffer is empty...
+    // if the buffer is empty...
 
-	if (bufpos == bufsize) {
+    if (bufpos == bufsize) {
 
-		// get a BUFSIZE-sized chunk of bytes from the input
+        // get a BUFSIZE-sized chunk of bytes from the input
 
-		bufpos = 0;
-		bufsize = fread (buf, 1, BUFSIZE, tracefp);
+        bufpos = 0;
+        bufsize = fread (buf, 1, BUFSIZE, tracefp);
 
-		// nothing to read?  we must be done.
+        // nothing to read?  we must be done.
 
-		if (bufsize == 0) {
-			end_of_file = true;
-			return 0;
-		}
-	}
+        if (bufsize == 0) {
+            end_of_file = true;
+            return 0;
+        }
+    }
 
-	// one more byte 
+    // one more byte
 
-	return buf[bufpos++];
+    return buf[bufpos++];
 }
 
 // read an unsigned integer in little endian format from the trace file
 
-unsigned int read_uint (void) {
-	unsigned int x0, x1, x2, x3;
+unsigned int read_uint (void)
+{
+    unsigned int x0, x1, x2, x3;
 
-	x0 = read_byte ();
-	x1 = read_byte ();
-	x2 = read_byte ();
-	x3 = read_byte ();
-	return x0 | (x1 << 8) | (x2 << 16) | (x3 << 24);
+    x0 = read_byte ();
+    x1 = read_byte ();
+    x2 = read_byte ();
+    x3 = read_byte ();
+    return x0 | (x1 << 8) | (x2 << 16) | (x3 << 24);
 }
 
 // these "remember" structs and functions handle decompressing certain traces
 // using prediction.  the compression is a simple table-based predictor that
-// also uses a return address stack for predicting return addresses.  
-// obviously this is a space win, but it is also a measurable performance 
+// also uses a return address stack for predicting return addresses.
+// obviously this is a space win, but it is also a measurable performance
 // win since there are fewer bytes to read.
 
 struct remember {
-	bool taken;
-	unsigned char code; 
-	unsigned int address, target;
-	unsigned int lru_time;
+    bool taken;
+    unsigned char code;
+    unsigned int address, target;
+    unsigned int lru_time;
 
-	// constructor
+    // constructor
 
-	remember (void) {
-		code = 0;
-		address = 0;
-		target = 0;
-		taken = 0;
-		lru_time = 0;
-	}
+    remember (void) {
+        code = 0;
+        address = 0;
+        target = 0;
+        taken = 0;
+        lru_time = 0;
+    }
 
-	// return true if two remember structs are equivalent.  optionally
-	// ignore the target since it might have been correctly predicted
-	// by the return address stack
+    // return true if two remember structs are equivalent.  optionally
+    // ignore the target since it might have been correctly predicted
+    // by the return address stack
 
-	bool equal (remember *r, bool ignore_target) {
-		return
-		   r->code == code
-		&& r->taken == taken
-		&& r->address == address 
-		&& (ignore_target || r->target == target);
-	}
+    bool equal (remember *r, bool ignore_target) {
+        return
+            r->code == code
+            && r->taken == taken
+            && r->address == address
+            && (ignore_target || r->target == target);
+    }
 };
 
 // a return address stack
-                                                                                
+
 #define RAS_SIZE        100
-                                                                                
+
 unsigned int ras[RAS_SIZE];
 int ras_top = RAS_SIZE;
 
 // (re)initialize the return address stack
-void init_ras (void) {
-	ras_top = RAS_SIZE;
+void init_ras (void)
+{
+    ras_top = RAS_SIZE;
 }
 
 // push a target onto the return address stack
 
-void push_ras (unsigned int a) {
-	if (ras_top) ras[--ras_top] = a;
+void push_ras (unsigned int a)
+{
+    if (ras_top) ras[--ras_top] = a;
 }
 
 // pop a target from the return address stack
 
-unsigned int pop_ras (void) {
-	if (ras_top < RAS_SIZE) return ras[ras_top++];
-	return 0;
+unsigned int pop_ras (void)
+{
+    if (ras_top < RAS_SIZE) return ras[ras_top++];
+    return 0;
 }
 
 // parameters for the predictor table
@@ -180,237 +185,243 @@ remember rtab[N_REMEMBER][ASSOC];
 
 // this int keeps time for the LRU algorithm
 
-static unsigned int now = 0; 
+static unsigned int now = 0;
 
 // last trace seen
 
-static remember last_one; 
+static remember last_one;
 
 // predict a trace
 
-remember *predict_remember (void) {
-	unsigned int index = last_one.target & (N_REMEMBER-1);
-	remember *r = &rtab[index][0];
-	return r;
+remember *predict_remember (void)
+{
+    unsigned int index = last_one.target & (N_REMEMBER-1);
+    remember *r = &rtab[index][0];
+    return r;
 }
 
 // update the predictor
 
-void update_remember (remember & me, remember *r, bool correct, int index) {
-	if (correct) {
-		r[index].lru_time = now++;
-	} else {
-		// throw out the LRU item and replace it with me
-		int lru = 0;
-		for (int i=1; i<ASSOC; i++)
-			if (r[i].lru_time < r[lru].lru_time) lru = i;
-		r[lru] = me;
-		r[lru].lru_time = now++;
-	}
-	last_one = me;
+void update_remember (remember & me, remember *r, bool correct, int index)
+{
+    if (correct) {
+        r[index].lru_time = now++;
+    } else {
+        // throw out the LRU item and replace it with me
+        int lru = 0;
+        for (int i=1; i<ASSOC; i++)
+            if (r[i].lru_time < r[lru].lru_time) lru = i;
+        r[lru] = me;
+        r[lru].lru_time = now++;
+    }
+    last_one = me;
 }
 
 // read a single trace from the file
 
-trace *read_trace (void) {
-	static trace t;
-	bool ras_correct, ras_offby2, ras_offby3, correct;
+trace *read_trace (void)
+{
+    static trace t;
+    bool ras_correct, ras_offby2, ras_offby3, correct;
 
-	// read the next byte; it will either be a code, a set index for
-	// a correct prediction, or a prefix for patching a return address 
-	// prediction.
+    // read the next byte; it will either be a code, a set index for
+    // a correct prediction, or a prefix for patching a return address
+    // prediction.
 
-	unsigned char c = read_byte ();
-	if (end_of_file) return NULL;
-	remember r;
+    unsigned char c = read_byte ();
+    if (end_of_file) return NULL;
+    remember r;
 
-	// predict the next trace
+    // predict the next trace
 
-	remember *p = predict_remember ();
+    remember *p = predict_remember ();
 
-	// assume return address prediction is correct
+    // assume return address prediction is correct
 
-	ras_offby2 = false;
-	ras_offby3 = false;
+    ras_offby2 = false;
+    ras_offby3 = false;
 
-	// if the high bit of the first byte is set...
+    // if the high bit of the first byte is set...
 
-	if (c & 0x80) {
-		// then it means the return address predictor will be
-		// slightly off but we can patch the prediction to make
-		// it correct.  this happens sometimes (rarely) because of 
-		// x86's variable-length call instructions.
+    if (c & 0x80) {
+        // then it means the return address predictor will be
+        // slightly off but we can patch the prediction to make
+        // it correct.  this happens sometimes (rarely) because of
+        // x86's variable-length call instructions.
 
-		if (c == 0x82)
+        if (c == 0x82)
 
-			// add 2 to the predicted target
+            // add 2 to the predicted target
 
-			ras_offby2 = true;
-		else if (c == 0x83)
+            ras_offby2 = true;
+        else if (c == 0x83)
 
-			// subtract 3 from the predicted target
+            // subtract 3 from the predicted target
 
-			ras_offby3 = true;
-		else assert (0);
+            ras_offby3 = true;
+        else assert (0);
 
-		// read the next byte; it should be the set index for
-		// a correct return address prediction
+        // read the next byte; it should be the set index for
+        // a correct return address prediction
 
-		c = read_byte ();
-	}
+        c = read_byte ();
+    }
 
-	// the byte is a correct prediction if it is less than 8;
-	// otherwise it is the first byte (a code) in a 9-byte trace
+    // the byte is a correct prediction if it is less than 8;
+    // otherwise it is the first byte (a code) in a 9-byte trace
 
-        correct = c < ASSOC*2;
-	if (correct) {
+    correct = c < ASSOC*2;
+    if (correct) {
 
-		// if the byte is at least 4 then it means that we have
-		// a correct return address prediction
-		
-		ras_correct = c >= ASSOC;
+        // if the byte is at least 4 then it means that we have
+        // a correct return address prediction
 
-		// subtract off ASSOC for a correct return address prediction
+        ras_correct = c >= ASSOC;
 
-		if (ras_correct) c -= ASSOC;
+        // subtract off ASSOC for a correct return address prediction
 
-		// at this point we have the predicted set in p
-		// and the index into the predicted set in c.
+        if (ras_correct) c -= ASSOC;
 
-		r = p[c];
+        // at this point we have the predicted set in p
+        // and the index into the predicted set in c.
 
-		// if this is a trace for a return...
+        r = p[c];
 
-		if (r.code == 0x70) {
+        // if this is a trace for a return...
 
-			// pop the return address stack
+        if (r.code == 0x70) {
 
-			unsigned int popd = pop_ras();
+            // pop the return address stack
 
-			// if the return address stack prediction was
-			// correct...
-			if (ras_correct) {
+            unsigned int popd = pop_ras();
 
-				// set the corresponding field of r
+            // if the return address stack prediction was
+            // correct...
+            if (ras_correct) {
 
-				r.target = popd;
+                // set the corresponding field of r
 
-				// and fix the target if need be
+                r.target = popd;
 
-				if (ras_offby2) r.target += 2;
-				else if (ras_offby3) r.target -= 3;
-			} else
+                // and fix the target if need be
 
-				// otherwise, we had a correct prediction
-				// but an incorrect return address prediction;
-				// flush the return address stack
+                if (ras_offby2) r.target += 2;
+                else if (ras_offby3) r.target -= 3;
+            } else
 
-				init_ras();
-		}
+                // otherwise, we had a correct prediction
+                // but an incorrect return address prediction;
+                // flush the return address stack
 
-		// set the rest of the fields from the prediction
+                init_ras();
+        }
 
-		t.bi.address = r.address;
-		t.target = r.target;
-		t.taken = r.taken;
+        // set the rest of the fields from the prediction
 
-		// update the predictor
+        t.bi.address = r.address;
+        t.target = r.target;
+        t.taken = r.taken;
 
-		update_remember (r, p, true, (int) c);
+        // update the predictor
 
-		// get the code into c for later use
+        update_remember (r, p, true, (int) c);
 
-		c = r.code;
-	} else {
+        // get the code into c for later use
 
-		// the predictor was incorrect.  just read the trace from
-		// the input.  this happens rarely, often less than 1% of the
-		// time, but it has to happen sometime because this is where
-		// the actual information comes from
+        c = r.code;
+    } else {
 
-		// read the branch address
+        // the predictor was incorrect.  just read the trace from
+        // the input.  this happens rarely, often less than 1% of the
+        // time, but it has to happen sometime because this is where
+        // the actual information comes from
 
-		t.bi.address = read_uint ();
+        // read the branch address
 
-		// read the branch target
+        t.bi.address = read_uint ();
 
-		t.target = read_uint ();
+        // read the branch target
 
-		// assume the branch is taken; fix later
+        t.target = read_uint ();
 
-		t.taken = true;
+        // assume the branch is taken; fix later
 
-		// prepare a remember struct for the predictor
+        t.taken = true;
 
-		r.address = t.bi.address;
-		r.target = t.target;
-		r.taken = t.taken;
-		r.code = c;
+        // prepare a remember struct for the predictor
 
-		// if we have a return...
-		if (r.code == 0x70) {
+        r.address = t.bi.address;
+        r.target = t.target;
+        r.taken = t.taken;
+        r.code = c;
 
-			// pop the return address stack
+        // if we have a return...
+        if (r.code == 0x70) {
 
-			unsigned int popd = pop_ras ();
+            // pop the return address stack
 
-			// if we have a mispredicted return address,
-			// flush the return address stack.  why are we
-			// bothering about predicting when we know the
-			// prediction is incorrect?  because the original
-			// compressor maintains a return address stack 
-			// regardless of whether the trace is predicted
-			// correctly, so we have to also.
+            unsigned int popd = pop_ras ();
 
-			if (popd != t.target
-			 && popd != t.target - 2
-			 && popd != t.target + 3) init_ras();
-		}
+            // if we have a mispredicted return address,
+            // flush the return address stack.  why are we
+            // bothering about predicting when we know the
+            // prediction is incorrect?  because the original
+            // compressor maintains a return address stack
+            // regardless of whether the trace is predicted
+            // correctly, so we have to also.
 
-		// update the predictor
+            if (popd != t.target
+                && popd != t.target - 2
+                && popd != t.target + 3) init_ras();
+        }
 
-		update_remember (r, p, false, -1);
-	}
+        // update the predictor
 
-	// get the conditional branch opcode, if any
+        update_remember (r, p, false, -1);
+    }
 
-	t.bi.opcode = c & 15;
+    // get the conditional branch opcode, if any
 
-	// br_flags gives information about the branch; initially empty
+    t.bi.opcode = c & 15;
 
-	t.bi.br_flags = 0;
+    // br_flags gives information about the branch; initially empty
 
-	// get the high 4 bits of the code
+    t.bi.br_flags = 0;
 
-	c >>= 4;
-	switch (c) {
-	case 1: // taken conditional branch
-		t.bi.br_flags |= BR_CONDITIONAL;
-		break;
-	case 2: // not taken conditional branch
-		t.taken = false;
-		t.bi.br_flags |= BR_CONDITIONAL;
-		break;
-	case 3: // unconditional branch
-		break;
-	case 4: // indirect branch
-		t.bi.br_flags |= BR_INDIRECT;
-		break;
-	case 5: // call
-		t.bi.br_flags |= BR_CALL;
-		push_ras (t.bi.address + 5);
-		break;
-	case 6: // indirect call
-		t.bi.br_flags |= BR_CALL | BR_INDIRECT;
-		push_ras (t.bi.address + 2);
-		break;
-	case 7: // return
-		t.bi.br_flags |= BR_RETURN;
-		break;
-	// this should "never" happen
-	default: fprintf (stderr, "%d\n", c); fflush (stderr); assert (0);
-	}
-	return & t;
+    // get the high 4 bits of the code
+
+    c >>= 4;
+    switch (c) {
+    case 1: // taken conditional branch
+        t.bi.br_flags |= BR_CONDITIONAL;
+        break;
+    case 2: // not taken conditional branch
+        t.taken = false;
+        t.bi.br_flags |= BR_CONDITIONAL;
+        break;
+    case 3: // unconditional branch
+        break;
+    case 4: // indirect branch
+        t.bi.br_flags |= BR_INDIRECT;
+        break;
+    case 5: // call
+        t.bi.br_flags |= BR_CALL;
+        push_ras (t.bi.address + 5);
+        break;
+    case 6: // indirect call
+        t.bi.br_flags |= BR_CALL | BR_INDIRECT;
+        push_ras (t.bi.address + 2);
+        break;
+    case 7: // return
+        t.bi.br_flags |= BR_RETURN;
+        break;
+        // this should "never" happen
+    default:
+        fprintf (stderr, "%d\n", c);
+        fflush (stderr);
+        assert (0);
+    }
+    return & t;
 }
 
 // open the trace file for reading
@@ -418,55 +429,55 @@ trace *read_trace (void) {
 #define GZIP_MAGIC     "\037\213"
 #define BZIP2_MAGIC	"BZ"
 
-void init_trace (char *fname) {
-	//char *dc;
-	char s[2] = { 0, 0 };
-	char cmd[1000];
+void init_trace (char *fname)
+{
+    //char *dc;
+    char s[2] = { 0, 0 };
+    char cmd[1000];
     int red;
 
-	// figure out the compression method from the magic number
+    // figure out the compression method from the magic number
 
-	FILE *f = fopen (fname, "r");
-	if (!f) {
-		perror (fname);
-	}
-    
-	red = fread (s, 1, 2, f);
+    FILE *f = fopen (fname, "r");
+    if (!f) {
+        perror (fname);
+    }
+
+    red = fread (s, 1, 2, f);
     if ( red != 1*2 ) {
-		perror ("failed to read");
+        perror ("failed to read");
     }
-	fclose (f);
-	if (strncmp (s, GZIP_MAGIC, 2) == 0) {
-	    sprintf (cmd, "%s %s", ZCAT, fname);
-		//dc = ZCAT;
-    }
-	else if (strncmp (s, BZIP2_MAGIC, 2) == 0) {
-	    sprintf (cmd, "%s %s", BZCAT, fname);
-		//dc = BZCAT;
-    }
-	else {
-	    sprintf (cmd, "%s %s", CAT, fname);
-		//dc = CAT;
+    fclose (f);
+    if (strncmp (s, GZIP_MAGIC, 2) == 0) {
+        sprintf (cmd, "%s %s", ZCAT, fname);
+        //dc = ZCAT;
+    } else if (strncmp (s, BZIP2_MAGIC, 2) == 0) {
+        sprintf (cmd, "%s %s", BZCAT, fname);
+        //dc = BZCAT;
+    } else {
+        sprintf (cmd, "%s %s", CAT, fname);
+        //dc = CAT;
     }
 
-	// make a command that will decompress the file to stdout
+    // make a command that will decompress the file to stdout
 
-	//sprintf (cmd, "%s %s", ZCAT, fname);
+    //sprintf (cmd, "%s %s", ZCAT, fname);
 
-	// pipe that stdout to tracefp
+    // pipe that stdout to tracefp
 
-	tracefp = popen (cmd, "r");
-	if (!tracefp) {
-		perror (fname);
-		exit (1);
-	}
-	bufpos = 0;
-	bufsize = 0;
-	end_of_file = false;
+    tracefp = popen (cmd, "r");
+    if (!tracefp) {
+        perror (fname);
+        exit (1);
+    }
+    bufpos = 0;
+    bufsize = 0;
+    end_of_file = false;
 }
 
 // close the trace file
 
-void end_trace (void) {
-	fclose (tracefp);
+void end_trace (void)
+{
+    fclose (tracefp);
 }

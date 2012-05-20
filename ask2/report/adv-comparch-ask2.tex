@@ -23,13 +23,16 @@
 \begin{document}
 
 \def\thesection {\roman{section}: }
+\def\thesubsection {\Roman{subsection}) }
 
 \include{title/title}
 
 \section{Εισαγωγή}
 %{{{ A1
 
-\section{A1}
+\section{Μελέτη των n-bit predictors}
+
+\subsection{A.1}
 
 \begin{figure}[H]
     \centering
@@ -38,14 +41,13 @@
 \end{figure}
 
 
-
 %}}}
 
 \pagebreak
 
 %{{{ A2
 
-\section{A2}
+\subsection{A2}
 
 \begin{figure}[H]
     \centering
@@ -72,17 +74,17 @@
 \section{C1. Σύγκριση διαφορετικών predictors}
 
 \begin{itemize}
-    \item Static Not-Taken
+    \item \textbf{Static Not-Taken}
         \inputminted[linenos,fontsize=\footnotesize,frame=leftline]{cpp}{files/src-C1-nt_predictor.h}
         \inputminted[linenos,fontsize=\footnotesize,frame=leftline]{cpp}{files/src-C1-nt_predictor.cpp}
-    \item Static Backward Taken Forward Not Taken
+    \item \textbf{Static Backward Taken Forward Not Taken}
         \inputminted[linenos,fontsize=\footnotesize,frame=leftline]{cpp}{files/src-C1-btfnt_predictor.h}
         \inputminted[linenos,fontsize=\footnotesize,frame=leftline]{cpp}{files/src-C1-btfnt_predictor.cpp}
-    \item 4-bit predictor
-    \item gshare predictor
-    \item Local-History two-level predictors
-    \item Global-History two-level predictors
-    \item Tournament Hybrid predictors
+    \item \textbf{4-bit predictor}
+    \item \textbf{gshare predictor}
+    \item \textbf{Local-History two-level predictors}
+    \item \textbf{Global-History two-level predictors}
+    \item \textbf{Tournament Hybrid predictors}
 
 \end{itemize}
 

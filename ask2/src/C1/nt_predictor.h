@@ -12,14 +12,16 @@ _._._._._._._._._._._._._._._._._._._._._.*/
 #include "predictor.h"
 
 
-class nt_update : public branch_update {
+class nt_update : public branch_update
+{
 public:
-     unsigned int index;
+    unsigned int index;
 };
-class nt_predictor: public branch_predictor {
-     nt_update u;
-     branch_update *predict (branch_info & b);
-     void update (branch_update *u, bool taken, unsigned int target);
+class nt_predictor: public branch_predictor
+{
+    nt_update u;
+    branch_update *predict (branch_info & b);
+    void update (branch_update *u, bool taken, unsigned int target);
 };
 
 #endif

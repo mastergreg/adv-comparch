@@ -7,15 +7,16 @@
 
 #include "nt_predictor.h"
 
-branch_update *nt_predictor::predict (branch_info & b) {
+branch_update *nt_predictor::predict (branch_info & b)
+{
     if (b.br_flags & BR_CONDITIONAL) {
         u.direction_prediction (false);
-    }
-    else{
+    } else {
         u.direction_prediction (true);
     }
     u.target_prediction (0);
     return &u;
 }
-void nt_predictor::update (branch_update *u, bool taken, unsigned int target) {
+void nt_predictor::update (branch_update *u, bool taken, unsigned int target)
+{
 }

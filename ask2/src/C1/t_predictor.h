@@ -10,11 +10,13 @@
 #define T_PREDICTOR_H
 #include "predictor.h"
 
-class t_update : public branch_update {
-    public:
-        unsigned int index;
+class t_update : public branch_update
+{
+public:
+    unsigned int index;
 };
-class t_predictor: public branch_predictor {
+class t_predictor: public branch_predictor
+{
 
     t_update u;
     branch_update *predict (branch_info & b);

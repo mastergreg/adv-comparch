@@ -1,12 +1,12 @@
 // predict.cc
-// This file contains the main function.  The program accepts a single 
+// This file contains the main function.  The program accepts a single
 // parameter: the name of a trace file.  It drives the branch predictor
 // simulation by reading the trace file and feeding the traces one at a time
 // to the branch predictor.
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h> 
+#include <string.h>
 #include <assert.h>
 
 
@@ -24,7 +24,8 @@
 
 using namespace std;
 
-int main (int argc, char *argv[]) {
+int main (int argc, char *argv[])
+{
 
     // make sure there is one parameter
 
@@ -48,9 +49,9 @@ int main (int argc, char *argv[]) {
     p[2] = new btb_predictor(128, 4);
     p[3] = new btb_predictor(64, 8);
 
-    long long int 
-        tmiss[NR_PREDICTORS],	// number of target mispredictions
-        dmiss[NR_PREDICTORS]; 	// number of direction mispredictions
+    long long int
+    tmiss[NR_PREDICTORS],	// number of target mispredictions
+          dmiss[NR_PREDICTORS]; 	// number of direction mispredictions
 
     fill( tmiss, tmiss+NR_PREDICTORS, 0);
     fill( dmiss, dmiss+NR_PREDICTORS, 0);

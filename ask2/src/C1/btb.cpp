@@ -8,7 +8,8 @@
 #include "btb.h"
 
 
-btb_predictor::btb_predictor (int btb_lines, int btb_assoc) : table_lines(btb_lines),table_assoc(btb_assoc) { 
+btb_predictor::btb_predictor (int btb_lines, int btb_assoc) : table_lines(btb_lines),table_assoc(btb_assoc)
+{
     PC_BITS = (int) (log(table_lines)/log(2));
 
     btb_table = new unsigned int*[table_lines];
@@ -22,7 +23,8 @@ btb_predictor::btb_predictor (int btb_lines, int btb_assoc) : table_lines(btb_li
         }
     }
 }
-branch_update *btb_predictor::predict (branch_info & b) {
+branch_update *btb_predictor::predict (branch_info & b)
+{
     bi = b;
     /*
      * H ulopoihsh auth tou BTB agnoei ta returns.
@@ -32,7 +34,7 @@ branch_update *btb_predictor::predict (branch_info & b) {
         u.index =  (b.address & ((1<<PC_BITS)-1));
         u.way = -1;
         for(int i = 0; i < table_assoc; i++) {
-            if (btb_table[u.index][i * 2] == b.address)  {//entry present in BTB 
+            if (btb_table[u.index][i * 2] == b.address)  {//entry present in BTB
                 u.direction_prediction(true);
                 u.target_prediction(btb_table[u.index][(i * 2)+1]);
                 u.way = i;
@@ -45,14 +47,14 @@ branch_update *btb_predictor::predict (branch_info & b) {
             u.target_prediction(0);
         }
         u.branch_address = b.address;
-    } 
-    else {
+    } else {
         u.direction_prediction (true);
         u.target_prediction(0);
     }
     return &u;
 }
-void btb_predictor::update (branch_update *u, bool taken, unsigned int target) {
+void btb_predictor::update (branch_update *u, bool taken, unsigned int target)
+{
     if (!(bi.br_flags & BR_RETURN)) {
         if (((btb_update*)u)->way != -1) {
             if (taken) {
@@ -64,8 +66,7 @@ void btb_predictor::update (branch_update *u, bool taken, unsigned int target) {
                 btb_table[((btb_update*)u)->index][(2 * (((btb_update*)u)->way))+1] = 0;
                 invalidate(((btb_update*)u)->index, (((btb_update*)u)->way));
             }
-        }
-        else {
+        } else {
             if(taken) {
                 int sel_way = get_lru(((btb_update*)u)->index);
                 btb_table[((btb_update*)u)->index][sel_way * 2] = ((btb_update*)u)->branch_address;
@@ -75,18 +76,21 @@ void btb_predictor::update (branch_update *u, bool taken, unsigned int target) {
         }
     }
 }
-void btb_predictor::invalidate(int line, int way) {
+void btb_predictor::invalidate(int line, int way)
+{
     btb_table_lru[line][way] = -1;
 }
 
-void btb_predictor::update_lru(int line, int way) {
+void btb_predictor::update_lru(int line, int way)
+{
     for(int i = 0; i < table_assoc; i++) {
-        if((i != way) && (btb_table_lru[line][i] > btb_table_lru[line][way]) && (btb_table_lru[line][i] >0)) 
+        if((i != way) && (btb_table_lru[line][i] > btb_table_lru[line][way]) && (btb_table_lru[line][i] >0))
             btb_table_lru[line][i] -= 1;
     }
     btb_table_lru[line][way] = table_assoc - 1;
 }
-int btb_predictor::get_lru(int line) {
+int btb_predictor::get_lru(int line)
+{
     for(int i = 0; i < table_assoc; i++)
         if(btb_table_lru[line][i] == -1)
             return i;

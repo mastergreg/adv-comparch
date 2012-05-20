@@ -15,9 +15,9 @@
 #include "predictor.h"
 
 struct trace {
-	bool	taken;
-	unsigned int target;
-	branch_info bi;
+    bool	taken;
+    unsigned int target;
+    branch_info bi;
 };
 
 void init_trace (char *);

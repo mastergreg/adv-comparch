@@ -33,10 +33,10 @@
 #define BR_RETURN	8
 
 struct branch_info {
-	unsigned int 
-		address, 	// branch address
-		opcode,		// opcode for conditional branch
-		br_flags;	// OR of some BR_ flags
+    unsigned int
+    address, 	// branch address
+    opcode,		// opcode for conditional branch
+    br_flags;	// OR of some BR_ flags
 };
 
 #endif

@@ -7,9 +7,10 @@
 
 #include "predictor.h"
 
-class gshare_update : public branch_update {
+class gshare_update : public branch_update
+{
 public:
-	unsigned int index;
+    unsigned int index;
 };
 
 /*
@@ -18,18 +19,19 @@ public:
  * predict kai update
  */
 
-class gshare_predictor : public branch_predictor { 
+class gshare_predictor : public branch_predictor
+{
 public:
 #define HISTORY_LENGTH	15
 #define GSP_TABLE_BITS	15
-	gshare_update u;
-	branch_info bi;
-	unsigned int history;
-	unsigned char tab[1<<GSP_TABLE_BITS];
+    gshare_update u;
+    branch_info bi;
+    unsigned int history;
+    unsigned char tab[1<<GSP_TABLE_BITS];
 
-	gshare_predictor (void);
-	branch_update *predict (branch_info & b);
+    gshare_predictor (void);
+    branch_update *predict (branch_info & b);
 
-	void update (branch_update *u, bool taken, unsigned int target);
+    void update (branch_update *u, bool taken, unsigned int target);
 };
 #endif
