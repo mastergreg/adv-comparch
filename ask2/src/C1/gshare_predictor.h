@@ -22,7 +22,7 @@ public:
 class gshare_predictor : public branch_predictor
 {
 public:
-#define HISTORY_LENGTH	15
+#define HISTORY_LENGTH	14
 #define GSP_TABLE_BITS	15
     gshare_update u;
     branch_info bi;

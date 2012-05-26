@@ -18,11 +18,12 @@
 #include "nbit_predictor.h"		//the .h files of the branch predictors' implementations
 #include "gshare_predictor.h"
 #include "nt_predictor.h"
+#include "localhistory_predictor.h"
 #include "btfnt_predictor.h"
 #include "btb.h"
 
 
-#define NR_PREDICTORS 3
+#define NR_PREDICTORS 6
 
 using namespace std;
 
@@ -49,6 +50,9 @@ int main (int argc, char *argv[])
     p[0] = new nt_predictor();
     p[1] = new btfnt_predictor();
     p[2] = new nbit_predictor(4);
+    p[3] = new gshare_predictor();
+    p[4] = new localhistory_predictor(2048, 8);
+    p[5] = new localhistory_predictor(4096, 4);
     //p[3] = new btb_predictor(64, 8);
 
     long long int
@@ -94,6 +98,23 @@ int main (int argc, char *argv[])
         dmiss[2] += u->direction_prediction() != t->taken;
         tmiss[2] += u->target_prediction() != t->target;
 
+		/* gshare predictor */
+        u = p[3]->predict(t->bi);
+        p[3]->update(u, t->taken, t->target);
+        dmiss[3] += u->direction_prediction() != t->taken;
+        tmiss[3] += u->target_prediction() != t->target;
+
+		/* local history 2 level predictor X=2048 */
+        u = p[4]->predict(t->bi);
+        p[4]->update(u, t->taken, t->target);
+        dmiss[4] += u->direction_prediction() != t->taken;
+        tmiss[4] += u->target_prediction() != t->target;
+
+		/* local history 2 level predictor X=4096 */
+        u = p[5]->predict(t->bi);
+        p[5]->update(u, t->taken, t->target);
+        dmiss[5] += u->direction_prediction() != t->taken;
+        tmiss[5] += u->target_prediction() != t->target;
 
         //for(int i = 0; i < NR_PREDICTORS; i++) {
         //    u = p[i]->predict(t->bi);
