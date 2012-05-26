@@ -17,10 +17,12 @@
 #include "predictor.h"
 #include "nbit_predictor.h"		//the .h files of the branch predictors' implementations
 #include "gshare_predictor.h"
+#include "nt_predictor.h"
+#include "btfnt_predictor.h"
 #include "btb.h"
 
 
-#define NR_PREDICTORS 4
+#define NR_PREDICTORS 3
 
 using namespace std;
 
@@ -44,10 +46,10 @@ int main (int argc, char *argv[])
 
     branch_predictor **p = new branch_predictor*[NR_PREDICTORS];
 
-    p[0] = new btb_predictor(512, 1);
-    p[1] = new btb_predictor(256, 2);
-    p[2] = new btb_predictor(128, 4);
-    p[3] = new btb_predictor(64, 8);
+    p[0] = new nt_predictor();
+    p[1] = new btfnt_predictor();
+    p[2] = new nbit_predictor(4);
+    //p[3] = new btb_predictor(64, 8);
 
     long long int
     tmiss[NR_PREDICTORS],	// number of target mispredictions
@@ -70,16 +72,39 @@ int main (int argc, char *argv[])
         // send this trace to the competitor's code for prediction
 
         branch_update *u;
-        for(int i = 0; i < NR_PREDICTORS; i++) {
-            u = p[i]->predict(t->bi);
-            if (!(t->bi.br_flags & BR_RETURN)) {
-                dmiss[i] += u->direction_prediction() != t->taken;
-                if((t->taken == u->direction_prediction()) && (u->direction_prediction() == true)) {
-                    tmiss[i] += u->target_prediction() != t->target;
-                }
-            }
-            p[i]->update(u, t->taken, t->target);
-        }
+
+		/* static not taken */
+        u = p[0]->predict(t->bi);
+        p[0]->update(u, t->taken, t->target);
+        dmiss[0] += u->direction_prediction() != t->taken;
+        tmiss[0] += u->target_prediction() != t->target;
+
+
+		/* backward taken forward not taken */
+        ((btfnt_predictor *)p[1])->set_target(t->target > t->bi.address);
+        u = p[1]->predict(t->bi);
+        p[1]->update(u, t->taken, t->target);
+        dmiss[1] += u->direction_prediction() != t->taken;
+        tmiss[1] += u->target_prediction() != t->target;
+
+
+		/* 4 bit predictor */
+        u = p[2]->predict(t->bi);
+        p[2]->update(u, t->taken, t->target);
+        dmiss[2] += u->direction_prediction() != t->taken;
+        tmiss[2] += u->target_prediction() != t->target;
+
+
+        //for(int i = 0; i < NR_PREDICTORS; i++) {
+        //    u = p[i]->predict(t->bi);
+        //    if (!(t->bi.br_flags & BR_RETURN)) {
+        //        dmiss[i] += u->direction_prediction() != t->taken;
+        //        if((t->taken == u->direction_prediction()) && (u->direction_prediction() == true)) {
+        //            tmiss[i] += u->target_prediction() != t->target;
+        //        }
+        //    }
+        //    p[i]->update(u, t->taken, t->target);
+        //}
     }
 
     // done reading traces

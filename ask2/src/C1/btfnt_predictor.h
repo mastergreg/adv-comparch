@@ -1,7 +1,7 @@
 /* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
  * File Name : btfnt_predictor.h
  * Creation Date : 19-05-2012
- * Last Modified : Sat 19 May 2012 10:15:51 PM EEST
+ * Last Modified : Sat 26 May 2012 06:02:21 PM EEST
  * Created By : Greg Liras <gregliras@gmail.com>
  _._._._._._._._._._._._._._._._._._._._._.*/
 // btfnt_predictor.h
@@ -20,7 +20,7 @@ public:
     branch_info bi;
     bool jump;
 
-    void target(bool t);
+	void set_target(bool t);
     branch_update *predict (branch_info & b);
     void update (branch_update *u, bool taken, unsigned int target);
 };
