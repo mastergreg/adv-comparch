@@ -15,15 +15,16 @@
 #include "branch.h"
 #include "trace.h"
 #include "predictor.h"
+#include "btb.h"
+#include "nt_predictor.h"
+#include "btfnt_predictor.h"
 #include "nbit_predictor.h"		//the .h files of the branch predictors' implementations
 #include "gshare_predictor.h"
-#include "nt_predictor.h"
 #include "localhistory_predictor.h"
-#include "btfnt_predictor.h"
-#include "btb.h"
+#include "globalhistory_predictor.h"
 
 
-#define NR_PREDICTORS 6
+#define NR_PREDICTORS 10
 
 using namespace std;
 
@@ -53,6 +54,14 @@ int main (int argc, char *argv[])
     p[3] = new gshare_predictor();
     p[4] = new localhistory_predictor(2048, 8);
     p[5] = new localhistory_predictor(4096, 4);
+	/* X=2 BHR=4 */
+    p[6] = new globalhistory_predictor(16384, 2, 4);
+	/* X=2 BHR=8 */
+    p[7] = new globalhistory_predictor(16384, 2, 8);
+	/* X=4 BHR=4 */
+    p[8] = new globalhistory_predictor(8192, 4, 4);
+	/* X=4 BHR=8 */
+    p[9] = new globalhistory_predictor(8192, 4, 8);
     //p[3] = new btb_predictor(64, 8);
 
     long long int
@@ -116,16 +125,29 @@ int main (int argc, char *argv[])
         dmiss[5] += u->direction_prediction() != t->taken;
         tmiss[5] += u->target_prediction() != t->target;
 
-        //for(int i = 0; i < NR_PREDICTORS; i++) {
-        //    u = p[i]->predict(t->bi);
-        //    if (!(t->bi.br_flags & BR_RETURN)) {
-        //        dmiss[i] += u->direction_prediction() != t->taken;
-        //        if((t->taken == u->direction_prediction()) && (u->direction_prediction() == true)) {
-        //            tmiss[i] += u->target_prediction() != t->target;
-        //        }
-        //    }
-        //    p[i]->update(u, t->taken, t->target);
-        //}
+		/* global history X=2 BHR=4 */
+        u = p[6]->predict(t->bi);
+        p[6]->update(u, t->taken, t->target);
+        dmiss[6] += u->direction_prediction() != t->taken;
+        tmiss[6] += u->target_prediction() != t->target;
+
+		/* global history X=2 BHR=8 */
+        u = p[7]->predict(t->bi);
+        p[7]->update(u, t->taken, t->target);
+        dmiss[7] += u->direction_prediction() != t->taken;
+        tmiss[7] += u->target_prediction() != t->target;
+
+		/* global history X=4 BHR=4 */
+        u = p[8]->predict(t->bi);
+        p[8]->update(u, t->taken, t->target);
+        dmiss[8] += u->direction_prediction() != t->taken;
+        tmiss[8] += u->target_prediction() != t->target;
+
+		/* global history X=4 BHR=8 */
+        u = p[9]->predict(t->bi);
+        p[9]->update(u, t->taken, t->target);
+        dmiss[9] += u->direction_prediction() != t->taken;
+        tmiss[9] += u->target_prediction() != t->target;
     }
 
     // done reading traces

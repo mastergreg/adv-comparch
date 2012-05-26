@@ -42,7 +42,7 @@ void globalhistory_predictor::update (branch_update *u, bool taken, unsigned int
 {
     if (bi.br_flags & BR_CONDITIONAL) {
 		
-		unsigned char *c = &pht[bhr][((global_update*)u)->index]; 
+		unsigned char *c = &pht[bhr][((globalhistory_update*)u)->index]; 
 		
 		if (taken) {
 			if (*c < p_counter_limit) 
@@ -52,7 +52,7 @@ void globalhistory_predictor::update (branch_update *u, bool taken, unsigned int
 			if (*c > 0)
 				(*c)--;
 		}
-		bhr << 1;
+		bhr <<= 1;
 		bhr |= taken;
 		bhr &= b_counter_limit;
 
