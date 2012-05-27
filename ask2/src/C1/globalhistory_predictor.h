@@ -1,9 +1,9 @@
-#ifndef global_PREDICTOR_H
-#define global_PREDICTOR_H
+#ifndef GLOBALHISTORY_PREDICTOR_H
+#define GLOBALHISTORY_PREDICTOR_H
 
-#include <math.h>
-#include <string.h>
-#include <stdio.h>
+#include <cmath>
+#include <cstring>
+#include <cstdio>
 #include "predictor.h"
 
 class globalhistory_update : public branch_update

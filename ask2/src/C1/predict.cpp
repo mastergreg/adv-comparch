@@ -22,9 +22,10 @@
 #include "gshare_predictor.h"
 #include "localhistory_predictor.h"
 #include "globalhistory_predictor.h"
+#include "hybrid_predictor.h"
 
 
-#define NR_PREDICTORS 10
+#define NR_PREDICTORS 11
 
 using namespace std;
 
@@ -62,7 +63,8 @@ int main (int argc, char *argv[])
     p[8] = new globalhistory_predictor(8192, 4, 4);
 	/* X=4 BHR=8 */
     p[9] = new globalhistory_predictor(8192, 4, 8);
-    //p[3] = new btb_predictor(64, 8);
+
+    p[10] = new hybrid_predictor(512);
 
     long long int
     tmiss[NR_PREDICTORS],	// number of target mispredictions
@@ -148,6 +150,11 @@ int main (int argc, char *argv[])
         p[9]->update(u, t->taken, t->target);
         dmiss[9] += u->direction_prediction() != t->taken;
         tmiss[9] += u->target_prediction() != t->target;
+
+        u = p[10]->predict(t->bi);
+        p[10]->update(u, t->taken, t->target);
+        dmiss[10] += u->direction_prediction() != t->taken;
+        tmiss[10] += u->target_prediction() != t->target;
     }
 
     // done reading traces
