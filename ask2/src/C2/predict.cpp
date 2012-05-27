@@ -18,9 +18,10 @@
 #include "nbit_predictor.h"		//the .h files of the branch predictors' implementations
 #include "gshare_predictor.h"
 #include "globalhistory_predictor.h"
-#include "hybrid_predictor.h"
-#include "hybrid_predictor.h"
-#include "hybrid_predictor.h"
+
+#include "hybrid_2bit_GH2_predictor.h"
+#include "hybrid_2bit_GH4_predictor.h"
+#include "hybrid_2bit_GS_predictor.h"
 #include "hybrid_predictor.h"
 
 
@@ -48,12 +49,12 @@ int main (int argc, char *argv[])
 
     branch_predictor **p = new branch_predictor*[NR_PREDICTORS];
 
-    p[0] = new hybrid_predictor(512);
-    p[1] = new hybrid_predictor(512);
-    p[2] = new hybrid_predictor(512);
-    p[3] = new hybrid_predictor(512);
-    p[4] = new hybrid_predictor(512);
-    p[5] = new hybrid_predictor(512);
+    p[0] = new hybrid_2bit_GS_predictor(512);
+    p[1] = new hybrid_2bit_GH2_predictor(512);
+    p[2] = new hybrid_2bit_GH4_predictor(512);
+    p[3] = new hybrid_2bit_GS_predictor(512);
+    p[4] = new hybrid_2bit_GS_predictor(512);
+    p[5] = new hybrid_2bit_GS_predictor(512);
 
     long long int
     tmiss[NR_PREDICTORS],	// number of target mispredictions

@@ -1,15 +1,16 @@
 /* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
 * File Name : gshare_predictor.cpp
 * Creation Date : 20-05-2012
-* Last Modified : Sat 26 May 2012 06:16:06 PM EEST
+* Last Modified : Sun 27 May 2012 11:01:12 PM EEST
 * Created By : Greg Liras <gregliras@gmail.com>
 _._._._._._._._._._._._._._._._._._._._._.*/
 
 #include "gshare_predictor.h"
-#include <algorithm>
+#include <cstring>
+
 gshare_predictor::gshare_predictor (void) : history(0)
 {
-    std::fill (tab, tab+sizeof (tab),0);
+	memset(tab,0,sizeof tab);
 }
 branch_update *gshare_predictor::predict (branch_info & b)
 {

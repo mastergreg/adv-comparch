@@ -1,7 +1,7 @@
 /* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
 * File Name : hybrid_predictor.h
 * Creation Date : 27-05-2012
-* Last Modified : Sun 27 May 2012 10:16:42 PM EEST
+* Last Modified : Sun 27 May 2012 11:04:25 PM EEST
 * Created By : Greg Liras <gregliras@gmail.com>
 _._._._._._._._._._._._._._._._._._._._._.*/
 
@@ -15,8 +15,8 @@ class hybrid_update : public branch_update
 {
 public:
 	branch_update *ups[2];
-	int index;
-	int pred;
+	unsigned int index;
+	unsigned int pred;
 
 };
 class hybrid_predictor : public branch_predictor
