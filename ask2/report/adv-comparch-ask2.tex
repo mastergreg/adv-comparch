@@ -110,12 +110,14 @@ Thousand Instructions) με μεταβλητό πλήθος BHT entries ώστε
 	\centering
 	\includegraphics[width=0.8\textwidth]{files/src-B1-results79-results_B1_direction.png}
 	\caption{Direction misspredictions (direction MPKI)}
+	\label{fig:B1a}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\textwidth]{files/src-B1-results79-results_B1_target.png}
 	\caption{Target Misspredictions (target MPKI)}
+	\label{fig:B1b}
 \end{figure}
 
 
@@ -130,31 +132,38 @@ Thousand Instructions) με μεταβλητό πλήθος BHT entries ώστε
 \section*{C1. Σύγκριση διαφορετικών predictors}
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\textwidth]{files/src-C1-results79-results_C1.png}
-	\caption{1,2 και 4 bit predictors}
-	\label{fig:A2}
+	\includegraphics[width=\textwidth]{files/src-C1-results79-results_C1.png}
+	\caption{Σύγκριση predictors}
+	\label{fig:C1}
 \end{figure}
 
 Ο κυρίως κώδικας που χρησιμοποιήσαμε ήταν ο ακόλουθος:
 \inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C1-predict.cpp}
+
 \subsection*{Static Not-Taken}
 \inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C1-nt_predictor.h}
 \inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C1-nt_predictor.cpp}
+
 \subsection*{Static Backward Taken Forward Not Taken}
 \inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C1-btfnt_predictor.h}
 \inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C1-btfnt_predictor.cpp}
+
 \subsection*{4-bit predictor}
 \inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C1-nbit_predictor.h}
 \inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C1-nbit_predictor.cpp}
+
 \subsection*{gshare predictor}
 \inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C1-gshare_predictor.h}
 \inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C1-gshare_predictor.cpp}
+
 \subsection*{Local-History two-level predictors}
 \inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C1-localhistory_predictor.h}
 \inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C1-localhistory_predictor.cpp}
+
 \subsection*{Global-History two-level predictors}
 \inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C1-globalhistory_predictor.h}
 \inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C1-globalhistory_predictor.cpp}
+
 \subsection*{Tournament Hybrid predictors}
 \inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C1-hybrid_predictor.h}
 \inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C1-hybrid_predictor.cpp}
