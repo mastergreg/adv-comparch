@@ -90,7 +90,7 @@ int main (int argc, char *argv[])
     // each trace represents exactly 100 million instructions.
 
     for(int i = 0; i < NR_PREDICTORS; i++) {
-        printf("%d\t%0.3f\n",i+1,1000.0 * (dmiss[i]/1e8));
+        printf("%d\t%lld\t%lld\n", i+1, dmiss[i], tmiss[i]);
         delete p[i];
     }
     delete [] p;
