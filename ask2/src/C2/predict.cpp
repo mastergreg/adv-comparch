@@ -19,10 +19,13 @@
 #include "gshare_predictor.h"
 #include "globalhistory_predictor.h"
 
+#include "hybrid_predictor.h"
 #include "hybrid_2bit_GH2_predictor.h"
 #include "hybrid_2bit_GH4_predictor.h"
 #include "hybrid_2bit_GS_predictor.h"
-#include "hybrid_predictor.h"
+#include "hybrid_GS_GH2_predictor.h"
+#include "hybrid_GS_GH4_predictor.h"
+#include "hybrid_GH2_GH4_predictor.h"
 
 
 #define NR_PREDICTORS 6
@@ -52,9 +55,9 @@ int main (int argc, char *argv[])
     p[0] = new hybrid_2bit_GS_predictor(512);
     p[1] = new hybrid_2bit_GH2_predictor(512);
     p[2] = new hybrid_2bit_GH4_predictor(512);
-    p[3] = new hybrid_2bit_GS_predictor(512);
-    p[4] = new hybrid_2bit_GS_predictor(512);
-    p[5] = new hybrid_2bit_GS_predictor(512);
+    p[3] = new hybrid_GS_GH2_predictor(512);
+    p[4] = new hybrid_GS_GH4_predictor(512);
+    p[5] = new hybrid_GH2_GH4_predictor(512);
 
     long long int
     tmiss[NR_PREDICTORS],	// number of target mispredictions
