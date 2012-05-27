@@ -1,4 +1,4 @@
-// predict.cc
+// predict.cpp
 // This file contains the main function.  The program accepts a single
 // parameter: the name of a trace file.  It drives the branch predictor
 // simulation by reading the trace file and feeding the traces one at a time

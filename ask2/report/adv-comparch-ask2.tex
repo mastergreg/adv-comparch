@@ -28,17 +28,34 @@
 \include{title/title}
 
 \section*{Εισαγωγή}
+
+Στην άσκηση αυτή χρησιμοποιήσαμε ένα Framework για την προσομοίωση αλμάτων
+όπως έχουν καταγραφεί από την εκτέλεση benchmarks από τη σουίτα SPEC2000. Τα
+traces περιέχουν μόνο εντολές άλματος όπως αυτές πραγματοποιήθηκαν κατά την
+εκτέλεση 100M εντολών.
+
 %{{{ A1
 
 \section*{Μελέτη των n-bit predictors}
 
+
 \subsection*{A.1}
+Σε αυτό το τμήμα μελετήσαμε την απόδοση των \{1..7\}-bit predictors χρησιμοποιώντας ως μετρική τα MPKI (Mispredictions Per
+Thousand Instructions) με 16K BHT entries.
+
 
 \begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{files/src-A1-results79-results_A1.png}
-    \caption{}
+	\centering
+	\includegraphics[width=0.8\textwidth]{files/src-A1-results79-results_A1.png}
+	\caption{1-7 bit predictors}
+	\label{fig:A1}
 \end{figure}
+
+
+Όπως παρατηρούμε από το Σχήμα \ref{fig:A1}, βέλτιστος προβλέπτης για τα
+περισσότερα benchmarks είναι ο 4-bit predictor καθώς εκείνος έχει το
+χαμηλότερο missprediction rate χωρίς να έχει πολύ μεγάλh πολυπλοκότητα στο
+hardware.
 
 
 %}}}
@@ -48,12 +65,29 @@
 %{{{ A2
 
 \subsection*{A2}
+Διαφοροποιούμε την υλοποίηση και μελετάμε \{1,2,4\}-bit predictors χρησιμοποιώντας ως μετρική τα MPKI (Mispredictions Per
+Thousand Instructions) με μεταβλητό πλήθος BHT entries ώστε να έχουμε σταθερό
+μέγεθος hardware και ίσο με 32Κ.
+
+\begin{tabular}{r c r}
+	HW & bits & BHT entries \\
+	\hline
+	\hline
+	32K & 1 & 32K	\\
+	32K & 2 & 16K	\\
+	32K & 4 & 8K	\\
+\end{tabular}
 
 \begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{files/src-A2-results79-results_A2.png}
-    \caption{}
+	\centering
+	\includegraphics[width=0.8\textwidth]{files/src-A2-results79-results_A2.png}
+	\caption{1,2 και 4 bit predictors}
+	\label{fig:A2}
 \end{figure}
+
+Και σε αυτή την περίπτωση που το hardware είναι περισσότερο (32K) καλύτερα
+φαίνεται να συμπεριφέρεται ο 4 bit predictor, συνεπώς αυτόν θα επιλέγαμε και
+σε αυτή τη φορά.
 
 %}}}
 
@@ -61,32 +95,70 @@
 
 \section*{B1. Μελέτη του BTB}
 
+\begin{tabular}{l l}
+	btb\_lines & btb\_assoc \\
+	\hline
+	\hline
+	512K & 1 \\
+	256K & 2 \\
+	128K & 4 \\
+	64K  & 8 \\
+
+\end{tabular}
+
 \begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{files/src-B1-results79-results_B1.png}
-    \caption{}
+	\centering
+	\includegraphics[width=0.8\textwidth]{files/src-B1-results79-results_B1_direction.png}
+	\caption{Direction misspredictions (direction MPKI)}
 \end{figure}
 
-%}}}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{files/src-B1-results79-results_B1_target.png}
+	\caption{Target Misspredictions (target MPKI)}
+\end{figure}
 
+
+Παρατηρούμε πως το target missprediction παραμένει σταθερό σχεδόν, σε αντίθεση
+με το direction missprediction που μειώνεται δραστικά στον 64x8 btb predictor.
+Αυτή είναι και η επιθυμητή οργάνωση για τον btb.
+
+%}}}
+%
 %{{{ C1
 
 \section*{C1. Σύγκριση διαφορετικών predictors}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{files/src-C1-results79-results_C1.png}
+	\caption{1,2 και 4 bit predictors}
+	\label{fig:A2}
+\end{figure}
 
-\begin{itemize}
-    \item \textbf{Static Not-Taken}
-        \inputminted[linenos,fontsize=\footnotesize,frame=leftline]{cpp}{files/src-C1-nt_predictor.h}
-        \inputminted[linenos,fontsize=\footnotesize,frame=leftline]{cpp}{files/src-C1-nt_predictor.cpp}
-    \item \textbf{Static Backward Taken Forward Not Taken}
-        \inputminted[linenos,fontsize=\footnotesize,frame=leftline]{cpp}{files/src-C1-btfnt_predictor.h}
-        \inputminted[linenos,fontsize=\footnotesize,frame=leftline]{cpp}{files/src-C1-btfnt_predictor.cpp}
-    \item \textbf{4-bit predictor}
-    \item \textbf{gshare predictor}
-    \item \textbf{Local-History two-level predictors}
-    \item \textbf{Global-History two-level predictors}
-    \item \textbf{Tournament Hybrid predictors}
+Ο κυρίως κώδικας που χρησιμοποιήσαμε ήταν ο ακόλουθος:
+\inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C1-predict.cpp}
+\subsection*{Static Not-Taken}
+\inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C1-nt_predictor.h}
+\inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C1-nt_predictor.cpp}
+\subsection*{Static Backward Taken Forward Not Taken}
+\inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C1-btfnt_predictor.h}
+\inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C1-btfnt_predictor.cpp}
+\subsection*{4-bit predictor}
+\inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C1-nbit_predictor.h}
+\inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C1-nbit_predictor.cpp}
+\subsection*{gshare predictor}
+\inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C1-gshare_predictor.h}
+\inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C1-gshare_predictor.cpp}
+\subsection*{Local-History two-level predictors}
+\inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C1-localhistory_predictor.h}
+\inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C1-localhistory_predictor.cpp}
+\subsection*{Global-History two-level predictors}
+\inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C1-globalhistory_predictor.h}
+\inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C1-globalhistory_predictor.cpp}
+\subsection*{Tournament Hybrid predictors}
+\inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C1-hybrid_predictor.h}
+\inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C1-hybrid_predictor.cpp}
 
-\end{itemize}
 
 %}}}
 
