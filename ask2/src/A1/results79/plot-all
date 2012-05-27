@@ -8,11 +8,11 @@ set grid
 set xlabel "predictor bits"
 set ylabel "MPKI"
 
-plot "$1" ,"$1" smooth csplines notitle ,\
-     "$2" ,"$2" smooth csplines notitle ,\
-     "$3" ,"$3" smooth csplines notitle ,\
-     "$4" ,"$4" smooth csplines notitle ,\
-     "$5" ,"$5" smooth csplines notitle ,\
-     "$6" ,"$6" smooth csplines notitle 
+plot "$1" ,"$1" with lines notitle ,\
+     "$2" ,"$2" with lines notitle ,\
+     "$3" ,"$3" with lines notitle ,\
+     "$4" ,"$4" with lines notitle ,\
+     "$5" ,"$5" with lines notitle ,\
+     "$6" ,"$6" with lines notitle 
 EOF
 
