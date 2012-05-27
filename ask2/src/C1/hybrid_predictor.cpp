@@ -1,7 +1,7 @@
 /* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
 * File Name : hybrid_predictor.cpp
 * Creation Date : 27-05-2012
-* Last Modified : Sun 27 May 2012 04:52:03 AM EEST
+* Last Modified : Sun 27 May 2012 11:32:39 PM EEST
 * Created By : Greg Liras <gregliras@gmail.com>
 _._._._._._._._._._._._._._._._._._._._._.*/
 
@@ -14,7 +14,7 @@ hybrid_predictor::hybrid_predictor(int entries) : pht_entries(entries)
 	counter_limit = 2;
 
 	preds = new branch_predictor*[2];
-	preds[0] = new globalhistory_predictor(8192, 2, 2);
+	preds[0] = new gshare_predictor();
 	preds[1] = new globalhistory_predictor(8192, 2, 4);
 }
 
@@ -26,8 +26,8 @@ branch_update *hybrid_predictor::predict (branch_info & b)
         u.index =  (b.address & (pht_entries-1));
         u.pred = tab[u.index] >> (pht_bits_length - 1);
     } 
-	u.ups[0] = (globalhistory_update *) preds[0]->predict(b);
-	u.ups[1] = (globalhistory_update *) preds[1]->predict(b);
+	u.ups[0] = (branch_update *) preds[0]->predict(b);
+	u.ups[1] = (branch_update *) preds[1]->predict(b);
 	u.direction_prediction(u.ups[u.pred]->direction_prediction());
 	return &u; 
 }

@@ -137,6 +137,32 @@ Thousand Instructions) με μεταβλητό πλήθος BHT entries ώστε
 	\label{fig:C1}
 \end{figure}
 
+Από αυτούς καταλήγουμε πως καλύτερος είναι ο gshare predictor.
+
+\subsection*{Tournament Hybrid predictors}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{files/src-C2-results79-results_C2.png}
+	\caption{Σύγκριση hybrid predictors}
+	\label{fig:C2}
+\end{figure}
+
+Από όλους τους hybrid predictors που χρησιμοποιήσαμε, καλύτεροι αποδείχτηκαν
+οι gshare-globalhistory2 και gshare-globalhistory4 predictors. Τέλος
+συγκρίνουμε τον hybrid gshare-globalhistory4 και gshare predictor.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{files/src-C3-results79-results_C3.png}
+	\caption{Σύγκριση hybrid predictors}
+	\label{fig:C3}
+\end{figure}
+
+
+Καταλήγουμε πως ο hybrid predictor που δημιουργήσαμε είναι ελαρφώς καλύτερος
+από τον gshare predictor.
+
 Ο κυρίως κώδικας που χρησιμοποιήσαμε ήταν ο ακόλουθος:
 \inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C1-predict.cpp}
 
@@ -164,14 +190,6 @@ Thousand Instructions) με μεταβλητό πλήθος BHT entries ώστε
 \inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C1-globalhistory_predictor.h}
 \inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C1-globalhistory_predictor.cpp}
 
-\subsection*{Tournament Hybrid predictors}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=\textwidth]{files/src-C2-results79-results_C2.png}
-	\caption{Σύγκριση hybrid predictors}
-	\label{fig:C2}
-\end{figure}
 
 \inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C2-hybrid_predictor.h}
 \inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C2-hybrid_predictor.cpp}
