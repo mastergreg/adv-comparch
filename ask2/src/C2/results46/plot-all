@@ -9,12 +9,12 @@ t6=`echo $6 | cut -d. -f2`
 
 gnuplot << EOF
 set terminal png size 1024, 1024
-set output "results_C1.png"
+set output "results_C2.png"
 set title "predictor showdown"
 set key right outside top
 set grid
 set x2tics rotate by 30
-set x2tics ("N-T" 1, "BTFNT" 2, "4-bit" 3, "G-SH" 4, "L-H 2048x8" 5, "L-H 4096x4" 6, "G-H 2,4" 7, "G-H 2,8" 8, "G-H 4,4" 9, "G-H 4,8" 10, "hybrid" 11)
+set x2tics ("2bit GS" 1, "2bit GH2" 2, "2bit GH4" 3, "GS GH2" 4, "GS GH4" 5, "GH2 GH4" 6)
 set xtics 1,1,11
 set ylabel "MPKI"
 

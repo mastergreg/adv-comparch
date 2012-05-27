@@ -165,14 +165,40 @@ Thousand Instructions) με μεταβλητό πλήθος BHT entries ώστε
 \inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C1-globalhistory_predictor.cpp}
 
 \subsection*{Tournament Hybrid predictors}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{files/src-C2-results79-results_C2.png}
+	\caption{Σύγκριση hybrid predictors}
+	\label{fig:C2}
+\end{figure}
+
 \inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C2-hybrid_predictor.h}
 \inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C2-hybrid_predictor.cpp}
-\subsubsection*{2-bit gshare}
+
 \subsubsection*{2-bit global history BHT=2}
+\inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C2-hybrid_2bit_GH2_predictor.cpp}
+\inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C2-hybrid_2bit_GH2_predictor.h}
+
 \subsubsection*{2-bit global history BHT=4}
-\subsubsection*{gshare global history BHT=2}
-\subsubsection*{gshare global history BHT=4}
+\inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C2-hybrid_2bit_GH4_predictor.cpp}
+\inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C2-hybrid_2bit_GH4_predictor.h}
+
+\subsubsection*{2-bit gshare}
+\inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C2-hybrid_2bit_GS_predictor.cpp}
+\inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C2-hybrid_2bit_GS_predictor.h}
+
 \subsubsection*{global history BHT=2,4}
+\inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C2-hybrid_GH2_GH4_predictor.cpp}
+\inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C2-hybrid_GH2_GH4_predictor.h}
+
+\subsubsection*{gshare global history BHT=2}
+\inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C2-hybrid_GS_GH2_predictor.cpp}
+\inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C2-hybrid_GS_GH2_predictor.h}
+
+\subsubsection*{gshare global history BHT=4}
+\inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C2-hybrid_GS_GH4_predictor.cpp}
+\inputminted[linenos,fontsize=\scriptsize,frame=leftline]{cpp}{files/src-C2-hybrid_GS_GH4_predictor.h}
 
 
 %}}}
