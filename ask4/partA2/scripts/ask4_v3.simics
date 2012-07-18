@@ -3,7 +3,7 @@
 #read-configuration /home/master/simics/checkpoints/bench1.check
 #We disable breakpoints
 
-read-configuration /home/master/breakpoints/compiled.check
+read-configuration /home/master/breakpoints/patched.check
 
 enable-magic-breakpoint
 dstc-disable
@@ -18,7 +18,7 @@ echo "Loading caches"
 run-command-file scripts/cache-hierarcy.simics
 c 
 #Continue simulation for 100,000,000 instructions to warm-up caches
-$outputfile = ("partA_v3.out")
+$outputfile = ("partA_v3_2.out")
 output-file-start $outputfile
 #Reset statistics
 dc.statistics

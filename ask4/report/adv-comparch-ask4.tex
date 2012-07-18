@@ -1,0 +1,103 @@
+%{{{ preamble
+\documentclass[a4paper,12pt]{article}
+\usepackage{anysize}
+\marginsize{2cm}{2cm}{1cm}{1cm}
+%0.7\textwidth 6.0in \textheight = 664pt
+\usepackage{xltxtra}
+\usepackage{xunicode}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{xgreek}
+\usepackage{fancyvrb}
+\usepackage{minted}
+\usepackage{listings}
+\usepackage{enumitem} 
+\usepackage{framed} 
+\usepackage{relsize}
+\usepackage{float} 
+\usepackage{pstricks}
+\usepackage{pst-node}
+\usepackage{pst-blur}
+\setmainfont[Mapping=tex-text]{FreeSerif}
+%}}}
+\begin{document}
+
+\def\thesection {\arabic{section}. }
+\def\thesubsection {\Roman{subsection}) }
+
+\include{title/title}
+
+\section*{Εισαγωγή}
+
+%{{{ Προσομοίωση
+
+\subsection{Προσομοίωση}
+\inputminted[linenos,fontsize=\scriptsize,frame=leftline]{c}{files/partA1-default-partA.c}
+
+%}}}
+
+%{{{ Ιεραρχία μνήμης και μοντέλο απόδοσης
+
+\subsection{Ιεραρχία μνήμης και μοντέλο απόδοσης}
+
+%}}}
+
+\section*{Τεχνικές Βελτιστοποίησης}
+%{{{ Loop Interchange
+
+\subsection{Loop Interchange}
+\begin{figure}[H]
+	\centering
+    \includegraphics[width=0.8\textwidth]{files/partA1-simics-outputs-cycles.png}
+	\caption{Cycles}
+	\label{fig:A1}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+    \includegraphics[width=0.8\textwidth]{files/partA1-simics-outputs-l1_miss.png}
+    \caption{L1 Miss Rate}
+	\label{fig:A2}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+    \includegraphics[width=0.8\textwidth]{files/partA1-simics-outputs-l2_miss.png}
+    \caption{L3 Miss Rate}
+	\label{fig:A3}
+\end{figure}
+
+
+
+%}}}
+
+
+\subsection{Cache Blocking}
+\inputminted[linenos,fontsize=\scriptsize,frame=leftline]{c}{files/partA2-v3_patched-partA.c}
+
+\begin{figure}[H]
+	\centering
+    \includegraphics[width=0.8\textwidth]{files/partA2-simics-outputs-cycles.png}
+	\caption{Cycles}
+	\label{fig:B1}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+    \includegraphics[width=0.8\textwidth]{files/partA2-simics-outputs-l1_miss.png}
+    \caption{L1 Miss Rate}
+	\label{fig:B2}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+    \includegraphics[width=0.8\textwidth]{files/partA2-simics-outputs-l2_miss.png}
+    \caption{L3 Miss Rate}
+	\label{fig:B3}
+\end{figure}
+
+
+
+%}}}
+
+\end{document}
