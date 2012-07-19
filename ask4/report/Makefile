@@ -6,6 +6,7 @@ all: $(TARGET).pdf
 
 %.pdf:	%.tex title/* files/*
 	$(CC) $(CCFLAGS) $<
+	$(CC) $(CCFLAGS) $<
 
 
 .PHONY:	clean all spell

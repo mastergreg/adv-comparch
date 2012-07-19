@@ -32,13 +32,53 @@
 %{{{ Προσομοίωση
 
 \subsection{Προσομοίωση}
+Ο κώδικας που μας δόθηκε ήταν ο ακόλουθος:
+
 \inputminted[linenos,fontsize=\scriptsize,frame=leftline]{c}{files/partA1-default-partA.c}
 
 %}}}
 
+\pagebreak
+
 %{{{ Ιεραρχία μνήμης και μοντέλο απόδοσης
 
 \subsection{Ιεραρχία μνήμης και μοντέλο απόδοσης}
+
+Χρησιμοποιήσαμε την ιεραρχία μνήμης όπως μας δίνεται στο Παράρτημα.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{| c | c | c | c | c |}
+        \hline
+           & assoc  &   line size &   lines & size\\
+        \hline
+        \hline
+        L1 instruction cache   & 2  &   64  &   512 & 32768 = 32 KB\\
+        \hline
+        L1 data cache   & 2  &   64  &   512 & 32768 = 32 KB\\
+        \hline
+        L2 cache  & 4  &   128  &   1024 & 131072 = 128 KB\\
+        \hline
+    \end{tabular}
+    \caption{Cache Hierarchy}
+    \label{fig:T2}
+\end{table}
+
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{| c | c |}
+        \hline
+        Cycles & 1885656236 \\
+        \hline
+        L1 miss ratio & 0.0117 \\
+        \hline
+        L2 miss ratio & 0.0183 \\
+        \hline
+    \end{tabular}
+    \caption{Μετρικές πρώτης εκτέλεσης}
+    \label{fig:T3}
+\end{table}
 
 %}}}
 
@@ -46,6 +86,37 @@
 %{{{ Loop Interchange
 
 \subsection{Loop Interchange}
+
+Για την προσομοίωση κάναμε 6 εκτελέσεις για κάθε διάταξη των i,j,k όπως
+φαίνεται στον πίνακα \ref{fig:T1}.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{| c | c |}
+        \hline
+        Σειρά προσομοίωσης & Διάταξη \\
+        \hline
+        \hline
+        1   &  i,j,k \\
+        \hline
+        2   &  i,k,j \\
+        \hline
+        3   &  j,i,k \\
+        \hline
+        4   &  j,k,i \\
+        \hline
+        5   &  k,i,j \\
+        \hline
+        6   &  k,j,i \\
+        \hline
+    \end{tabular}
+    \caption{Δυνατές Διατάξεις}
+    \label{fig:T1}
+\end{table}
+
+
+Τα αποτελέσματα φαίνονται στα ακόλουθα σχήματα.
+
 \begin{figure}[H]
 	\centering
     \includegraphics[width=0.8\textwidth]{files/partA1-simics-outputs-cycles.png}
@@ -63,7 +134,7 @@
 \begin{figure}[H]
 	\centering
     \includegraphics[width=0.8\textwidth]{files/partA1-simics-outputs-l2_miss.png}
-    \caption{L3 Miss Rate}
+    \caption{L2 Miss Rate}
 	\label{fig:A3}
 \end{figure}
 
@@ -72,8 +143,36 @@
 %}}}
 
 
+\pagebreak
+
 \subsection{Cache Blocking}
+
+Η L1 cache έχει μέγεθος 32KB, και line size 64 bytes. Κάνουμε πράξεις μεταξύ
+αριθμών κινητής υποδιαστολής σε 32bit σύστημα συνεπώς κάθε ένας έχει μέγεθος
+4bytes. Κάθε cache line χωράει 16 αριθμούς συνεπώς για να εκμεταλλευτούμε
+καλύτερα την τοπικότητα των αναφορών θα εκτελούμε κάθε loop σε 16δες. Έτσι θα
+χρησιμοποιούμε δεδομένα που έχουν ήδη έρθει στην cache.
+
 \inputminted[linenos,fontsize=\scriptsize,frame=leftline]{c}{files/partA2-v3_patched-partA.c}
+
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{| c | c |}
+        \hline
+        Cycles & 1448776923 \\
+        Cycles & 9385880    \\
+        \hline
+        L1 miss ratio & 0.0131 \\
+        L1 miss ratio & 0.0026 \\
+        \hline
+        L2 miss ratio & 0.0292 \\
+        L2 miss ratio & 0.0065 \\
+        \hline
+    \end{tabular}
+    \caption{Διαφορά των εκτελέσεων}
+    \label{fig:T4}
+\end{table}
 
 \begin{figure}[H]
 	\centering
