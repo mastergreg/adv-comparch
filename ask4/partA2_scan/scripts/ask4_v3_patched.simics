@@ -1,0 +1,28 @@
+#Invoke as follows: simics -stall -x runbenchmark.simics
+#Load checkpoint taken after the first breakpoint of the application
+#read-configuration /home/master/simics/checkpoints/bench1.check
+#We disable breakpoints
+
+read-configuration /home/master/breakpoints/patched.check
+
+enable-magic-breakpoint
+dstc-disable
+istc-disable
+instruction-fetch-mode instruction-fetch-trace
+
+con0.input "v3_patched/partA 256\n"
+c
+
+#Load cache hierarcy parameters
+echo "Loading caches"
+run-command-file scripts/cache-hierarcy.simics
+c 
+#Continue simulation for 100,000,000 instructions to warm-up caches
+$outputfile = ("partA_v3_2_patched.out")
+output-file-start $outputfile
+#Reset statistics
+dc.statistics
+ic.statistics
+l2c.statistics
+output-file-stop $outputfile
+exit
