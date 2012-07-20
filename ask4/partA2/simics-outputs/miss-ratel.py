@@ -4,7 +4,7 @@
 #* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
 # File Name : miss-rate.py
 # Creation Date : 13-04-2012
-# Last Modified : Tue 17 Jul 2012 01:21:31 PM EEST
+# Last Modified : Fri 20 Jul 2012 12:23:13 PM EEST
 # Created By : Greg Liras <gregliras@gmail.com>
 #_._._._._._._._._._._._._._._._._._._._._.*/
 import re
@@ -56,19 +56,34 @@ def miss_ratio(fname):
     ret['l2_miss_rate']=sum(misses[6:])/float(transactions[2])
     return ret
 
+
+
+mapping = { "1": '"i,j,k"',
+            "2": '"i,k,j"',
+            "3": '"j,i,k"',
+            "4": '"j,k,i"',
+            "5": '"k,i,j"',
+            "6": '"k,j,i"'}
+
+
+
+
+
+
 def main():
     if len(argv) !=  2:
         print "gimme the file"
         exit(1)
     else:
-        f1 = open("l1.miss","a")
-        f2 = open("l2.miss","a")
+        f1 = open("l1.dat","a")
+        f2 = open("l2.dat","a")
         f3 = open("cycles.dat", "a")
         miss = miss_ratio(argv[1])
-        print miss['l1_miss_rate']
-        f1.write("{0}\n".format(miss['l1_miss_rate']))
-        print miss['l2_miss_rate']
-        f2.write("{0}\n".format(miss['l2_miss_rate']))
+        #print miss['l1_miss_rate']
+        version = argv[1][7]
+        f1.write("{0}\t{1}\n".format(miss['l1_miss_rate'], mapping[version]))
+        #print miss['l2_miss_rate']
+        f2.write("{0}\t{1}\n".format(miss['l2_miss_rate'], mapping[version]))
         f1.close()
         f2.close()
         data = accesses(argv[1])
@@ -77,8 +92,8 @@ def main():
         l2_acc = data['l2_acc']
         mem_acc = data['mem_acc']
         cyc = cycles(inst, l1_acc, l2_acc, mem_acc)
-        print cyc
-        f3.write("{0}\n".format(cyc))
+        #print cyc
+        f3.write("{0}\t{1}\n".format(cyc, mapping[version]))
         f3.close()
 
 if __name__=="__main__":

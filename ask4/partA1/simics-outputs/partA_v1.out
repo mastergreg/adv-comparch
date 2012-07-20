@@ -1,0 +1,75 @@
+
+Cache statistics: dc
+-----------------
+    Total number of transactions:     222258129
+
+         Device data reads (DMA):             0
+        Device data writes (DMA):             0
+
+          Uncacheable data reads:             0
+         Uncacheable data writes:             0
+ Uncacheable instruction fetches:             0
+
+          Data read transactions:     187177895
+                Data read misses:       5691812
+             Data read hit ratio:         96.96%
+
+  Instruction fetch transactions:             0
+        Instruction fetch misses:             0
+
+         Data write transactions:      35080234
+               Data write misses:        229329
+            Data write hit ratio:         99.35%
+
+          Copy back transactions:             0
+
+
+Cache statistics: ic
+-----------------
+    Total number of transactions:     308893209
+
+         Device data reads (DMA):             0
+        Device data writes (DMA):             0
+
+          Uncacheable data reads:             0
+         Uncacheable data writes:             0
+ Uncacheable instruction fetches:             0
+
+          Data read transactions:             0
+                Data read misses:             0
+
+  Instruction fetch transactions:     308893209
+        Instruction fetch misses:         14333
+     Instruction fetch hit ratio:        100.00%
+
+         Data write transactions:             0
+               Data write misses:             0
+
+          Copy back transactions:             0
+
+
+Cache statistics: l2c
+-----------------
+    Total number of transactions:      40786379
+
+         Device data reads (DMA):             0
+        Device data writes (DMA):             0
+
+          Uncacheable data reads:             0
+         Uncacheable data writes:             0
+ Uncacheable instruction fetches:             0
+
+          Data read transactions:       5691812
+                Data read misses:        555885
+             Data read hit ratio:         90.23%
+
+  Instruction fetch transactions:         14333
+        Instruction fetch misses:          2689
+     Instruction fetch hit ratio:         81.24%
+
+         Data write transactions:      35080234
+               Data write misses:         26993
+            Data write hit ratio:         99.92%
+
+          Copy back transactions:             0
+
