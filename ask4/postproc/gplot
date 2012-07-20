@@ -17,6 +17,14 @@ set ylabel "Cycles"
 
 plot "cycles.dat" using 1: xtic(2) with histogram lc 2 fs pattern 1 notitle
 
+set output "cycles_hist.png"
+plot "cycles.dat" using 1: xtic(2) with histogram lc 3 fs pattern 3 notitle
+set output "cycles_hist2.png"
+plot "cycles.dat" using 1: xtic(2) with histogram lc 3 fs pattern 1 notitle
+set output "cycles_line.png"
+plot "cycles.dat" using 1: xtic(2) with lines lc 2 notitle,\
+    "cycles.dat" lc 2 notitle
+
 set output "l1_miss.png"
 set title "L1 Miss Rate"
 set grid
@@ -24,6 +32,13 @@ set xlabel "Combinations"
 set ylabel "Miss Rate"
 
 plot "l1.dat" using 1: xtic(2) with histogram lc 2 fs pattern 1 notitle
+set output "l1_miss_hist.png"
+plot "l1.dat" using 1: xtic(2) with histogram lc 3 fs pattern 3 notitle
+set output "l1_miss_hist2.png"
+plot "l1.dat" using 1: xtic(2) with histogram lc 3 fs pattern 1 notitle
+set output "l1_miss_line.png"
+plot "l1.dat"  using 1: xtic(2) with lines lc 2 notitle,\
+    "l1.dat" lc 2 notitle
 
 set output "l2_miss.png"
 set title "L2 Miss Rate"
@@ -32,5 +47,13 @@ set xlabel "Combinations"
 set ylabel "Miss Rate"
 
 plot "l2.dat" using 1: xtic(2) with histogram lc 2 fs pattern 1 notitle
+
+set output "l2_miss_hist.png"
+plot "l2.dat"  using 1: xtic(2) with histogram lc 3 fs pattern 3 notitle
+set output "l2_miss_hist2.png"
+plot "l2.dat"  using 1: xtic(2) with histogram lc 3 fs pattern 1 notitle
+set output "l2_miss_line.png"
+plot "l2.dat"  using 1: xtic(2) with lines lc 2 notitle,\
+    "l2.dat" lc 2 notitle
 EOF
 
