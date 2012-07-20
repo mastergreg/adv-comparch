@@ -1,7 +1,7 @@
 /* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
  * File Name : partA.c
  * Creation Date : 16-07-2012
- * Last Modified : Mon 16 Jul 2012 01:49:18 PM EEST
+ * Last Modified : Fri 20 Jul 2012 05:25:38 PM EEST
  * Created By : Greg Liras <gregliras@gmail.com>
  _._._._._._._._._._._._._._._._._._._._._.*/
 
@@ -57,8 +57,8 @@ int main(int argc, char **argv)
     init_matrix(B, N);
     init_matrix(C, N);
     MAGIC_BREAKPOINT;
-    for(j=0; j<N; j++)
-        for(i=0; i<N; i++) {
+    for(j=0; j<N; j++) {
+        for(i=0; i<N; i++) 
             for(k=0; k<N; k++)
                 C[i][j] += A[i][k]*B[k][j];
     }
