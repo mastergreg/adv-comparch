@@ -222,26 +222,36 @@ j,i,k.
 
 \begin{figure}[H]
 	\centering
-    \includegraphics[width=0.8\textwidth]{files/partA2-simics-outputs-cycles.png}
+    \includegraphics[width=0.8\textwidth]{files/partA2_scan-simics-outputs-cycles_hist.png}
 	\caption{Cycles}
 	\label{fig:B1}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-    \includegraphics[width=0.8\textwidth]{files/partA2-simics-outputs-l1_miss.png}
+    \includegraphics[width=0.8\textwidth]{files/partA2_scan-simics-outputs-l1_miss_hist.png}
     \caption{L1 Miss Rate}
 	\label{fig:B2}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-    \includegraphics[width=0.8\textwidth]{files/partA2-simics-outputs-l2_miss.png}
-    \caption{L3 Miss Rate}
+    \includegraphics[width=0.8\textwidth]{files/partA2_scan-simics-outputs-l2_miss_hist.png}
+    \caption{L2 Miss Rate}
 	\label{fig:B3}
 \end{figure}
 
 
+Η απλοική εκτέλεση διαρκεί 1523400216 cycles. H βέλτιστη cache blocked
+1074879790. Το speedup που υπολογίζουμε από αυτή τη διαφορά είναι 1.41.
+
+
+Παρατηρούμε πως η μεταβολή του cache block size  αν και αυξάνει το πλήθος των
+εντολών του προγράμματος, αυξάνει την ταχύτητά του καθώς εκμεταλλεύεται
+καλύτερο την τοπικότητα των αναφορών. Ωστόσο για ακραίες τιμές η επιτάχυνση
+δεν είναι πολύ σημαντική. Είναι μια τεχνική που μπορεί να εφαρμοστεί
+ταυτόχρονα με την αναδιάρθρωση των βρόχων αρκεί το pattern να έχει κάποια
+συγκεκριμένη μορφή.
 
 %}}}
 
