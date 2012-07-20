@@ -11,7 +11,6 @@ gnuplot << EOF
 set xtics ( "8"    0, "16"   1, "24"   2, "32"   3, "40"   4, "48"   5, "56"   6, "64"   7, "72"   8, "80"   9, "88"   10, "96"   11, "104"  12, "112"  13, "120"  14, "128"  15)
 
 
-
 set terminal png size 1024, 768
 set title "Cycles"
 set grid
@@ -20,6 +19,8 @@ set ylabel "Cycles"
 
 set output "cycles.png"
 plot "cycles.dat" with histogram lc 1 fs pattern 2 notitle
+set output "cycles2.png"
+plot "cycles.dat" with histogram lc 2 fs pattern 1 notitle
 set output "cycles_hist.png"
 plot "cycles.dat" with histogram lc 3 fs pattern 3 notitle
 set output "cycles_hist2.png"
@@ -35,6 +36,8 @@ set ylabel "Miss Rate"
 
 set output "l1_miss.png"
 plot "l1.dat" with histogram lc 1 fs pattern 2 notitle
+set output "l1_miss2.png"
+plot "l1.dat" with histogram lc 2 fs pattern 1 notitle
 set output "l1_miss_hist.png"
 plot "l1.dat" with histogram lc 3 fs pattern 3 notitle
 set output "l1_miss_hist2.png"
@@ -50,6 +53,8 @@ set ylabel "Miss Rate"
 
 set output "l2_miss.png"
 plot "l2.dat" with histogram lc 1 fs pattern 2 notitle
+set output "l2_miss2.png"
+plot "l2.dat" with histogram lc 2 fs pattern 1 notitle
 set output "l2_miss_hist.png"
 plot "l2.dat" with histogram lc 3 fs pattern 3 notitle
 set output "l2_miss_hist2.png"
