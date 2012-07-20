@@ -1,7 +1,7 @@
 /* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
  * File Name : partA.c
  * Creation Date : 16-07-2012
- * Last Modified : Tue 17 Jul 2012 06:07:55 PM EEST
+ * Last Modified : Fri 20 Jul 2012 01:19:53 PM EEST
  * Created By : Greg Liras <gregliras@gmail.com>
  _._._._._._._._._._._._._._._._._._._._._.*/
 
@@ -36,7 +36,9 @@ int main(int argc, char **argv)
 {
     float **A,**B,**C;
     int i,j,k,N;
-    int start,stop;
+    int starti,stopi;
+    int startj,stopj;
+    int startk,stopk;
     N=atoi(argv[1]);
     A=(float**)malloc(N*sizeof(float*));
 
@@ -58,13 +60,21 @@ int main(int argc, char **argv)
     init_matrix(B, N);
     init_matrix(C, N);
     MAGIC_BREAKPOINT;
-    for(start=0; start<N; start+=16) {
-        stop = start + 16;
-        stop = stop <= N ? stop : N;
-        for(j=start; j<stop; j++)
-            for(i=start; i<stop; i++)
-                for(k=start; k<stop; k++)
-                    C[i][j] += A[i][k]*B[k][j];
+    for(startj=0; startj<N; startj+=16) {
+        stopj = startj + 16;
+        stopj = stopj <= N ? stopj : N;
+        for(starti=0; starti<N; starti+=16) {
+            stopi = starti + 16;
+            stopi = stopi <= N ? stopi : N;
+            for(startk=0; startk<N; startk+=16) {
+                stopk = startk + 16;
+                stopk = stopk <= N ? stopk : N;
+                for(j=start; j<stop; j++)
+                    for(i=start; i<stop; i++)
+                        for(k=start; k<stop; k++)
+                            C[i][j] += A[i][k]*B[k][j];
+            }
+        }
     }
     MAGIC_BREAKPOINT;
     return 0;
