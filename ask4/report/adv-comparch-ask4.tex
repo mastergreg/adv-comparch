@@ -44,7 +44,10 @@
 
 \subsection{Ιεραρχία μνήμης και μοντέλο απόδοσης}
 
-Χρησιμοποιήσαμε την ιεραρχία μνήμης όπως μας δίνεται στο Παράρτημα.
+Χρησιμοποιήσαμε την ιεραρχία μνήμης όπως μας δίνεται στο Παράρτημα. Αυτή έχει
+δύο επίπεδα κρυφής μνήμης L1 (2 way set associative 64 bytes $\times$ 512 lines
+write-through LRU policy) και
+L2 (4 way set associative 128 bytes $\times$ 1024 lines write-back LRU policy).
 
 \begin{table}[H]
     \centering
@@ -64,16 +67,25 @@
     \label{fig:T2}
 \end{table}
 
+Στο μοντέλο που προσομοιώνουμε οι κύκλοι υπολογίζονται χωρίς penalty από το
+Simics. Για να υπολογίσουμε τους κύκλους θεωρούμε πως πρόσβαση στην L1 cache
+γίνεται σε 1 κύκλο, στην L2 σε 20 κύκλους και στη μνήμη σε 300 κύκλους οπότε
+έχουμε τον τύπο:
+
+\begin{equation}
+    Cycles = Inst + L1_{Accesses} * L1_{Time} + L2_{Accesses} * L2_{Time} +
+    Mem_{Accesses} * Mem_{Time}
+\end{equation} 
 
 \begin{table}[H]
     \centering
     \begin{tabular}{| c | c |}
         \hline
-        Cycles & 1885656236 \\
+        Cycles & 1523400216 \\
         \hline
-        L1 miss ratio & 0.0117 \\
+        L1 miss ratio & 0.029 \\
         \hline
-        L2 miss ratio & 0.0183 \\
+        L2 miss ratio & 0.015 \\
         \hline
     \end{tabular}
     \caption{Μετρικές πρώτης εκτέλεσης}
@@ -138,12 +150,30 @@
 	\label{fig:A3}
 \end{figure}
 
+\begin{table}[H]
+    \centering
+    \begin{tabular}{| c | c | c | c |}
+        \hline
+        Cycles & L1 Miss rate & L2 Miss rate & Speedup  \\
+        \hline
+        \hline
+        1523400216 & 0.0285795820412 & 0.0150389941603   &  1.0            \\
+        1519770751 & 0.00468022311872 & 0.0152373522682  &  0.997617523641 \\
+        1145990549 & 0.0303714959475 & 0.0281574903722   &  0.752258360583 \\
+        2752007165 & 0.0835636317199 & 0.06750286478     &  1.80648994013  \\
+        1905041698 & 0.00455744098555 & 0.0115127159615  &  1.25051951417  \\
+        2659818958 & 0.0833196681295 & 0.0619748730144   &  1.74597517452  \\
+    \end{tabular}
+    \caption{Μετρικές όλων των εκτελέσεων}
+    \label{fig:T1}
+\end{table}
 
 
 %}}}
 
-
 \pagebreak
+
+%{{{ Cache Blocking
 
 \subsection{Cache Blocking}
 
@@ -199,4 +229,5 @@
 
 %}}}
 
+\section*{Cache Consistency}
 \end{document}
