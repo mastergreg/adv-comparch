@@ -4,7 +4,7 @@
 #* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
 # File Name : miss-rate.py
 # Creation Date : 13-04-2012
-# Last Modified : Fri 20 Jul 2012 09:00:58 PM EEST
+# Last Modified : Fri 20 Jul 2012 05:20:02 PM EEST
 # Created By : Greg Liras <gregliras@gmail.com>
 #_._._._._._._._._._._._._._._._._._._._._.*/
 import re
@@ -60,6 +60,12 @@ def miss_ratio(fname):
 
 
 
+mapping = { "1": '"i,j,k"',
+            "2": '"i,k,j"',
+            "3": '"j,i,k"',
+            "4": '"j,k,i"',
+            "5": '"k,i,j"',
+            "6": '"k,j,i"'}
 
 
 
@@ -77,9 +83,9 @@ def main():
         miss = miss_ratio(argv[1])
         #print miss['l1_miss_rate']
         version = argv[1][7]
-        f1.write("{0}\n".format(miss['l1_miss_rate'], mapping[version]))
+        f1.write("{0}\t{1}\n".format(miss['l1_miss_rate'], mapping[version]))
         #print miss['l2_miss_rate']
-        f2.write("{0}\n".format(miss['l2_miss_rate'], mapping[version]))
+        f2.write("{0}\t{1}\n".format(miss['l2_miss_rate'], mapping[version]))
         f1.close()
         f2.close()
         data = accesses(argv[1])
@@ -89,7 +95,7 @@ def main():
         mem_acc = data['mem_acc']
         cyc = cycles(inst, l1_acc, l2_acc, mem_acc)
         #print cyc
-        f3.write("{0}\n".format(cyc, mapping[version]))
+        f3.write("{0}\t{1}\n".format(cyc, mapping[version]))
         f3.close()
 
 if __name__=="__main__":

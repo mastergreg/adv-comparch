@@ -1,0 +1,36 @@
+#!/bin/bash
+#plot "$1" smooth csplines lc rgb "#0055ff", \
+#    "$1" lc rgb "magenta"
+
+#plot "$1", "$1" smooth csplines lc rgb "#0055ff",\
+#     "$2", "$2" smooth csplines lc rgb "#555500", \
+#     "$3", "$3" smooth csplines ,\
+#     "$4", "$4" smooth csplines
+#set xtics("i,j,k" 1, "i,k,j" 2, "j,i,k" 3, "j,k,i" 4, "k,i,j" 5, "k,j,i" 6)
+gnuplot << EOF
+set terminal png size 1024, 768
+set output "cycles.png"
+set title "Cycles"
+set grid
+set xlabel "Combinations"
+set ylabel "Cycles"
+
+plot "cycles.dat" using 1: xtic(2) with histogram lc 2 fs pattern 1 notitle
+
+set output "l1_miss.png"
+set title "L1 Miss Rate"
+set grid
+set xlabel "Combinations"
+set ylabel "Miss Rate"
+
+plot "l1.dat" using 1: xtic(2) with histogram lc 2 fs pattern 1 notitle
+
+set output "l2_miss.png"
+set title "L2 Miss Rate"
+set grid
+set xlabel "Combinations"
+set ylabel "Miss Rate"
+
+plot "l2.dat" using 1: xtic(2) with histogram lc 2 fs pattern 1 notitle
+EOF
+
