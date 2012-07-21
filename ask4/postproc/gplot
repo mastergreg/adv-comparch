@@ -33,9 +33,9 @@ set grid
 set xlabel "Combinations"
 set ylabel "Miss Rate"
 
+plot "l1.dat" using 1: xtic(2) with histogram lc 2 fs pattern 1 notitle
 set output "l1_miss_2.png"
 plot "l1.dat" using 1: xtic(2) with histogram lc 1 fs pattern 2 notitle
-plot "l1.dat" using 1: xtic(2) with histogram lc 2 fs pattern 1 notitle
 set output "l1_miss_hist.png"
 plot "l1.dat" using 1: xtic(2) with histogram lc 3 fs pattern 3 notitle
 set output "l1_miss_hist2.png"
